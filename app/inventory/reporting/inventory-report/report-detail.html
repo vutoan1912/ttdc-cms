@@ -1,0 +1,78 @@
+<div class="uk-grid" data-uk-grid-margin="" data-uk-grid-match="{target:'.md-card'}">
+    <div class="uk-width-medium-10-10">
+        <div class="uk-overflow-container uk-margin-bottom" ng-style="fullsize"  id="table_content">
+            <table class=" hoverTable uk-table-striped uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair"
+                   id="table_tf">
+                <thead>
+                <tr>
+                    <th style="min-width: 200px"></th>
+                    <th  class="pointerMouse label-bold" style="min-width: 200px" ng-click="handleSort($event, 0, 'table_tf')" data-priority="1"><span data-translate="masterdata.common.Product"></span><i class="material-icons md-20 rightCell">{{TABLES['table_tf'].param_sort_list[0]}}</i></th>
+                    <th  class="pointerMouse label-bold" style="min-width: 150px" ng-click="handleSort($event, 1, 'table_tf')" data-priority="1"><span data-translate="masterdata.column.location"></span><i class="material-icons md-20 rightCell">{{TABLES['table_tf'].param_sort_list[1]}}</i></th>
+                    <th  class="pointerMouse label-bold" style="min-width: 150px" ng-click="handleSort($event, 2, 'table_tf')" data-priority="1"><span data-translate="masterdata.common.Package"></span><i class="material-icons md-20 rightCell">{{TABLES['table_tf'].param_sort_list[2]}}</i></th>
+                    <th  class="pointerMouse label-bold" style="min-width: 200px" ng-click="handleSort($event, 3, 'table_tf')" data-priority="1"><span data-translate="transfer.detail.detail-operation-column.LotSerial"></span><i class="material-icons md-20 rightCell">{{TABLES['table_tf'].param_sort_list[3]}}</i></th>
+                    <th  class="pointerMouse label-bold" style="min-width: 100px" ng-click="handleSort($event, 4, 'table_tf')" data-priority="1"><span data-translate="transfer.detail.detail-operation-column.Reserved"></span><i class="material-icons md-20 rightCell">{{TABLES['table_tf'].param_sort_list[4]}}</i></th>
+                    <th  class="pointerMouse label-bold" style="min-width: 100px" ng-click="handleSort($event, 5, 'table_tf')" data-priority="1"><span data-translate="transfer.column.onhand"></span><i class="material-icons md-20 rightCell">{{TABLES['table_tf'].param_sort_list[5]}}</i></th>
+
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input placeholder="Product..."    class="filter-table-cell"  ng-model="TABLES['table_tf'].param_filter_list[0]" ng-change="handleFilter('table_tf','origins')" type="search" placeholder="" data-column="0" style="height: 38px;"></td>
+                    <td><input placeholder="Location..."   class="filter-table-cell"  ng-model="TABLES['table_tf'].param_filter_list[1]" ng-change="handleFilter('table_tf','origins')" type="search" placeholder="" data-column="1" style="height: 38px;"></td>
+                    <td><input placeholder="Lot/Serial..." class="filter-table-cell"  ng-model="TABLES['table_tf'].param_filter_list[2]" ng-change="handleFilter('table_tf','origins')" type="search" placeholder="" data-column="2" style="height: 38px;"></td>
+                    <td><input placeholder="Package..."    class="filter-table-cell"  ng-model="TABLES['table_tf'].param_filter_list[3]" ng-change="handleFilter('table_tf','origins')" type="search" placeholder="" data-column="3" style="height: 38px;"></td>
+                    <td><input placeholder="Reserved..."   class="filter-table-cell"  ng-model="TABLES['table_tf'].param_filter_list[4]" ng-change="handleFilter('table_tf','origins')" type="search" placeholder="" data-column="4" style="height: 38px;"></td>
+                    <td><input placeholder="On hand..."    class="filter-table-cell"  ng-model="TABLES['table_tf'].param_filter_list[5]" ng-change="handleFilter('table_tf','origins')" type="search" placeholder="" data-column="5" style="height: 38px;"></td>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat-start="o in origins"   class="hoverRow" ng-click="expandAndCollapseOrigin('table_tf',o,$index)"  id="{{ 'r_' + $index }}">
+                    <td>
+                        <i class="uk-icon-caret-right uk-icon-small custom-cursor-poiter" ng-hide="o.expand"></i>
+                        <i class="uk-icon-caret-down  uk-icon-small custom-cursor-poiter" ng-hide="!o.expand"></i>
+                        <span ng-if="groupBy == 'locationId'">{{o.locationName}}</span>
+                        <span ng-if="groupBy == 'productCategoryId'">{{o.productCategoryName}}</span>
+
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td>
+                        <!--{{o.sourceDocument}}-->
+                    </td>
+                    <td>
+                        <!--<get-attr-by-id-tooltip url="urlTransferName" value="o.backorderOfId" attr="attrTransferNumber"></get-attr-by-id-tooltip>-->
+                    </td>
+                    <td></td>
+                    <td>
+                        <!--<get-attr-by-id-tooltip url="urlUsersName" value="o.assigneeId" attr="attrEmail"></get-attr-by-id-tooltip>-->
+                    </td>
+                </tr>
+                <tr ng-repeat-end ng-repeat="ref in o.child" on-last-repeat>
+                    <td></td>
+
+                    <td>
+                        {{ref.productName}}
+                    </td>
+                    <td>
+                        {{ref.locationName}}
+                    </td>
+                    <td>
+                        {{ref.packageNumber}}
+                    </td>
+                    <td>
+                        {{ref.traceNumber}}
+                    </td>
+                    <td style="text-align: right">
+                        {{ref.reserved}}
+                    </td>
+                    <td style="text-align: right">
+                        {{ref.onHand}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

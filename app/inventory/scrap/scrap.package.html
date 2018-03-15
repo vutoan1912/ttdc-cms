@@ -1,0 +1,340 @@
+<div class="uk-modal" id="scrap_package_modal">
+    <div class="uk-modal-dialog uk-modal-dialog-large" style="width: 98% !important;">
+        <div class="uk-modal-header">
+            <span><span class="uk-modal-title" data-translate="scrap.detail.createScrap"></span><a class="uk-modal-close" style="float: right;"><i class="material-icons">&#xE14C;</i></a></span>
+            <hr>
+        </div>
+
+        <div class="uk-margin-bottom">
+            <!--Partner & Scheduled Date-->
+            <div class="uk-grid" data-uk-grid-margin="">
+                <div class="uk-width-large-1-2">
+                    <div class="parsley-row">
+                        <label class="label-bold" data-translate="scrap.detail.partner"></label>
+                        <input
+                                ng-required="true"
+                                config="cbxPartners.Config"
+                                options="cbxPartners.Options"
+                                position="bottom"
+                                ng-model="newScrap.partnerId"
+                                scope-controller="cbxPartners.Scope"
+                                total-count="cbxPartnersInit.totalCount"
+                                page="cbxPartnersInit.page"
+                                per-page="cbxPartnersInit.perPage"
+                                query-relate="cbxPartnersInit.queryRelate"
+                                reset-scroll="cbxPartnersInit.resetScroll" selectize/>
+                        <span class="md-input-bar "></span>
+                    </div>
+                </div>
+                <div class="uk-width-large-1-2">
+                    <div class="parsley-row">
+                        <label class="label-bold" data-translate="scrap.detail.scheduledDate"></label>
+                        <input class="md-input ng-isolate-scope md-input-processed"
+                               type="text" data-uk-datepicker="{format:'DD/MM/YYYY'}"
+                               md-input ng-model="newScrap.scheduledDate"
+                               name="scheduledDate"
+                               style="margin-top: 4px;">
+                        <span class="md-input-bar "></span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Source Location & Source Document-->
+            <div class="uk-grid" data-uk-grid-margin="">
+                <div class="uk-width-large-1-2">
+                    <div class="parsley-row">
+                        <label class="label-bold" data-translate="scrap.table.owner"></label>
+                        <input
+                                ng-required="true"
+                                config="cbxOwners.Config"
+                                options="cbxOwners.Options"
+                                position="bottom"
+                                ng-model="newScrap.ownerId"
+                                scope-controller="cbxOwners.Scope"
+                                total-count="cbxOwnersInit.totalCount"
+                                page="cbxOwnersInit.page"
+                                per-page="cbxOwnersInit.perPage"
+                                query-relate="cbxOwnersInit.queryRelate"
+                                reset-scroll="cbxOwnersInit.resetScroll" selectize/>
+                        <span class="md-input-bar "></span>
+                    </div>
+                </div>
+                <div class="uk-width-large-1-2">
+                    <div class="parsley-row">
+                        <label class="label-bold" data-translate="scrap.detail.sourceDocument"><span class="req">*</span></label>
+                        <input
+                                data-parsley-required-message={{required_msg}}
+                                data-parsley-maxlength-message={{maxLengthRule|translate}}
+                                data-parsley-maxlength="255"
+                                data-parsley-trigger="change"
+                                required=""
+                                md-input=""
+                                ng-model="newScrap.sourceDocument"
+                                id="sname" type="text" name="sname"
+                                class="md-input ng-isolate-scope md-input-processed"
+                                style="margin-top: 4px;">
+                        <span class="md-input-bar "></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="margin-top: 50px">
+
+        <div class="uk-overflow-container uk-margin-bottom" style="min-height: 300px; margin-top: 50px">
+            <table class="uk-table uk-table-align-vertical uk-table-nowrap"
+                   id="table_op_tab">
+                <thead>
+                <tr>
+                    <th class="pointerMouse boldHeader custom-cl-header-slarge"
+                        data-priority="1"
+                        ng-show="myColumnsShow[0]" data-translate="scrap.table.vnptPn">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[1]}}</i>
+                    </th>
+                    <th class="pointerMouse boldHeader custom-cl-header-slarge"
+                        data-priority="2"
+                        ng-show="myColumnsShow[1]" data-translate="scrap.table.description"><i
+                            class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[2]}}</i>
+                    </th>
+                    <th class="pointerMouse boldHeader custom-cl-header-slarge"
+                        data-priority="3"
+                        ng-show="myColumnsShow[2]" data-translate="scrap.table.vnptManPn">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[3]}}</i>
+                    </th>
+                    <th class="pointerMouse boldHeader custom-cl-header-slarge"
+                        data-priority="3"
+                        ng-show="myColumnsShow[2]" data-translate="scrap.table.manPn">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[3]}}</i>
+                    </th>
+                    <th class="pointerMouse boldHeader custom-cl-header-slarge"
+                        data-priority="4"
+                        ng-show="myColumnsShow[3]" data-translate="scrap.table.lot"><i
+                            class="material-icons md-20 rightCell"></i>
+                    </th>
+                    <th class="pointerMouse boldHeader custom-cl-header-slarge"
+                        data-priority="5"
+                        ng-show="myColumnsShow[4]" data-translate="scrap.table.package">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[4]}}</i>
+                    </th>
+                    <th class="pointerMouse boldHeader custom-cl-header-large"
+                        data-priority="6"
+                        ng-show="myColumnsShow[5]" data-translate="scrap.table.quantity">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>
+                    </th>
+                    <!--<th class="pointerMouse boldHeader custom-cl-header-large"
+                        data-priority="7"
+                        ng-show="myColumnsShow[6]" data-translate="scrap.table.owner">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[6]}}</i>
+                    </th>-->
+                    <th class="pointerMouse boldHeader custom-cl-header-large"
+                        data-priority="8"
+                        ng-show="myColumnsShow[7]" data-translate="scrap.table.location">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[7]}}</i>
+                    </th>
+                    <th class="pointerMouse boldHeader custom-cl-header-large"
+                        data-priority="9"
+                        ng-show="myColumnsShow[8]" data-translate="scrap.table.scrapLocation">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[8]}}</i>
+                    </th>
+                    <!--<th class="pointerMouse boldHeader custom-cl-header-large"
+                        data-priority="10"
+                        ng-show="myColumnsShow[9]" data-translate="scrap.table.oldVnptPn">Done
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[9]}}</i>
+                    </th>-->
+                    <!--<th class="pointerMouse boldHeader custom-cl-header-large"
+                        data-priority="11"
+                        ng-show="myColumnsShow[10]" data-translate="scrap.table.manufacturer">
+                        <i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[10]}}</i>
+                    </th>-->
+                    <th class="small_col"></th>
+                    <th class="small_col"></th>
+                </tr>
+                </thead>
+               <!-- <form name="form_create_operation" id="form_create_operation"
+                      class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">-->
+                    <tbody>
+                    <tr ng-repeat="(key,item) in listScraps track by key" on-last-repeat class="hoverRow">
+                        <!--VNPT P/N-->
+                        <td>{{item.product.name}}</td>
+                        <!--Description-->
+                        <td class="custom-long-text">{{item.product.description}}</td>
+                        <!--VNPT Man PN-->
+                        <td>{{item.vnptManPn.internalReference}}</td>
+                        <!--ManPn-->
+                        <td>{{item.manPn.manufacturerPn}}</td>
+                        <!--Lot-->
+                        <td>{{item.lot.lotNumber}}</td>
+                        <!--Package-->
+                        <td>{{item.package.packageNumber}}</td>
+                        <!--Quantity-->
+                        <td>{{item.quantity}}</td>
+                        <!--Location-->
+                        <td>{{item.location.completeName}}</td>
+                        <!--Scrap Location-->
+                        <td>{{item.scrapLocation.completeName}}</td>
+                    </tr>
+                    </tbody>
+                    <tbody ng-show="showAddItemScrap">
+                        <form name="form_add_item_scrap" id="form_add_item_scrap" class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">
+                            <tr class="hoverRow">
+                                <!--VNPT P/N-->
+                                <td>
+                                    <input
+                                            ng-required="true"
+                                            config="cbxVnptPns.Config"
+                                            options="cbxVnptPns.Options"
+                                            position="bottom"
+                                            ng-model="newScrap.productId"
+                                            scope-controller="cbxVnptPns.Scope"
+                                            total-count="cbxVnptPnsInit.totalCount"
+                                            page="cbxVnptPnsInit.page"
+                                            per-page="cbxVnptPnsInit.perPage"
+                                            query-relate="cbxVnptPnsInit.queryRelate"
+                                            reset-scroll="cbxVnptPnsInit.resetScroll" selectize/>
+                                </td>
+                                <!-- Description -->
+                                <td>
+                                    <input
+                                            ng-required="true"
+                                            config="cbxDescs1.Config"
+                                            options="cbxDescs1.Options"
+                                            position="bottom"
+                                            ng-model="newScrap.description"
+                                            scope-controller="cbxDescs1.Scope"
+                                            total-count="cbxDescs1Init.totalCount"
+                                            page="cbxDescs1Init.page"
+                                            per-page="cbxDescs1Init.perPage"
+                                            query-relate="cbxDescs1Init.queryRelate"
+                                            reset-scroll="cbxDescs1Init.resetScroll" selectize/>
+                                </td>
+                                <!-- Vnpt Man P/N -->
+                                <td class="uk-text-left">
+                                    <input
+                                            ng-required="true"
+                                            config="cbxVnptManPns.Config"
+                                            options="cbxVnptManPns.Options"
+                                            position="bottom"
+                                            ng-model="newScrap.vnptManPnId"
+                                            scope-controller="cbxVnptManPns.Scope"
+                                            total-count="cbxVnptManPnsInit.totalCount"
+                                            page="cbxVnptManPnsInit.page"
+                                            per-page="cbxVnptManPnsInit.perPage"
+                                            query-relate="cbxVnptManPnsInit.queryRelate"
+                                            reset-scroll="cbxVnptManPnsInit.resetScroll" selectize/>
+                                </td>
+                                <!-- Man P/N -->
+                                <td class="uk-text-left">
+                                    <input
+                                            ng-required="true"
+                                            config="cbxManPns.Config"
+                                            options="cbxManPns.Options"
+                                            position="bottom"
+                                            ng-model="newScrap.manPnId"
+                                            scope-controller="cbxManPns.Scope"
+                                            total-count="cbxManPnsInit.totalCount"
+                                            page="cbxManPnsInit.page"
+                                            per-page="cbxManPnsInit.perPage"
+                                            query-relate="cbxManPnsInit.queryRelate"
+                                            reset-scroll="cbxManPnsInit.resetScroll" selectize/>
+                                </td>
+                                <!-- Lot -->
+                                <td class="uk-text-left">
+                                    <input
+                                            ng-required="true"
+                                            config="cbxLots.Config"
+                                            options="cbxLots.Options"
+                                            position="bottom"
+                                            ng-model="newScrap.lotId"
+                                            scope-controller="cbxLots.Scope"
+                                            total-count="cbxLotsInit.totalCount"
+                                            page="cbxLotsInit.page"
+                                            per-page="cbxLotsInit.perPage"
+                                            query-relate="cbxLotsInit.queryRelate"
+                                            reset-scroll="cbxLotsInit.resetScroll" selectize/>
+                                </td>
+                                <!-- Package -->
+                                <td class="uk-text-left">
+                                    <input
+                                            ng-required="true"
+                                            config="cbxPackages.Config"
+                                            options="cbxPackages.Options"
+                                            position="bottom"
+                                            ng-model="newScrap.packageId"
+                                            scope-controller="cbxPackages.Scope"
+                                            total-count="cbxPackagesInit.totalCount"
+                                            page="cbxPackagesInit.page"
+                                            per-page="cbxPackagesInit.perPage"
+                                            query-relate="cbxPackagesInit.queryRelate"
+                                            reset-scroll="cbxPackagesInit.resetScroll" selectize/>
+                                </td>
+                                <!-- Quantity -->
+                                <td class="uk-text-left">
+                                    <input
+                                            data-parsley-required-message={{required_msg}}
+                                            data-parsley-maxlength-message={{maxLengthRule|translate}}
+                                            data-parsley-maxlength="255"
+                                            data-parsley-trigger="change"
+                                            required="true"
+                                            md-input=""
+                                            ng-model="newScrap.quantity"
+                                            type="number" name="sname"
+                                            class="md-input ng-isolate-scope md-input-processed">
+                                </td>
+                                <!-- Location -->
+                                <td>
+                                    <input
+                                            ng-required="true"
+                                            config="cbxLocations.Config"
+                                            options="cbxLocations.Options"
+                                            position="bottom"
+                                            ng-model="newScrap.locationId"
+                                            scope-controller="cbxLocations.Scope"
+                                            total-count="cbxLocationsInit.totalCount"
+                                            page="cbxLocationsInit.page"
+                                            per-page="cbxLocationsInit.perPage"
+                                            query-relate="cbxLocationsInit.queryRelate"
+                                            reset-scroll="cbxLocationsInit.resetScroll" selectize/>
+                                </td>
+                                <!-- Scrap Location -->
+                                <td>
+                                    <input
+                                            ng-required="true"
+                                            config="cbxScrapLocations.Config"
+                                            options="cbxScrapLocations.Options"
+                                            position="bottom"
+                                            ng-model="newScrap.scrapLocationId"
+                                            scope-controller="cbxScrapLocations.Scope"
+                                            total-count="cbxScrapLocationsInit.totalCount"
+                                            page="cbxScrapLocationsInit.page"
+                                            per-page="cbxScrapLocationsInit.perPage"
+                                            query-relate="cbxScrapLocationsInit.queryRelate"
+                                            reset-scroll="cbxScrapLocationsInit.resetScroll" selectize/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="submit" class="md-btn md-btn-primary md-btn-small"
+                                            ng-click="createNewItemScrap()" id="addItemScrap" ng-disabled="!validateButton()">{{button.add|translate}}
+                                    </button>
+                                    <button class="md-btn  md-btn-small" ng-click="cancelNewItemScrap()"
+                                            style="padding-left: 20px">{{button.cancel|translate}}
+                                    </button>
+                                </td>
+                            </tr>
+                        </form>
+                    </tbody>
+                    <tbody ng-show="!showAddItemScrap">
+                    <tr>
+                        <td colspan="1"><a data-translate="scrap.table.addAnItem" ng-click="addAnItemScrap()"></a></td>
+                    </tr>
+                    </tbody>
+                <!--</form>-->
+            </table>
+        </div>
+
+        <div class="uk-modal-footer uk-text-right">
+            <button ng-click="createScrap()" type="submit" class="md-btn md-btn-primary md-btn-small"><span class="uk-text-bold" data-translate="scrap.button.done"></span></button>
+            <a class="uk-modal-close md-btn  md-btn-default md-btn-small"><span class="uk-text-bold" data-translate="scrap.button.cancel"></span></a>
+        </div>
+    </div>
+</div>

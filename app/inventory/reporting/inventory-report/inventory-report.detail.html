@@ -1,0 +1,113 @@
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions action-padding-top">
+
+        </div>
+        <span class=" route-header"><a ui-sref="inventory-report" data-translate="inventory.reporting.title"></a>
+            <span> / </span><a disabled="" ui-sref="#" data-translate="inventory.reporting.inventory-report.title"></a>
+            </span>
+        </br>
+        <div class="btn-custom-action-group uk-margin-small-top">
+            <a ng-click="printReport()" class="md-btn md-btn-primary md-btn-small"><span class="uk-text-bold" data-translate="common-ui-element.button.Print"></span></a>
+            <a ng-click="exportReport()" class="md-btn md-btn-primary md-btn-small"><span class="uk-text-bold" data-translate="common-ui-element.button.Export"></span></a>
+            <button ui-sref="inventory-report" class="md-btn md-btn-small"><span
+                    class="uk-text-bold" data-translate="common-ui-element.button.Back"></span></button>
+        </div>
+    </div>
+    <div id="page_content_inner">
+        <jhi-alert></jhi-alert>
+        <div class="md-card" id="inventory_report_detail">
+            <div class="md-card-content">
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-1-3">
+                        <div class="label-bold" data-translate="warehouse.common.Warehouse"></div>
+                        <div ng-if="warehouseType == 'ALL'" class="uk-margin-small">ALL</div>
+                        <div ng-if="warehouseType != 'ALL'" class="uk-margin-small">
+                            <get-attr-by-id url="urlWarehouseName" value="warehouseIdReport" attr="attrWarehouseName"></get-attr-by-id>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-3">
+                        <div class="label-bold" data-translate="inventory.reporting.inventory-report.date.title"></div>
+                        <div class="uk-margin-small">{{beginingDate}} <span ng-if="beginingDate != endDate" data-translate="inventory.reporting.inventory-report.date.to"></span> <span ng-if="beginingDate != endDate">{{endDate}}</span></div>
+                    </div>
+                    <div class="uk-width-1-3">
+                        <div class="label-bold" >Group By</div>
+                        <input type="text" config="selectize_a_config" options="groupByOptions" ng-model="groupBy" name="selectize_a" ng-change="handleGroupBy()" selectize />
+                    </div>
+                </div>
+
+                <hr>
+
+                <div>
+                    <ul class="uk-tab" data-uk-tab="{connect:'#tabs_anim1'}">
+                        <li class="uk-active"><a href="#"><h4 class="heading_a" data-translate="inventory.reporting.inventory-report.summary.title"></h4></a></li>
+                        <li><a href="#"><h4 class="heading_a" data-translate="inventory.reporting.inventory-report.detail.title"></h4></a></li>
+                    </ul>
+                    <ul id="tabs_anim1" class="uk-switcher uk-margin">
+                        <!-- Summary Tab -->
+                        <li>
+                            <div class="uk-overflow-container" ng-style="fullsize">
+                                <table class="uk-table uk-table-align-vertical uk-table-striped ">
+                                    <thead>
+                                    <tr>
+                                        <th class="boldHeader uk-table-nowrap" data-translate="transfer.detail.operation-column.VNPTPN"></th>
+                                        <th class="boldHeader uk-table-nowrap" data-translate="transfer.detail.operation-column.OldPn"></th>
+                                        <!--<th class="boldHeader" data-translate="transfer.detail.operation-column.Description"></th>-->
+                                        <th class="boldHeader uk-table-nowrap" data-translate="transfer.detail.operation-column.Manufacturer"></th>
+                                        <th class="boldHeader uk-table-nowrap" data-translate="transfer.detail.operation-column.ManufacturerPN"></th>
+                                        <th class="boldHeader uk-text-center uk-table-nowrap" colspan="2" data-translate="inventory.reporting.inventory-report.summary.quantity"></th>
+                                        <th class="boldHeader uk-text-center uk-table-nowrap" colspan="2" ng-repeat="pvHeader in list_column_product_version">{{pvHeader}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <!--<th></th>-->
+                                        <th></th>
+                                        <th></th>
+                                        <th class="boldHeader uk-text-center" data-translate="inventory.reporting.inventory-report.summary.beginTime"></th>
+                                        <th class="boldHeader uk-text-center" data-translate="inventory.reporting.inventory-report.summary.endTime"></th>
+                                        <th class="boldHeader uk-text-center" data-translate="{{pvDateHeader.colTranslate}}" ng-repeat="pvDateHeader in list_column_product_version_date"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in list_product_summary">
+                                        <td>{{item.vnptPn}}</td>
+                                        <td><div style="width: 200px !important;">{{item.oldPn}}</div></td>
+                                        <!--<td>{{item.description}}</td>-->
+                                        <td>{{item.manufacturer}}</td>
+                                        <td>{{item.manPn}}</td>
+                                        <td class="uk-text-center">{{getQuantity("All", "begin", item.quantities)}}</td>
+                                        <td class="uk-text-center">{{getQuantity("All", "end", item.quantities)}}</td>
+                                        <td class="uk-text-center" ng-repeat="pv in list_column_product_version_date">
+                                            {{getQuantity(pv.colKey, pv.colType, item.quantities)}}
+                                        </td>
+                                    </tr>
+                                    <!-- Sum Record-->
+                                    <tr>
+                                        <td class="boldHeader uk-text-center" colspan="5" data-translate="inventory.reporting.inventory-report.summary.sum"></td>
+                                        <td class="uk-text-center">{{getSumQuantity("All", "begin")}}</td>
+                                        <td class="uk-text-center">{{getSumQuantity("All", "end")}}</td>
+                                        <td class="uk-text-center" ng-repeat="pv in list_column_product_version_date">
+                                            {{getSumQuantity(pv.colKey, pv.colType)}}
+                                        </td>
+                                    </tr>
+                                    <!-- End of Sum Record-->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <!-- End of Summary Tab -->
+
+                        <!-- Detail Tab -->
+                        <li>
+                            <div ng-include src="'app/inventory/reporting/inventory-report/report-detail.html'"></div>
+                        </li>
+                        <!-- End of Detail Tab -->
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

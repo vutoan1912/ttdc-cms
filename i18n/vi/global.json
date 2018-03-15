@@ -1,0 +1,19 @@
+{
+  "global": {
+    "login": "Đăng nhập",
+    "messages":{
+      "error":{
+        "authentication":"<strong>Đăng nhập không thành công.</strong> Vui lòng kiểm tra thông tin và thử lại."
+      }
+    },
+    "common":{
+      "active":"Active",
+      "archived":"Archived",
+      "restore":"Restore",
+      "archive":"Archive",
+      "confirmValidation":"Confirm Validation",
+      "apply":"Apply",
+      "cancel":"Cancel"
+    }
+  }
+}

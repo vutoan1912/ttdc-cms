@@ -1,0 +1,347 @@
+<!-- main sidebar -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/contextmenu-abs/jquery.contextMenu-custom.js"></script>
+<link href="assets/contextmenu-abs/jquery.contextMenu.css" rel="stylesheet" >
+<!--<script src="app/masterdata/product/categories/categories.controller.js"></script>-->
+<!--<script src="bower_components/parsleyjs/dist/parsley.js"></script>-->
+<style type="text/css">
+    ul.fancytree-container {
+        width: 95%;
+        height: 350px;
+        overflow: auto;
+        position: relative;
+    }
+</style>
+<div ui-view>
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions action-padding-top">
+            <!--<a ui-sref="uoms" data-uk-tooltip="{pos:'bottom'}" title="Print"><i class="md-icon material-icons">&#xE8AD;</i></a>-->
+            <div data-uk-dropdown="{mode:'click'}">
+                <i class="md-icon material-icons">&#xE5D4;</i>
+                <div class="uk-dropdown uk-dropdown-small">
+                    <ul class="uk-nav">
+                        <li><a ng-click="activateByListId()">Active</a></li>
+                        <li><a ng-click="deactivateByListId()">Inactive</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="heading_actions action-padding-top">
+            <div class="uk-button-dropdown " data-uk-dropdown="{mode:'click'}">
+                <button class="md-btn md-btn-small custom-btn-type">Columns <i class="uk-icon-caret-down"></i></button>
+                <div class="uk-dropdown">
+                    <label class="container-checkbox">All
+                        <input ng-model="checkColumnAll" type="checkbox" checked="checked" ng-change="handleColumn()">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <ul class="uk-nav uk-nav-dropdown" ng-repeat="c in myColumns">
+                        <li class="checkbox-padding-left">
+                            <label ng-class="checkboxType">{{c}}
+                                <input ng-model=myColumnsShow[$index] type="checkbox" checked="checked" ng-change="checkColumn()">
+                                <span class="checkmark"></span>
+                            </label></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <span class=" route-header">
+        <a ui-sref="">{{common.Configuration|translate}}</a>
+        <span> / {{columnsName.Name|translate}}</span></span>
+
+        </br>
+        <a ui-sref="uoms-create({type: 0})" class="md-btn md-btn-primary md-btn-small"><span class="uk-text-bold">{{button.Create|translate}}</span></a>
+        <button id="deleteBtn" class="md-btn md-btn-small hideElement" ng-click="deleteList('tb_uom')"><span class="uk-text-bold">DELETE</span></button>
+    </div>
+    <div id="page_content_inner">
+        <div id="info_list">
+                <div class="uk-grid" data-uk-grid-margin="" data-uk-grid-match="{target:'.md-card'}">
+                    <div ng-hide=hideCategories class="uk-width-medium-3-10 uk-row-first" >
+                        <div class="md-card">
+                            <div>
+                            <div class="uk-input-group custom-categories-box">
+                                <div class="custom-categories-title">{{columnsName.Category|translate}}</div>
+                                <span href="#" class="uk-input-group-addon">
+        <i ng-click=showTree() class="md-icon uk-icon-angle-double-left" title="{{msg.hideCate|translate}}" ng-hide=hideCategories></i>
+    </span>
+                            </div>
+                            <!--<div class="icon-align-right custom-small-icon-right">-->
+                            <!--<i ng-click=showTree() class="uk-icon-caret-left uk-icon-small" title="Hide categories" ng-hide=hideCategories></i>-->
+                            <!--</div>-->
+                            <div>
+                                <div class="uk-input-group">
+                                    <input type="text" class="md-input ng-valid ng-dirty ng-touched ng-empty" placeholder="{{common.Search|translate}}" id="filter_input">
+                                    <span ng-hide="showClear()" class="uk-input-group-addon"><button class="md-btn md-btn-small" href="#" id="tree_filter_reset">{{button.Clear|translate}}</button></span>
+                                </div>
+                                <ul id="myMenu" class="contextMenu">
+                                    <li><a href="#add"><i class="uk-icon-plus-square"></i> {{button.addCate|translate}}</a></li>
+                                    <li><a href="#edit"><i class="uk-icon-edit"></i> {{button.Edit|translate}}</a></li>
+                                    <!--<li><a href="#rename"><i class="uk-icon-copy"></i> {{button.Rename|translate}}</a></li>-->
+                                    <li ng-hide="false"><a href="#remove"><i class="uk-icon-trash"></i> {{button.Remove|translate}}</a></li>
+                                </ul>
+
+                                <!-- Definition tree structure -->
+                                <div id="treeUom">
+
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-class=tableGrid class="uk-width-medium-7-10">
+                        <div class="md-card" style="padding-top: 16px !important;">
+                        <jhi-alert></jhi-alert>
+                        <div class="custom-categories-mini" ng-hide=!hideCategories>
+                            <i ng-click=showTree() class="md-icon uk-icon-angle-double-right" title="{{msg.showCate|translate}}" ></i>
+                        </div>
+
+                            <div class="custom-table-inline">
+
+                                    <div class="uk-overflow-container uk-margin-bottom">
+                                        <table class="uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair" id="tb_uom">
+                                            <thead>
+                                            <tr>
+                                                <th data-name="Select" data-priority="5"><input type="checkbox" class="ts_checkbox_all"></th>
+                                                <th ng-show="myColumnsShow[0]" class="pointerMouse label-bold custom-cl-header-small" ng-click="handleSort($event, 1, 'tb_uom')" data-priority="1">{{columnsName.Id|translate}}<i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[1]}}</i></th>
+                                                <th ng-show="myColumnsShow[1]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 2, 'tb_uom')" data-priority="2">{{columnsName.Name|translate}}<i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[2]}}</i></th>
+                                                <th ng-show="myColumnsShow[2]" class="pointerMouse label-bold custom-cl-header-xlarge" ng-click="handleSort($event, 3, 'tb_uom')" data-priority="3">{{columnsName.Category|translate}}<i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[3]}}</i></th>
+                                                <th ng-show="myColumnsShow[3]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 4, 'tb_uom')" data-priority="4">{{columnsName.Type|translate}}<i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[4]}}</i></th>
+                                                <th ng-show="myColumnsShow[4]" class="pointerMouse label-bold custom-cl-header-xlarge" ng-click="handleSort($event, 5, 'tb_uom')" data-priority="5">{{columnsName.Rounding|translate}}<i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[5]}}</i></th>
+                                                <th ng-show="myColumnsShow[5]" class="pointerMouse label-bold custom-cl-header-small" ng-click="handleSort($event, 6, 'tb_uom')" data-priority="6">{{columnsName.Ratio|translate}}<i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[6]}}</i></th>
+                                                <th ng-show="myColumnsShow[6]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 7, 'tb_uom')" data-priority="7">{{columnsName.Status|translate}}<i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[7]}}</i></th>
+                                                <th ng-show="myColumnsShow[7]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 8, 'tb_uom')" data-priority="8" data-translate="masterdata.column.created"><i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[8]}}</i></th>
+                                                <th ng-show="myColumnsShow[8]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 9, 'tb_uom')" data-priority="9" data-translate="masterdata.column.createdby"><i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[9]}}</i></th>
+                                                <th ng-show="myColumnsShow[9]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 10, 'tb_uom')" data-priority="10" data-translate="masterdata.column.updated"><i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[10]}}</i></th>
+                                                <th ng-show="myColumnsShow[10]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 11, 'tb_uom')" data-priority="11" data-translate="masterdata.column.updatedby"><i class="material-icons md-20 rightCell">{{TABLES['tb_uom'].param_sort_list[11]}}</i></th>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td ng-show="myColumnsShow[0]"><input class="filter-table-cell" ng-model="TABLES['tb_uom'].param_filter_list[1]" ng-change="handleFilter('tb_uom')" type="search" placeholder="" data-column="1"></td>
+                                                <td ng-show="myColumnsShow[1]"><input class="filter-table-cell" ng-model="TABLES['tb_uom'].param_filter_list[2]" ng-change="handleFilter('tb_uom')" type="search" placeholder="" data-column="2"></td>
+                                                <td ng-show="myColumnsShow[2]">
+                                                    <select-search-table-fix cbxplaceholder="CbxStatus.Placeholder"
+                                                                             cbxtextfield="CbxStatus.TextField"
+                                                                             cbxvaluefield="CbxStatus.ValueField"
+                                                                             table="CbxStatus.Table"
+                                                                             column="CbxStatus.Column"
+                                                                             scopecontroller="CbxStatus.Scope"
+                                                                             ngmodel="CbxStatus.ngModel"
+                                                                             datasource="CbxStatus.DataSource">
+                                                    </select-search-table-fix>
+                                                </td>
+                                                <!--<td ng-show="myColumnsShow[2]"><input class="filter-table-cell-small disableMouse" type="search" placeholder="" disabled data-column="0"></td>-->
+                                                <td ng-show="myColumnsShow[3]"><input class="filter-table-cell" ng-model="TABLES['tb_uom'].param_filter_list[4]" ng-change="handleFilter('tb_uom')" type="search" placeholder="" data-column="4"></td>
+                                                <td ng-show="myColumnsShow[4]"><input class="filter-table-cell" ng-model="TABLES['tb_uom'].param_filter_list[5]" ng-change="handleFilter('tb_uom')" type="search" placeholder="" data-column="5"></td>
+                                                <td ng-show="myColumnsShow[5]"><input class="filter-table-cell" ng-model="TABLES['tb_uom'].param_filter_list[6]" ng-change="handleFilter('tb_uom')" type="search" placeholder="" data-column="6"></td>
+                                                <td ng-show="myColumnsShow[6]">
+                                                    <active-search-table cbxplaceholder="CbxActive.Placeholder"
+                                                                         api="CbxActive.Api"
+                                                                         table="CbxActive.Table"
+                                                                         column="CbxActive.Column"
+                                                                         scopecontroller="CbxActive.Scope"
+                                                                         ngmodel="CbxActive.ngModel"
+                                                    >
+                                                    </active-search-table>
+                                                </td>
+                                                <td ng-show="myColumnsShow[7]">
+                                                    <date-picker-filter date-start="DatetimeRange1.dateStart" date-end="DatetimeRange1.dateEnd"
+                                                                            table="DatetimeRange1.Table"
+                                                                            column="DatetimeRange1.Column"
+                                                                            scope-controller="DatetimeRange1.Scope">
+                                                    </date-picker-filter>
+                                                </td>
+                                                <td ng-show="myColumnsShow[8]"><input class="filter-table-cell" ng-model="TABLES['tb_uom'].param_filter_list[9]" ng-change="handleFilter('tb_uom')" type="search" placeholder="" data-column="9"></td>
+                                                <td ng-show="myColumnsShow[9]">
+                                                    <date-picker-filter date-start="DatetimeRange2.dateStart" date-end="DatetimeRange2.dateEnd"
+                                                                            table="DatetimeRange2.Table"
+                                                                            column=DatetimeRange2.Column
+                                                                            scope-controller="DatetimeRange2.Scope">
+                                                    </date-picker-filter>
+                                                </td>
+                                                <td ng-show="myColumnsShow[10]"><input class="filter-table-cell" ng-model="TABLES['tb_uom'].param_filter_list[11]" ng-change="handleFilter('tb_uom')" type="search" placeholder="" data-column="11"></td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="uom in uoms" on-last-repeat>
+                                                <td><input id="{{uom.id}}" type="checkbox" class="ts_checkbox" data-md-icheck icheck ng-model="row_select"></td>
+                                                <td ng-show="myColumnsShow[0]">{{uom.id}}</td>
+                                                <td ng-show="myColumnsShow[1]"><a ui-sref="uoms-detail({uomId: uom.id })">{{uom.name}}</a></td>
+                                                <td ng-show="myColumnsShow[2]">
+                                                    <get-attr-by-id url="urlCategory" value="uom.categoryId" attr="attr"></get-attr-by-id>
+                                                </td>
+                                                <td ng-show="myColumnsShow[3]">{{uom.type}}</td>
+                                                <td ng-show="myColumnsShow[4]">{{uom.rounding}}</td>
+                                                <td ng-show="myColumnsShow[5]">{{uom.factor}}</td>
+                                                <td ng-show="myColumnsShow[6]">
+                                                    <span ng-if="uom.active==1" class="uk-badge uk-badge-success">Active</span>
+                                                    <span ng-if="uom.active==0" class="uk-badge uk-badge-danger">Inactive</span>
+                                                </td>
+                                                <td ng-show="myColumnsShow[7]">{{uom.created | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                                                <td ng-show="myColumnsShow[8]">
+                                                    <!--{{user.createdBy}}-->
+                                                    <get-attr-by-key-hyperlink url="CbxCreatedBy.url" key="CbxCreatedBy.key" value="uom.createdBy" attr="CbxCreatedBy.attr" prefix="CbxCreatedBy.prefix" suffix="CbxCreatedBy.suffix"></get-attr-by-key-hyperlink>
+                                                </td>
+                                                <td ng-show="myColumnsShow[9]">{{uom.updated | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                                                <td ng-show="myColumnsShow[10]">
+                                                    <!--{{user.updatedBy}}-->
+                                                    <get-attr-by-key-hyperlink url="CbxCreatedBy.url" key="CbxCreatedBy.key" value="uom.updatedBy" attr="CbxCreatedBy.attr" prefix="CbxCreatedBy.prefix" suffix="CbxCreatedBy.suffix"></get-attr-by-key-hyperlink>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="ts_pager" id="table_uom_pager">
+                                        <ul class="uk-pagination ts_pager">
+                                            <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                                                <input ng-change="selectPageHandle('tb_uom')" id="rd_selectize_page" type="text"
+                                                       config="TABLES['tb_uom'].selectize_page_config" options="TABLES['tb_uom'].selectize_page_options"
+                                                       ng-model="TABLES['tb_uom'].selectize_page" name="TABLES['tb_uom'].selectize_page" selectize>
+                                            </li>
+                                            <li><a href="javascript:void(0)" class="firstPage" ng-click="handleFirstPage('tb_uom')"><i class="uk-icon-angle-double-left"></i></a></li>
+                                            <li><a href="javascript:void(0)" class="prevPage" ng-click="handlePreviousPage('tb_uom')"><i class="uk-icon-angle-left"></i></a></li>
+                                            <li><span class="pageDisplay">1-20/50</span></li>
+                                            <li><a href="javascript:void(0)" class="nextPage" ng-click="handleNextPage('tb_uom')"><i class="uk-icon-angle-right"></i></a></li>
+                                            <li><a href="javascript:void(0)" class="lastPage"ng-click="handleLastPage('tb_uom')"><i class="uk-icon-angle-double-right"></i></a></li>
+                                            <li data-uk-tooltip title="{{pageSize}}">
+                                                <input ng-change="selectPageNumHandle('tb_uom')" id="rd_selectize_pageNum" type="text"
+                                                       config="TABLES['tb_uom'].selectize_pageNum_config" options="TABLES['tb_uom'].selectize_pageNum_options"
+                                                       ng-model="TABLES['tb_uom'].selectize_pageNum" name="TABLES['tb_uom'].selectize_pageNum" selectize>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                            </div>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<button id="addBtn" class="md-btn" data-uk-modal="{target:'#add_category'}" ng-hide="true">Open</button>
+<div class="uk-modal" id="add_category">
+    <form name="form_create_category" id="form_create_category">
+        <div class="uk-modal-dialog uk-modal-small">
+            <div class="uk-modal-header">
+
+                <span><span class="uk-modal-title">Add new category</span><a class="uk-modal-close" style="float: right;"><i class="material-icons">&#xE14C;</i></a></span>
+                <hr>
+            </div>
+            <jhi-alert></jhi-alert>
+            <div class="parsley-row">
+                <div>
+                    <label class="label-bold">Parent</label>
+                    <input
+                            ng-required="false"
+                            config="cbxSrc2CreateCate.Config"
+                            options="cbxSrc2CreateCate.Options"
+                            position="bottom"
+                            ng-model="cbxSrc2CreateCate.ngModel"
+                            scope-controller="cbxSrc2CreateCate.Scope"
+                            total-count="cbxSrc2UomCateInit.totalCount"
+                            page="cbxSrc2UomCateInit.page"
+                            per-page="cbxSrc2UomCateInit.perPage"
+                            query-relate="cbxSrc2UomCateInit.queryRelate"
+                            reset-scroll="cbxSrc2CreateCate.resetScroll" selectize/>
+                </div>
+
+
+
+            </div>
+
+            <div class="parsley-row custom-input-row">
+                <div><label class="label-bold">{{columnsName.cname|translate}}</label>
+                    <input data-parsley-required-message={{required_msg|translate}}
+                           data-parsley-maxlength-message={{maxLengthRule|translate}}
+                           data-parsley-maxlength="255"
+                           value={{category.name}}  ng-model="category.name" id="cname"
+                           type="text" name="cname" data-parsley-trigger="change" required=""
+                           class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                    <p ng-show="form_create_category.cname.$dirty && form_create_category.cname.$error.required" class="uk-text-danger" data-translate="admin.messages.required"></p>
+                </div>
+            </div>
+
+            <div class="parsley-row custom-input-row">
+                <div><label class="label-bold">{{columnsName.Description|translate}}</label>
+                    <input data-parsley-maxlength-message={{maxLengthRule|translate}}
+                           data-parsley-maxlength="255"
+                           value={{category.description}}  ng-model="category.description" id="cdescription"
+                           type="text" name="description" data-parsley-trigger="change"
+                           class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                    <span class="md-input-bar "></span>
+                </div>
+            </div>
+
+            <div class="uk-modal-footer uk-text-right">
+                <button id="createCate" ng-disabled="!validateCreateCateButton()"
+                        ng-click="createCategory()" type="submit" class="md-btn md-btn-primary md-btn-small uk-modal-close"><span
+                        class="uk-text-bold">{{common.Save|translate}}</span></button>
+                <a class="md-btn md-btn-small uk-modal-close"><span class="uk-text-bold">{{common.Close|translate}}</span></a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<button id="editBtn" class="md-btn" data-uk-modal="{target:'#edit_category'}" ng-hide="true">Open</button>
+<div class="uk-modal" id="edit_category">
+    <form name="form_edit_category" id="form_edit_category">
+        <div class="uk-modal-dialog uk-modal-small">
+            <div class="uk-modal-header">
+                <span><span class="uk-modal-title">Edit category</span><a class="uk-modal-close" style="float: right;"><i class="material-icons">&#xE14C;</i></a></span>
+                <hr>
+            </div>
+
+            <jhi-alert></jhi-alert>
+            <div class="parsley-row">
+                <div>
+                    <label class="label-bold">Parent</label>
+                    <input
+                            ng-required="false"
+                            config="cbxSrc2EditCate.Config"
+                            options="cbxSrc2EditCate.Options"
+                            position="bottom"
+                            ng-model="cbxSrc2EditCate.ngModel"
+                            scope-controller="cbxSrc2EditCate.Scope"
+                            total-count="cbxSrc2UomEditCateInit.totalCount"
+                            page="cbxSrc2UomEditCateInit.page"
+                            per-page="cbxSrc2UomEditCateInit.perPage"
+                            query-relate="cbxSrc2UomEditCateInit.queryRelate"
+                            reset-scroll="cbxSrc2EditCate.resetScroll" selectize/>
+                </div>
+            </div>
+
+            <div class="parsley-row custom-input-row">
+                <div><label class="label-bold">{{columnsName.cname|translate}}</label>
+                    <input data-parsley-required-message={{required_msg|translate}}
+                           data-parsley-maxlength-message={{maxLengthRule|translate}}
+                           data-parsley-maxlength="255"
+                           value={{category.name}}  ng-model="category.name" id="ename" name="ename"
+                           type="text"  data-parsley-trigger="change" required=""
+                           class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                    <p ng-show="form_edit_category.ename.$dirty && form_edit_category.ename.$error.required" class="uk-text-danger" data-translate="admin.messages.required"></p>
+                </div>
+            </div>
+
+            <div class="parsley-row custom-input-row">
+                <div><label class="label-bold">{{columnsName.Description|translate}}</label>
+                    <input data-parsley-maxlength-message={{maxLengthRule|translate}}
+                           data-parsley-maxlength="255"
+                           value={{category.description}}  ng-model="category.description" id="edescription"
+                           type="text"  data-parsley-trigger="change"
+                           class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                    <span class="md-input-bar "></span>
+                </div>
+            </div>
+
+            <div class="uk-modal-footer uk-text-right">
+                <button id="editCate" ng-disabled="!validateEditCateButton()"
+                        ng-click="editCategory()" type="submit" class="md-btn md-btn-primary md-btn-small uk-modal-close"></i> <span
+                        class="uk-text-bold">{{common.Save|translate}}</span></button>
+                <a class="md-btn md-btn-small uk-modal-close"><span class="uk-text-bold">{{common.Close|translate}}</span></a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,91 @@
+{
+  "inventory": {
+    "column": {
+      "Code":"Sequence Code",
+      "Name":"Sequence Name",
+      "Prefix":"Prefix",
+      "Size":"Sequence Size",
+      "nextNumber":"Next Number",
+      "Step":"Step",
+      "Implementation":"Implementation",
+      "Created":"Created",
+      "Active":"Active",
+      "Suffix":"Suffix",
+      "useSubsequence":"Use Subsequence per date range",
+      "from":"From",
+      "to":"To",
+      "warehouse":"Warehouse",
+      "opName":"Operation Type Name",
+      "opType":"Type Of Operation",
+      "rs":"Reference Sequence",
+      "amp":"Allow moving pack",
+      "cnl":"Create New Lots/Serial Number",
+      "uel":"Use Existing Lots/Serial Number",
+      "dsl":"Default Source Location",
+      "ddl":"Default Destination Location",
+      "opTypeReturn":"Operation Type For Return",
+      "created":"Created",
+      "createdby":"Created By",
+      "updated":"Updated",
+      "updatedby":"Updated By"
+
+    },
+
+    "common":{
+      "Sequences":"Sequences",
+      "Sequence":"Sequence",
+      "Preference":"Preference",
+      "Inventory":"Inventory",
+      "ots":"Operation Types",
+      "pal":"Packs And Lots",
+      "locations":"Locations",
+      "new":"New",
+      "pickingMove":"Picking Move"
+    },
+    "messages": {
+      "from": "Select from date",
+      "to":"Select to date",
+      "errorCreateSeq":"Unable to create new Sequence. Please check your data and try again.",
+      "errorUpdateSeq":"Unable to update Sequence. Please check your data and try again.",
+      "dateValid":"This date is used.",
+      "selectDate":"Please choose a valid from date",
+      "required":"This field is required.",
+      "insideValid": "This date is inside exist date range.",
+      "containValid":"This date range contain another.",
+      "tableNoData":"There is no data to display"
+    },
+    "reporting": {
+      "title": "Report",
+      "inventory-report": {
+        "title": "Inventory Report",
+        "summary": {
+          "title": "Summary",
+          "quantity": "Quantity",
+          "beginTime": "Beginning",
+          "endTime": "Ending",
+          "sum": "TOTAL INVENTORY"
+        },
+        "detail": {
+          "title": "Detail",
+          "sortBy": "Sort By"
+        },
+        "date": {
+          "title": "Date",
+          "begin": "Begining Date",
+          "end": "End Date",
+          "select": "Select Date",
+          "to": "to"
+        },
+        "option": {
+          "display-product": "Display Products?",
+          "zero-movement": "Include Zero Movement?"
+        },
+        "product-select": "Select Products",
+        "message": {
+          "warning-warehouse-select": "(If you do not select warehouse it will take all warehouses)",
+          "warning-location-select": "(If you do not select warehouse it will take all locations)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "inventory": {
+    "column": {
+      "Code":"Mã Sequence",
+      "Name":"Tên sequence",
+      "Prefix":"Tiền tố",
+      "Size":"Độ dài",
+      "nextNumber":"Số tiếp",
+      "Step":"Bước",
+      "Implementation":"Implementation",
+      "Created":"Ngày tạo",
+      "Active":"Active",
+      "Suffix":"Hậu tố",
+      "useSubsequence":"Sử dụng sequence phụ cho khoảng thời gian",
+      "from":"Từ",
+      "to":"Đến",
+      "warehouse":"Kho",
+      "opName":"Tên loại hoạt động",
+      "opType":"Loại hoạt động",
+      "rs":"Reference Sequence",
+      "amp":"Allow moving pack",
+      "cnl":"Create New Lots/Serial Number",
+      "uel":"Use Existing Lots/Serial Number",
+      "dsl":"Default Source Location",
+      "ddl":"Default Destination Location",
+      "opTypeReturn":"Loại hoạt động cho trả lại",
+      "created":"Ngày tạo",
+      "createdby":"Người tạo",
+      "updated":"Ngày cập nhật",
+      "updatedby":"Người cập nhật"
+    },
+
+    "common":{
+      "Sequences":"Sequences",
+      "Sequence":"Sequence",
+      "Preference":"Preference",
+      "Inventory":"Kho",
+      "ots":"Các loại hoạt động",
+      "pal":"Packs And Lots",
+      "locations":"Locations",
+      "new":"Tạo mới",
+      "pickingMove":"Picking Move"
+    },
+    "messages": {
+      "from": "Từ ngày...",
+      "to":"Đến ngày...",
+      "errorCreateSeq":"Không thể tạo mới Sequence.Vui lòng kiểm tra lại dữ liệu và thử lại.",
+      "errorUpdateSeq":"Không thể cập nhật Sequence.Vui lòng kiểm tra lại dữ liệu và thử lại.",
+      "dateValid":"Ngày này đã được sử dụng.",
+      "selectDate":"Hãy chọn Từ ngày phù hợp",
+      "required":"Trường này là bắt buôc.",
+      "insideValid": "Ngày này nằm trong một khoảng thời gian đã tồn tại.",
+      "containValid":"Khoảng thời gian này không được chứa một khoảng thời gian khác.",
+      "tableNoData":"Không có dữ liệu để hiển thị"
+    },
+    "reporting": {
+      "title": "Báo cáo",
+      "inventory-report": {
+        "title": "Báo cáo kho",
+        "summary": {
+          "title": "Tổng hợp",
+          "quantity": "Số lượng",
+          "beginTime": "Đầu kỳ",
+          "endTime": "Cuối kỳ",
+          "sum": "TỔNG SỐ"
+        },
+        "detail": {
+          "title": "Chi tiết",
+          "sortBy": "Sắp xếp theo"
+        },
+        "date": {
+          "title": "Thời gian",
+          "begin": "Ngày bắt đầu",
+          "end": "Ngày kết thúc",
+          "select": "Chọn ngày",
+          "to": "tới"
+        },
+        "option": {
+          "display-product": "Display Products?",
+          "zero-movement": "Include Zero Movement?"
+        },
+        "product-select": "Chọn Sản Phẩm",
+        "message": {
+          "warning-warehouse-select": "(If you do not select warehouse it will take all warehouses)",
+          "warning-location-select": "(If you do not select warehouse it will take all locations)"
+        }
+      }
+    }
+  }
+}

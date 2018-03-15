@@ -1,0 +1,379 @@
+<div id="page_content">
+    <form name="form_create_scrap_transfer" id="form_create_scrap_transfer" class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">
+        <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+            <div class="heading_actions action-padding-top">
+                <!--<div data-uk-dropdown="{mode:'click'}">
+                    <i class="md-icon material-icons">&#xE5D4;</i>
+                    <div class="uk-dropdown uk-dropdown-small">
+                        <ul class="uk-nav">
+                            <li><a class="custom-disabled" href="#">Import</a></li>
+                            <li><a class="custom-disabled" href="#">Export list</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+            </div>
+            <div class="heading_actions action-padding-top">
+                <div data-uk-dropdown="{mode:'click'}">
+                    <i class="md-icon material-icons">&#xE5D4;</i>
+                    <div class="uk-dropdown uk-dropdown-small">
+                        <ul class="uk-nav">
+                            <li><a href="javascript:void(0)" ng-click="deleteTransfer()">{{button.delete|translate}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <span class=" route-header"><!--<a ui-sref="products">{{titlePage.home|translate}}</a>-->
+                <!--<span> / </span>--><a disabled="" ui-sref="#" data-translate="transfer.common.Inventory"></a>
+            <span> / <a ui-sref="#" data-translate="transfer.common.Operation"></a></span>
+            <span> / <a ui-sref="transfers" data-translate="transfer.common.Transfer"></a></span>
+            <span> / <a ui-sref="transfers-detail({transferId: transfer.id })"> {{transfer.transferNumber}}</a></span>
+            <span> / <a ui-sref="transfers-scrap-list({transferId: transfer.id })"> Scrap Orders</a></span>
+            <span> / </span></span>
+            </br>
+        </div>
+        <div id="page_content_inner">
+            <div class="md-card" id="transfer_detail">
+                <div class="md-card-content">
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <!-- Operation Type -->
+
+                        <div class="uk-width-medium-1-2">
+                            <h2>{{transfer.transferNumber}}</h2>
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                        </div>
+                        <div class="uk-width-medium-1-2 uk-margin-top">
+                            <div class="parsley-row">
+                                <label class="label-bold" data-translate="transfer.column.Partner"></label>
+                                <!--<input ng-model="transfer.partner" id="partner" type="text" name="partner" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">-->
+                                <!--<hyperlink-attr-by-id inputid="partner" url="urlLocName" keyvalue="transfer.partnerId" attr="attrName" hyperlink="urlSourceLink"></hyperlink-attr-by-id>-->
+                                <input-attr-by-id inputid="partner" url="urlGetPartner" keyvalue="transfer.partnerId" attr="attrName"></input-attr-by-id><br/>
+
+                                <span class="md-input-bar "></span>
+                            </div>
+                        </div>
+                        <!-- End of Operation Type -->
+
+                        <!-- Schedule Date -->
+                        <div class="uk-width-medium-1-2 uk-margin-top">
+                            <div class="parsley-row">
+                                <label class="label-bold" data-translate="transfer.column.ScheduleDate"></label>
+                                <!--<input ng-model="transfer.scheduleDate" id="scheduleDate" type="text" name="partner" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">-->
+                                <div class="custom-opr">
+                                    <span>{{transfer.scheduledDate|date: 'dd-MM-yyyy HH:mm:ss'}}</span><span>&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Schedule Date -->
+                    </div>
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <!-- Source Location -->
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row">
+                                <label class="label-bold" data-translate="transfer.column.SourceLocation"></label>
+                                <!--<input ng-model="transfer.sourceLocation" id="sourceLocation" type="text" name="sourceLocation" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">-->
+                                <input-attr-by-id inputid="sourceLocation" url="urlGetLocation" keyvalue="transfer.srcLocationId" attr="attrName"></input-attr-by-id><br/>
+                                <span class="md-input-bar "></span>
+                            </div>
+                        </div>
+                        <!-- End of Source Location -->
+
+                        <!-- Owner -->
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row">
+                                <label class="label-bold" data-translate="transfer.column.SourceDocument"></label>
+                                <input ng-model="transfer.sourceDocument" id="sourceDocument" type="text" name="sourceDocument" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                <span class="md-input-bar "></span>
+                            </div>
+                        </div>
+                        <!-- End of Owner -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div id="page_content_inner_2" class="custom-inner-2nd uk-margin-bottom" style="margin-top: -70px;">
+        <div class="md-card" id="create_operation">
+            <div class="md-card-content">
+                <div class="uk-overflow-container uk-margin-bottom" id="table-container">
+                    <table class="hoverTable uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair"
+                           id="table_op_tab" style="margin-bottom: -5px;">
+                        <thead>
+                        <tr>
+                            <th data-name="Select" data-priority="5"><input type="checkbox"
+                                                                            class="ts_checkbox_all"></th>
+                            <th class="pointerMouse boldHeader custom-cl-header-xlarge"
+                                data-priority="1"
+                                ng-show="myColumnsShowRd[0]">VNPT P/N<i
+                                    class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[1]}}</i>
+                            </th>
+                            <th class="pointerMouse boldHeader custom-cl-header-xlarge"
+                                data-priority="2"
+                                ng-show="myColumnsShowRd[1]">Description<i
+                                    class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[2]}}</i>
+                            </th>
+                            <th class="pointerMouse boldHeader custom-cl-header-xlarge"
+                                data-priority="3"
+                                ng-show="myColumnsShowRd[2]">Man P/N<i
+                                    class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[3]}}</i>
+                            </th>
+                            <th class="pointerMouse boldHeader custom-cl-header-large"
+                                data-priority="4"
+                                ng-show="myColumnsShowRd[3]">Lot<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[4]}}</i>
+                            </th>
+                            <th class="pointerMouse boldHeader custom-cl-header-large"
+                                data-priority="4"
+                                ng-show="myColumnsShowRd[4]">Package<i
+                                    class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>
+                            </th>
+                            <th class="pointerMouse boldHeader custom-cl-header-large"
+                                data-priority="4"
+                                ng-show="myColumnsShowRd[5]">Quantity<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[6]}}</i>
+                            </th>
+                            <th class="pointerMouse boldHeader custom-cl-header-large"
+                                data-priority="5"
+                                ng-show="myColumnsShowRd[6]">Owner<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[7]}}</i>
+                            </th>
+                            <th class="pointerMouse boldHeader custom-cl-header-large"
+                                data-priority="6"
+                                ng-show="myColumnsShowRd[7]">Location<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[8]}}</i>
+                            </th>
+                            <th class="pointerMouse boldHeader custom-cl-header-large"
+                                data-priority="7"
+                                ng-show="myColumnsShowRd[8]">Scrap Location<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[9]}}</i>
+                            </th>
+                            <th class="small_col"></th>
+                            <th class="small_col"></th>
+                        </tr>
+                        <!--<tr>
+                            <td></td>
+                            &lt;!&ndash;<td><input class="filter-table-cell-small disableMouse" type="search" placeholder="" disabled data-column="0"></td>&ndash;&gt;
+                            <td ng-show="myColumnsShowRd[0]">
+                                &lt;!&ndash;<input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[1]"&ndash;&gt;
+                                &lt;!&ndash;ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="1"  style="height: 38px;">&ndash;&gt;
+                                <select-search-table cbxplaceholder="CbxProductRd.Placeholder"
+                                                     api="CbxProductRd.Api"
+                                                     size="CbxProductRd.Size"
+                                                     cbxtextfield="CbxProductRd.TextField"
+                                                     cbxvaluefield="CbxProductRd.ValueField"
+                                                     table="CbxProductRd.Table"
+                                                     column="CbxProductRd.Column"
+                                                     scopecontroller="CbxProductRd.Scope"
+                                                     ngmodel="CbxProductRd.ngModel"
+                                                     originparams="CbxProductRd.OriginParams">
+                                </select-search-table>
+                            </td>
+                            <td ng-show="myColumnsShowRd[1]">
+                                &lt;!&ndash;<input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[2]"&ndash;&gt;
+                                &lt;!&ndash;ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="2"  style="height: 38px;">&ndash;&gt;
+                                <select-search-table cbxplaceholder="CbxProductDes.Placeholder"
+                                                     api="CbxProductDes.Api"
+                                                     size="CbxProductDes.Size"
+                                                     cbxtextfield="CbxProductDes.TextField"
+                                                     cbxvaluefield="CbxProductDes.ValueField"
+                                                     table="CbxProductDes.Table"
+                                                     column="CbxProductDes.Column"
+                                                     scopecontroller="CbxProductDes.Scope"
+                                                     ngmodel="CbxProductDes.ngModel"
+                                                     originparams="CbxProductDes.OriginParams">
+                                </select-search-table>
+                            </td>
+                            <td ng-show="myColumnsShowRd[2]">
+                                <input class="filter-table-cell"
+                                       ng-model="TABLES['table_op_tab'].param_filter_list[3]"
+                                       ng-change="handleFilter('table_op_tab')" type="search" placeholder=""
+                                       data-column="3" style="height: 38px;">
+                            </td>
+                            <td ng-show="myColumnsShowRd[3]">
+                                <input class="filter-table-cell"
+                                       ng-model="TABLES['table_op_tab'].param_filter_list[4]"
+                                       ng-change="handleFilter('table_op_tab')" type="search" placeholder=""
+                                       data-column="4" style="height: 38px;">
+                            </td>
+                            <td ng-show="myColumnsShowRd[4]">
+                                <input class="filter-table-cell"
+                                       ng-model="TABLES['table_op_tab'].param_filter_list[5]"
+                                       ng-change="handleFilter('table_op_tab')" type="search" placeholder=""
+                                       data-column="5" style="height: 38px;">
+                            </td>
+                            <td ng-show="myColumnsShowRd[5]">
+                                <input class="filter-table-cell"
+                                       ng-model="TABLES['table_op_tab'].param_filter_list[6]"
+                                       ng-change="handleFilter('table_op_tab')" type="search" placeholder=""
+                                       data-column="6" style="height: 38px;">
+                            </td>
+                            <th class="small_col"></th>
+                            <th class="small_col"></th>
+                        </tr>-->
+                        </thead>
+                        <form name="form_create_operation" id="form_create_operation"
+                              class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required"
+                              novalidate="">
+                            <tbody>
+                            <tr ng-repeat="item in list_op_item" on-last-repeat class="hoverRow">
+                                <td><input id="{{item.id}}" type="checkbox" class="ts_checkbox"
+                                           data-md-icheck icheck ng-model="row_select"></td>
+                                <td class="uk-text-left" ng-show="myColumnsShowRd[0] && !item.editable">
+                                    <a ui-sref="products-detail({productId: item.productId})">
+                                        <get-attr-by-id url="urlProductName" value="item.productId"
+                                                        attr="attrProductName"></get-attr-by-id>
+                                    </a>
+                                </td>
+                                <td class="uk-text-left" ng-show="myColumnsShowRd[0] && item.editable">
+                                    <selectize-search-edit cbxplaceholder="CbxProductRd.Placeholder"
+                                                           api="CbxProductRd.Api"
+                                                           size="CbxProductRd.Size"
+                                                           cbxtextfield="CbxProductRd.TextField"
+                                                           cbxvaluefield="CbxProductRd.ValueField"
+                                                           ngmodel="item.productId"
+                                                           ngrequired="true">
+                                    </selectize-search-edit>
+                                </td>
+                                <td class="uk-text-left" ng-show="myColumnsShowRd[1]">
+                                    <get-attr-by-id url="urlProductName" value="item.productId"
+                                                    attr="attrProductDes"></get-attr-by-id>
+                                </td>
+                                <td class="uk-text-left" ng-show="myColumnsShowRd[2]">
+                                    {{item.manPn}}
+                                </td>
+                                <td class="uk-text-center" ng-show="myColumnsShowRd[3]">
+                                    {{item.lot}}
+                                </td>
+                                <td class="uk-text-center" ng-show="myColumnsShowRd[4]">
+                                    {{item.package}}
+                                </td>
+                                <td class="uk-text-center" ng-show="myColumnsShowRd[5]">
+                                    {{item.quantity}}
+                                </td>
+                                <td class="uk-text-center" ng-show="myColumnsShowRd[6]">
+                                    {{item.owner}}
+                                </td>
+                                <td class="uk-text-center" ng-show="myColumnsShowRd[7]">
+                                    {{item.location}}
+                                </td>
+                                <td class="uk-text-center" ng-show="myColumnsShowRd[8]">
+                                    {{item.scrapLocation}}
+                                </td>
+                                <td>
+                                    <a ng-click="edit($event,$index)" ng-hide="item.editable"><i
+                                            class="md-icon material-icons">&#xE254;</i></a>
+                                    <a ng-click="save($event,$index)" ng-show="item.editable"
+                                       ng-class="item.saveClass"><i
+                                            class="md-icon material-icons">&#xE161;</i></a>
+                                </td>
+                                <td>
+                                    <a ng-click=removeSub($index)><i
+                                            class="md-icon material-icons">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody id="newItem" ng-show="isNewItem">
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <!--<selectize-search-edit cbxplaceholder="CbxProductRd.Placeholder"-->
+                                                           <!--api="CbxProductRd.Api"-->
+                                                           <!--size="CbxProductRd.Size"-->
+                                                           <!--cbxtextfield="CbxProductRd.TextField"-->
+                                                           <!--cbxvaluefield="CbxProductRd.ValueField"-->
+                                                           <!--ngmodel="createItem.productId"-->
+                                                           <!--ngrequired="true">-->
+                                    <!--</selectize-search-edit>-->
+                                    <selectize id="cbx_product_rd"
+                                               config="cbxProductRd.Config"
+                                               options="cbxProductRd.Options"
+                                               position="bottom"
+                                               ng-model="cbxProductRd.ngModel"
+                                               scope-controller="cbxProductRd.Scope"
+                                               reset-scroll="cbxProductRdInit.resetScroll"
+                                               key-field-after="cbxProductRd.KeyFieldAfter"
+                                               get-field-after="cbxProductRd.GetFieldAfter"
+                                               value-related-after="cbxProductRd.ValueRelatedAfter"
+                                               field-related-after="cbxProductRd.FieldRelatedAfter"
+                                               api-after="cbxProductRd.ApiAfter"
+                                               query-relate="cbxProductRdInit.queryRelate"
+                                               total-count="cbxProductRdInit.totalCount">
+                                    </selectize>
+                                </td>
+                                <td>
+                                    <get-attr-by-id url="urlProductName" value="cbxProductRd.ngModel[0]"
+                                                    attr="attrProductDes"></get-attr-by-id>
+
+                                </td>
+                                <td>
+                                    <selectize id="cbx_product_version_rd"
+                                               config="cbxProductVersionRd.Config"
+                                               options="cbxProductVersionRd.Options"
+                                               position="bottom"
+                                               ng-model="cbxProductVersionRd.ngModel"
+                                               scope-controller="cbxProductVersionRd.Scope"
+                                               value-related-before="cbxProductVersionRd.ValueRelatedBefore"
+                                               field-related-before="cbxProductVersionRd.FieldRelatedBefore"
+                                               total-count="cbxProductVersionRdInit.totalCount"
+                                               page="cbxProductVersionRdInit.page"
+                                               per-page="cbxProductVersionRdInit.perPage"
+                                               query-relate="cbxProductVersionRdInit.queryRelate"
+                                               reset-scroll="cbxProductVersionRdInit.resetScroll">
+                                    </selectize>
+                                </td>
+                                <td>Lot</td>
+                                <td>
+                                    <selectize id="cbx_package"
+                                               config="cbxPackage.Config"
+                                               options="cbxPackage.Options"
+                                               position="bottom"
+                                               ng-model="cbxPackage.ngModel"
+                                               scope-controller="cbxPackage.Scope"
+                                               value-related-before="cbxPackage.ValueRelatedBefore"
+                                               field-related-before="cbxPackage.FieldRelatedBefore"
+                                               total-count="cbxPackageInit.totalCount"
+                                               page="cbxPackageInit.page"
+                                               per-page="cbxPackageInit.perPage"
+                                               query-relate="cbxPackageInit.queryRelate"
+                                               reset-scroll="cbxPackageInit.resetScroll">
+                                    </selectize>
+
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            </tbody>
+                            <tbody>
+                            <tr>
+                                <td ng-show=!isNewItem><a ng-click="addNewItem()">Add new Item...</a></td>
+                                <td ng-show=isNewItem ng-if="!validateCreateNewItemSuccess">
+                                    <button type="submit"
+                                            class="md-btn md-btn-primary md-btn-small disabled"
+                                            ng-click="createNewItem()"  data-translate="common-ui-element.button.Add">
+                                    </button>
+                                    <button class="md-btn  md-btn-small" ng-click="addNewItem()"
+                                            style="padding-left: 20px"  data-translate="common-ui-element.button.Cancel">
+                                    </button>
+                                </td>
+                                <td ng-show=isNewItem ng-if="validateCreateNewItemSuccess">
+                                    <button type="submit" class="md-btn md-btn-primary md-btn-small"
+                                            ng-click="createNewItem()" data-translate="common-ui-element.button.Add">
+                                    </button>
+                                    <button class="md-btn  md-btn-small" ng-click="addNewItem()"
+                                            style="padding-left: 20px" data-translate="common-ui-element.button.Cancel">
+                                    </button>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </form>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

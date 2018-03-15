@@ -1,0 +1,51 @@
+<div class="uk-overflow-container" ng-show="operationTypeTransfer.type == 'manufacturing' ">
+    <table class=" hoverTable uk-table-striped uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair"
+           id="table_tf">
+        <thead>
+        <td>Level</td>
+        <td>VNPT Man P/N</td>
+        <td>VNPT P/N</td>
+        <td>Description</td>
+        <td>Available</td>
+        <td>Onhand</td>
+        <td>Needed</td>
+        <td>Done</td>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat-start="iLevel in levelTransfer" class="hoverRow">
+            <td>
+                <span ng-if="iLevel.level == 'consumable'" data-translate="transfer.column.consumable"></span>
+                <span ng-if="iLevel.level != 'consumable'">{{iLevel.level}}</span>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span ng-if="iLevel.level != 'consumable'">{{iLevel.available}}</span></td>
+            <td><span ng-if="iLevel.level != 'consumable'">{{iLevel.onhand}}</span></td>
+            <td><span ng-if="iLevel.level != 'consumable'">{{iLevel.levelQuantity * transfer.currentDemand}}</span></td>
+            <td><span ng-if="iLevel.level != 'consumable'">{{iLevel.doneQuantity}}</span></td>
+
+        </tr>
+        <tr ng-repeat-start="iProduct in iLevel.options" on-last-repeat>
+            <td></td>
+            <td>
+                <input ng-show="currentSate=='transfers-edit'" type="checkbox" ng-change="updateSelectedOptionsMO(iProduct)" ng-model="iProduct.selected">
+                {{iProduct.internalReference}}
+            </td>
+            <td>
+                <a ui-sref="products-detail({productId: iProduct.productId })">{{iProduct.productName}}</a>
+            </td>
+            <td>
+                {{iProduct.productDescription}}
+            </td>
+            <td>{{iProduct.availableQuantity}}</td>
+            <td>{{iProduct.onhand}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr ng-repeat-end></tr>
+        <tr ng-repeat-end></tr>
+        </tbody>
+    </table>
+</div>

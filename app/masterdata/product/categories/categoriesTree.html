@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/contextmenu-abs/jquery.contextMenu-custom.js"></script>
+<link href="assets/contextmenu-abs/jquery.contextMenu.css" rel="stylesheet" >
+<!--<script src="app/masterdata/product/categories/categories.controller.js"></script>-->
+<!--<script src="bower_components/parsleyjs/dist/parsley.js"></script>-->
+<style type="text/css">
+    ul.fancytree-container {
+        width: 95%;
+        height: 350px;
+        overflow: auto;
+        position: relative;
+    }
+</style>
+<body>
+<div class="uk-input-group custom-categories-box">
+    <div class="custom-categories-title">{{columnsName.Category|translate}}</div>
+    <a href="#" class="uk-input-group-addon">
+        <i ng-click=showTree() class="md-icon uk-icon-angle-double-left" title="{{msg.hideCate|translate}}" ng-hide=hideCategories></i>
+    </a>
+</div>
+<!--<div class="icon-align-right custom-small-icon-right">-->
+<!--<i ng-click=showTree() class="uk-icon-caret-left uk-icon-small" title="Hide categories" ng-hide=hideCategories></i>-->
+<!--</div>-->
+<div>
+    <div class="uk-input-group">
+        <input type="text" class="md-input ng-valid ng-dirty ng-touched ng-empty" placeholder="{{common.Search|translate}}" id="filter_input">
+        <a href="#" class="uk-input-group-addon"><i class="material-icons" href="#" id="tree_filter_reset" class="material-icons">&#xE14C;</i></a>
+    </div>
+    <ul id="myMenu" class="contextMenu">
+        <li><a href="#add"><i class="uk-icon-plus-square"></i> {{button.addCate|translate}}</a></li>
+        <li><a href="#edit"><i class="uk-icon-edit"></i> {{button.Edit|translate}}</a></li>
+        <li><a href="#rename"><i class="uk-icon-copy"></i> {{button.Rename|translate}}</a></li>
+        <li><a href="#remove"><i class="uk-icon-trash"></i> {{button.Remove|translate}}</a></li>
+    </ul>
+
+    <!-- Definition tree structure -->
+    <div id="tree">
+
+    </div>
+</div>
+
+</body>
+
+<button id="addBtn" class="md-btn" data-uk-modal="{target:'#add_category'}" ng-hide="true">Open</button>
+<div class="uk-modal" id="add_category">
+    <div class="uk-modal-dialog uk-modal-small">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Add new category</h3>
+        </div>
+        <div class="parsley-row">
+            <div><label class="label-bold">Parent</label>
+                <input value={{category.parent}} readonly  ng-model="category.parent" id="parent"
+                       type="text" name="parent" data-parsley-trigger="change" required=""
+                       class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                <span class="md-input-bar "></span>
+            </div>
+            <div><label class="label-bold">Category Name</label>
+                <input value={{category.name}}  ng-model="category.name" id="cname"
+                       type="text" name="cname" data-parsley-trigger="change" required=""
+                       class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                <span class="md-input-bar "></span>
+            </div>
+            <div><label class="label-bold">Description</label>
+                <input value={{category.description}}  ng-model="category.description" id="description"
+                       type="text" name="description" data-parsley-trigger="change"
+                       class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                <span class="md-input-bar "></span>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button data-uk-modal="{target:'#modal_new'}" type="button" class="md-btn md-btn-flat md-btn-flat-primary">Add</button>
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<button id="editBtn" class="md-btn" data-uk-modal="{target:'#edit_category'}" ng-hide="true">Open</button>
+<div class="uk-modal" id="edit_category">
+    <div class="uk-modal-dialog uk-modal-small">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Edit category</h3>
+        </div>
+        <div class="parsley-row">
+            <div><label class="label-bold" for="eparent">Parent</label>
+                <input value={{category.parent}} readonly  ng-model="category.parent" id="eparent"
+                       type="text" name="eparent" data-parsley-trigger="change" required=""
+                       class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                <span class="md-input-bar "></span>
+            </div>
+            <div><label class="label-bold" for="ename">Category Name</label>
+                <input value={{category.name}}  ng-model="category.name" id="ename"
+                       type="text" name="ename" data-parsley-trigger="change" required=""
+                       class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                <span class="md-input-bar "></span>
+            </div>
+            <div><label class="label-bold" for="edescription">Description</label>
+                <input value={{category.description}}  ng-model="category.description" id="edescription"
+                       type="text" name="edescription" data-parsley-trigger="change"
+                       class="md-input ng-isolate-scope md-input-processed label-fixed" md-input="">
+                <span class="md-input-bar "></span>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button data-uk-modal="{target:'#modal_new'}" type="button" class="md-btn md-btn-flat md-btn-flat-primary">Update</button>
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Cancel</button>
+        </div>
+    </div>
+</div>
+</html>

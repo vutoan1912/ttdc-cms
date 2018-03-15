@@ -1,0 +1,277 @@
+<div id="page_content">
+        <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+            <div class="heading_actions action-padding-top">
+                <div data-uk-dropdown="{mode:'click'}">
+                    <i class="md-icon material-icons">&#xE5D4;</i>
+                    <div class="uk-dropdown uk-dropdown-small">
+                        <ul class="uk-nav">
+                            <li ng-click="deleteOne()"><a data-translate="common-ui-element.button.Delete"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <a ui-sref="products" class="uk-text-large" data-translate="common-ui-element.titlePage.Home"></a>
+            <span> / </span><a ui-sref="products" class="uk-text-large" data-translate="location.titlePage.Configuration"></a>
+            <span> / </span><a ui-sref="products" class="uk-text-large" data-translate="location.titlePage.WarehouseMan"></a>
+            <span> / </span><a ui-sref="warehouses" class="uk-text-large" data-translate="location.titlePage.Warehouse"></a>
+            <span> / </span><a ui-sref="locations" class="uk-text-large" data-translate="location.titlePage.Location"></a>
+            <span class="uk-text-large" ng-show="flag_edit == 1"> / {{location.name}}</span>
+            </br>
+            <div class="btn-custom-action-group">
+                <button ng-click="submit()" type="submit" class="md-btn md-btn-primary md-btn-small"><span
+                        class="uk-text-bold" data-translate="common-ui-element.button.Save"></span></button>
+                <a ui-sref="{{backType}}" class="md-btn  md-btn-default md-btn-small"><span class="uk-text-bold" data-translate="common-ui-element.button.Cancel"></span></a>
+            </div>
+        </div>
+    <form name="form_createLocation" id="form_createLocation" class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">
+        <div id="page_content_inner">
+            <jhi-alert></jhi-alert>
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="uk-grid " data-uk-grid-margin>
+                        <div class="uk-width-large-1-1 ">
+                            <div id="info_detail" class="md-btn-group uk-float-right">
+                                <!--<a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100" ui-sref="manufacturers.sub_detail({id:id})">-->
+                                <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-active" style="cursor:  no-drop;">
+                                    <div style="float:left;">
+                                        <!--<i class="uk-icon-ship "></i>-->
+                                        <i class="uk-icon-building md-40 uk-icon-medium icon-padding-top"></i>
+                                    </div>
+                                    <div style="margin-left:30px;">
+                                        <p class="line-big text-padding-top uk-text-bold">
+                                            <br/>
+                                            <span class="uk-text-bold" data-translate="location.headerPage.CurrentStock"></span>
+                                        </p>
+
+                                    </div>
+                                </a>
+                                <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-active" href="javascript:void(0)" style="cursor:  no-drop;">
+                                    <div style="float:left;display:inline-block;">
+                                        <i class="uk-icon-filter md-40 uk-icon-medium icon-padding-top"></i>
+                                    </div>
+                                    <div>
+                                        <p class="line-big text-padding-top uk-text-bold">
+                                            <br/>
+                                            <span class="uk-text-bold" data-translate="location.headerPage.Product"></span>
+                                        </p>
+
+                                    </div>
+                                </a>
+                                <a ng-show="flag_edit==0" ng-mouseenter="mouseHoverStatus()" ng-mouseleave="mouseLeaveStatus()"
+                                   class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-active"
+                                    >
+                                    <div style="float:left;display:inline-block;">
+                                        <i class="uk-icon-archive  md-40 uk-icon-medium icon-padding-top"></i>
+                                    </div>
+                                    <div style="margin-left:30px;">
+                                        <p class="line-big text-padding-top uk-text-bold">
+                                            <br/>
+                                            <span id="activeBtn" ng-class="activeClass" data-translate="{{status}}"></span>
+                                        </p>
+                                    </div>
+                                </a>
+                                <activate model="location" ng-show="flag_edit==1"
+                                          activate-service="CbxActivate.activateService"
+                                          deactivate-service="CbxActivate.deactivateService"
+                                ></activate>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="uk-grid" data-uk-grid-margin="">
+                        <div class="uk-width-large-1-2">
+                            <div class="uk-form-row">
+                                <label class="uk-form-label label-bold" data-translate="location.column.Name"><span class="req">*</span></label>
+                                <!--<input data-parsley-maxlength-message={{maxLengthRule|translate}}-->
+                                       <!--data-parsley-maxlength="255" data-parsley-required-message={{required_msg}} required=""-->
+
+                                       <!--data-parsley-pattern="^[a-zA-Z0-9 ]*"-->
+                                       <!--data-parsley-pattern-message="{{wrongPatternRule|translate}}"-->
+                                       <!--ng-change="test_change()"-->
+                                       <!--type="text" class="md-input ng-isolate-scope md-input-processed"  name="name" id="name" data-parsley-trigger="change"  ng-model="location.name"></br>-->
+                                <input type="text" class="md-input ng-isolate-scope md-input-processed"  name="name" id="name"
+                                       required="required" ng-pattern="/^[a-zA-Z0-9 ]*$/" ng-maxlength="255"
+                                       ng-model="location.name"></br>
+
+                                <div class="parsley-errors-list filled" ng-show="(!form_createLocation.name.$dirty && showNameRequire == 1) || (form_createLocation.name.$dirty && form_createLocation.name.$error.required)">
+                                    <span class="parsley-pattern"  data-translate="admin.messages.required"></span></div>
+                                <div class="parsley-errors-list filled" ng-show="form_createLocation.name.$dirty && form_createLocation.name.$error.pattern">
+                                    <span class="parsley-pattern"  data-translate="location.messages.wrongPatternRule"></span></div>
+                                <div class="parsley-errors-list filled" ng-show="form_createLocation.name.$dirty && form_createLocation.name.$error.maxlength">
+                                    <span class="parsley-pattern"  data-translate="warehouse.messages.maxLengthRule"></span></div>
+                             </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label label-bold" data-translate="location.column.ParentLocation"></label>
+                                <!--<input config="select_config"  options="list_parent_options" ng-model="location.parentId" name="parentLocation" selectize />-->
+                                <div class="custom-input-row"  ng-show="flag_edit==1">
+                                    <!--<selectize-search-edit cbxplaceholder="CbxParentId.Placeholder"-->
+                                                           <!--api="CbxParentId.Api"-->
+                                                           <!--size="CbxParentId.Size"-->
+                                                           <!--cbxtextfield="CbxParentId.TextField"-->
+                                                           <!--cbxvaluefield="CbxParentId.ValueField"-->
+                                                           <!--ngmodel="location.parentId" customsearch="CbxParentId.customsearch">-->
+                                    <!--</selectize-search-edit >-->
+                                    <input
+                                            config="CbxParentId.Config"
+                                            options="CbxParentId.Options"
+                                            position="bottom"
+                                            ng-model="location.parentId"
+                                            scope-controller="CbxParentId.Scope"
+                                            total-count="CbxParentId.totalCount"
+                                            page="CbxParentId.page"
+                                            per-page="CbxParentId.perPage"
+                                            query-relate="CbxParentId.queryRelate"
+                                            reset-scroll="CbxParentId.resetScroll" selectize/>
+                                </div>
+                                <div class="custom-input-row"  ng-show="flag_edit==0">
+                                    <!--<selectize-search cbxplaceholder="CbxParentId.Placeholder"-->
+                                                      <!--api="CbxParentId.Api"-->
+                                                      <!--size="CbxParentId.Size"-->
+                                                      <!--cbxtextfield="CbxParentId.TextField"-->
+                                                      <!--cbxvaluefield="CbxParentId.ValueField"-->
+                                                      <!--ngmodel="location.parentId" customsearch="CbxParentId.customsearch">-->
+                                    <!--</selectize-search >-->
+                                    <input
+                                            config="CbxParentId.Config"
+                                            options="CbxParentId.Options"
+                                            position="bottom"
+                                            ng-model="location.parentId"
+                                            scope-controller="CbxParentId.Scope"
+                                            total-count="CbxParentId.totalCount"
+                                            page="CbxParentId.page"
+                                            per-page="CbxParentId.perPage"
+                                            query-relate="CbxParentId.queryRelate"
+                                            reset-scroll="CbxParentId.resetScroll" selectize/>
+                                </div>
+                            </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label label-bold" data-translate="location.column.AddInfo"></label>
+                            </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label label-bold" data-translate="location.column.LocationType"></label>
+                                <input config="{valueField: 'id',labelField: 'name', searchField: ['name'], create:false, maxItems: 1, placeholder: 'Select type...' }" options="selectType.options_type" position="bottom" ng-model="location.type" name="typeLocation" selectize />
+                            </div>
+
+                            <div class="uk-form-row">
+                                <p>
+                                    <input type="checkbox" name="checkbox_demo_1" id="checkbox_demo_1" icheck ng-model="location.scrapLocation" />
+                                    <label for="checkbox_demo_1" class="inline-label" data-translate="location.column.IsScrap"></label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" name="checkbox_demo_2" id="checkbox_demo_2" icheck ng-model="location.returnedLocation" />
+                                    <label for="checkbox_demo_2" class="inline-label" data-translate="location.column.IsReturn"></label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="uk-width-large-1-2">
+                            <div class="uk-form-row">
+                                <label class="uk-form-label label-bold"  data-translate="location.column.ShortName"></label>
+                                <!--<input type="text" data-parsley-maxlength-message={{maxLengthRule|translate}}-->
+                                       <!--data-parsley-maxlength="255"-->
+                                       <!--pattern="^[a-zA-Z0-9 ]*"-->
+                                       <!--data-parsley-pattern="^[a-zA-Z0-9 ]*"-->
+                                       <!--data-parsley-pattern-message="{{wrongPatternRule|translate}}"-->
+                                       <!--class="md-input ng-isolate-scope md-input-processed"  name="shortName" id="shortName" ng-model="location.shortName"></br>-->
+
+                                <input type="text" class="md-input ng-isolate-scope md-input-processed"  name="shortName" id="shortName"
+                                        ng-pattern="/^[a-zA-Z0-9 ]*$/" ng-maxlength="255"
+                                       ng-model="location.shortName"></br>
+
+                                <div class="parsley-errors-list filled" ng-show="form_createLocation.shortName.$dirty && form_createLocation.shortName.$error.maxlength">
+                                    <span class="parsley-pattern"  data-translate="warehouse.messages.maxLengthRule"></span></div>
+                                <div class="parsley-errors-list filled" ng-show="form_createLocation.shortName.$dirty && form_createLocation.shortName.$error.pattern">
+                                    <span class="parsley-pattern"  data-translate="location.messages.wrongPatternRule"></span></div>
+                            </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label label-bold"  data-translate="location.column.Localization"></label>
+                            </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label" data-translate="location.column.Corridor"></label>
+                                <input type="number" class="md-input" name="corridor" id="corridor" ng-model="location.posx" md-input />
+                            </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label" data-translate="location.column.Shelves"></label>
+                                <input type="number" class="md-input" name="shelves" id="shelves" ng-model="location.posy" md-input />
+                            </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label" data-translate="location.column.Height"></label>
+                                <input type="number" class="md-input" name="height" id="height" ng-model="location.posz" md-input />
+                            </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label" data-translate="location.column.Barcode"></label>
+                                <input type="text" class="md-input" name="barcode" id="barcode" ng-model="location.barcode" md-input />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-grid" data-uk-grid-margin="">
+                        <div class="uk-width-large-1-1 ">
+                        <div class="uk-form-row">
+                            <label class="uk-form-label label-bold" data-translate="location.column.Logistics"></label>
+                            <!--<h3 class="heading_c uk-margin-large-top label-bold"></h3>-->
+                        </div>
+                        <div class="uk-form-row">
+                            <label class="uk-form-label" data-translate="location.column.RemovalStrategy"></label>
+                            <input config="{ create:false, maxItems: 1, placeholder: 'Select...' }" options="selectType.options_removalStrategy" ng-model="location.removalStrategy"  position="bottom" name="removalStrategy" selectize />
+                        </div>
+                        <div class="uk-form-row">
+                            <label class="uk-form-label" data-translate="location.column.AwayStrategy"></label>
+                            <input type="text" class="md-input ng-isolate-scope md-input-processed"  name="awayStrategy" id="awayStrategy" ng-model="location.awayStrategy"></br>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="uk-grid" data-uk-grid-margin="" ng-show="flag_edit == 1">
+                        <div class="uk-width-large-1-2">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-large-1-3">
+                                    <label class="uk-form-label label-bold" data-translate="inventory.column.createdby"></label>
+                                </div>
+                                <div class="uk-width-large-2-3">
+                                <span class="uk-text-large uk-text-middle">
+                                  <get-attr-by-key-hyperlink url="CbxCreatedBy.url" key="CbxCreatedBy.key" value="location.createdBy" attr="CbxCreatedBy.attr" prefix="CbxCreatedBy.prefix" suffix="CbxCreatedBy.suffix"></get-attr-by-key-hyperlink><br/>
+                                 </span>
+                                </div>
+                            </div>
+                            <hr class="uk-grid-divider">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-large-1-3">
+                                    <label class="uk-form-label label-bold" data-translate="inventory.column.created"></label>
+                                </div>
+                                <div class="uk-width-large-2-3">
+                                <span class="uk-text-large uk-text-middle">
+                                 {{location.created|date: 'dd-MM-yyyy  h:mma'}}
+                                </span>
+                                </div>
+                            </div>
+                            <hr class="uk-grid-divider">
+                        </div>
+                        <div class="uk-width-large-1-2">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-large-1-3">
+                                    <label class="uk-form-label label-bold" data-translate="inventory.column.updatedby"></label>
+                                </div>
+                                <div class="uk-width-large-2-3">
+                                <span class="uk-text-large uk-text-middle">
+                                  <get-attr-by-key-hyperlink url="CbxCreatedBy.url" key="CbxCreatedBy.key" value="location.updatedBy" attr="CbxCreatedBy.attr" prefix="CbxCreatedBy.prefix" suffix="CbxCreatedBy.suffix"></get-attr-by-key-hyperlink><br/>
+                                 </span>
+                                </div>
+                            </div>
+                            <hr class="uk-grid-divider">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-large-1-3">
+                                    <label class="uk-form-label label-bold" data-translate="inventory.column.updated"></label>
+                                </div>
+                                <div class="uk-width-large-2-3">
+                                <span class="uk-text-large uk-text-middle">
+                                 {{location.updated|date: 'dd-MM-yyyy  h:mma'}}
+                                </span>
+                                </div>
+                            </div>
+                            <hr class="uk-grid-divider">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

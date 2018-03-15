@@ -1,0 +1,249 @@
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }" class="custom-heading">
+        <div class="heading_actions  action-padding-top">
+        </div>
+        <span class=" route-header"><a ui-sref="products">Master Data</a>
+        <span> / </span><a ui-sref="products">{{common.Products|translate}}</a>
+        <span> / </span>{{product.name}}
+        </span>
+        </br>
+        <div class="btn-custom-action-group">
+            <a  class="md-btn md-btn-small md-btn-primary cursor-not-allowed"><span class="uk-text-bold"> {{button.Edit|translate}}</span></a>
+            <a  class="md-btn md-btn-small cursor-not-allowed"><span class="uk-text-bold">{{button.Create|translate}}</span></a>
+        </div>
+
+    </div>
+    <div id="page_content_inner">
+
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="uk-grid " data-uk-grid-margin>
+                    <div class="uk-width-large-1-1 ">
+                        <div id="info_detail" class="custom-btn-group">
+                            <a ng-mouseenter="mouseHoverStatus()" ng-mouseleave="mouseLeaveStatus()"
+                               class=" md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr float-right"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-archive uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-right:50px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        <span class="uk-text-danger uk-text-bold" id="activeBtn" ng-class="activeClass">{{status}}</span>
+                                    </p>
+                                </div>
+                            </a>
+                            <a data-uk-modal="{target:'#attachments_modal'}" class="md-btn uk-form-file md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr float-right"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-book uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-right:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        {{columnsName.attach|translate}}
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr float-right"
+                               href="javascript:void(0)" ng-click="goToProductMove()">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-arrows-v uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-right:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        {{columnsName.PM|translate}}
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr float-right"
+                               ng-click="goToBoM()">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-flask uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-left:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <span class="text-number">{{rd_bom_count}}</span><br/>
+                                        Bill of Materials
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr float-right"
+                               href="javascript:void(0)" ng-click="goToStockOnHand()">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-calculator uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-left:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <span class="text-number">{{onhandQuantity}}</span><br/>
+                                        {{columnsName.QoH|translate}}
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr float-right"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-calculator uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-left:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <span class="text-number">{{availableQuantity}}</span><br/>
+                                        {{columnsName.AQ|translate}}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin="">
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <div class="label-bold" for="category">{{columnsName.Category|translate}}</div>
+                        <input readonly value={{product.categoryName}} id="category" class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" for="description">{{columnsName.Description|translate}}<span class="req">*</span></div>
+                        <input readonly value={{product.description}} id="description" class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="masterdata.column.createdby"></div>
+                        <div class="custom-opr">
+                            <get-attr-by-key-hyperlink url="CbxCreatedBy.url" key="CbxCreatedBy.key" value="product.createdBy" attr="CbxCreatedBy.attr" prefix="CbxCreatedBy.prefix" suffix="CbxCreatedBy.suffix"></get-attr-by-key-hyperlink><span>&nbsp;</span>
+                        </div>
+
+                        <div class="label-bold custom-input-row" data-translate="masterdata.column.created"></div>
+                        <div class="custom-opr">
+                            <span>{{product.created|date: 'dd-MM-yyyy hh:mm:ss'}}</span><span>&nbsp;</span>
+                        </div>
+
+                    </div>
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <div class="label-bold" for="name">{{columnsName.Name|translate}}<span class="req">*</span></div>
+                        <input readonly value={{product.name}} id="name" class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" for="type">{{columnsName.Type|translate}}<span class="req">*</span></div>
+                        <input readonly value={{getType(product.type)}} id="type" class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="masterdata.column.updatedby"></div>
+                        <div class="custom-opr">
+                            <get-attr-by-key-hyperlink url="CbxCreatedBy.url" key="CbxCreatedBy.key" value="product.updatedBy" attr="CbxCreatedBy.attr" prefix="CbxCreatedBy.prefix" suffix="CbxCreatedBy.suffix"></get-attr-by-key-hyperlink><span>&nbsp;</span>
+                        </div>
+
+                        <div class="label-bold custom-input-row" data-translate="masterdata.column.updated"></div>
+                        <div class="custom-opr">
+                            <span>{{product.updated|date: 'dd-MM-yyyy hh:mm:ss'}}</span><span>&nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-1-1">
+                        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1'}">
+                            <li class="uk-active"><a class="custom-tab" href="#">{{common.GenInfo|translate}}</a></li>
+                            <li><a class="custom-tab" href="#">{{common.Inventory|translate}}</a></li>
+                            <li><a class="custom-tab" href="#">{{common.Purchase|translate}}</a></li>
+                        </ul>
+                        <ul id="tabs_1" class="uk-switcher uk-margin">
+                            <li>
+                                <div class="md-card-content">
+                                    <div class="uk-grid" data-uk-grid-margin="">
+                                        <div class="uk-width-small-1-3 uk-row-first">
+                                            <label class="label-bold" for="oldPn">Old VNPT PN</label>
+                                            <input readonly value={{product.oldName}} id="oldPn" class="md-input ng-isolate-scope md-input-processed"> <br/>
+                                        </div>
+                                        <div class="uk-width-small-1-3 uk-row-first">
+                                            <label class="label-bold" for="uomName">{{columnsName.Uom|translate}}</label>
+                                            <input readonly value={{product.uomName}} id="uomName" class="md-input ng-isolate-scope md-input-processed"> <br/>
+                                        </div>
+                                        <div class="uk-width-small-1-3 uk-row-first">
+                                            <label class="label-bold" for="cost">{{columnsName.Cost|translate}}</label>
+                                            <input readonly value={{product.cost}} id="cost" class="md-input ng-isolate-scope md-input-processed"> <br/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="md-card">
+                                        <div class="md-card-content">
+                                            <div class="uk-overflow-container uk-margin-bottom">
+                                                <table class="uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair"
+                                                       id="ts_pager_filter">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="label-bold " >VNPT ManPN</th>
+                                                        <th class="label-bold " >Manufacture</th>
+                                                        <th class="label-bold " >ManPN</th>
+                                                        <th class="label-bold " >Supplier</th>
+                                                        <th class="label-bold " >Datasheet</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody id="manBody">
+                                                        <tr ng-repeat-start="vnpt in product.man" on-last-repeat>
+                                                            <td  rowspan="{{vnpt.rowspan}}">{{vnpt.vnptMan}}</td>
+                                                            <td  rowspan="{{vnpt.rowspan}}">{{vnpt.manName}}</td>
+                                                            <td  rowspan="{{vnpt.rowspan}}">{{parseManPn(vnpt.manPN)}}</td>
+                                                            <td >{{vnpt.suplier[0]}}</td>
+                                                            <td align="right">
+                                                                <div class="uk-form-file md-btn md-btn-small">
+                                                                    <i class="uk-icon-upload"></i>
+                                                                    <input  type="file">
+                                                                </div>
+                                                            </td>
+
+                                                        <tr ng-repeat="sup in vnpt.suplier" ng-if="$index > 0">
+                                                            <td >{{sup}}</td>
+                                                            <td align="right">
+                                                                <div class="uk-form-file md-btn md-btn-small">
+                                                                    <i class="uk-icon-upload"></i>
+                                                                    <input  type="file">
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr ng-repeat-end></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <p class="uk-text-italic" ng-hide=nodataMsg >{{common.nodata|translate}}</p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </li>
+                            <li data-translate="masterdata.messages.newFeature"></li>
+                            <li data-translate="masterdata.messages.newFeature"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="uk-modal" id="attachments_modal">
+    <div class="uk-modal-dialog uk-modal-small">
+        <div class="uk-modal-header label-bold">
+            <h3 class="uk-modal-title">{{columnsName.attach|translate}}</h3>
+        </div>
+        <div class="parsley-row">
+            <div><label class="label-bold">{{common.version|translate}}</label>
+                <input type="text"  class="md-input ng-valid ng-dirty ng-touched ng-empty">
+            </div>
+            <div id="listFile"><label class="label-bold">{{common.attFfile|translate}}</label>
+                <div class="uk-input-group" id="att_btn_1">
+                    <input readonly type="text" class="md-input" id="input_att_1">
+                    <span  class="uk-input-group-addon custom-cursor-poiter" onclick="removeFile(event)" ><i id="btn_1" class="material-icons" href="#"  class="material-icons">&#xE14C;</i></span>
+                </div>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-form-file md-btn md-btn-small" id="attachmentBtn">
+                <i class="uk-icon-upload "></i>
+                <input  type="file" id="inputAtt">
+            </button>
+            <button type="button" class="md-btn md-btn-flat md-btn-flat-primary">Save</button>
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Cancel</button>
+        </div>
+    </div>
+</div>

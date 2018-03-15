@@ -1,0 +1,270 @@
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }" class="custom-heading">
+        <div class="heading_actions  action-padding-top">
+            <!--<a href="#" data-uk-tooltip="{pos:'bottom'}" title="Print"><i class="md-icon material-icons">&#xE8AD;</i></a>-->
+            <!--<div data-uk-dropdown="{mode:'click'}">
+                <i class="md-icon material-icons">&#xE5D4;</i>
+                <div class="uk-dropdown uk-dropdown-small">
+                    <ul class="uk-nav">
+                        <li><a href="#">Import</a></li>
+                        <li><a href="#">Export list</a></li>
+                    </ul>
+                </div>
+            </div>-->
+        </div>
+        <span class=" route-header"><a ui-sref="products">Master Data</a>
+        <span> / </span><a ui-sref="bom">BOM</a>
+        <span> / </span>{{bomDetail.name}}
+        </span>
+        </br>
+        <div class="btn-custom-action-group">
+            <a ui-sref="javascript:void(0)" class="md-btn md-btn-small hideElement"><span class="uk-text-bold">{{button.edit|translate}}</span></a>
+            <a ui-sref="javascript:void(0)" class="md-btn md-btn-primary md-btn-small" ng-class="{'adisabled': usable}"><span class="uk-text-bold">{{button.create|translate}}</span></a>
+        </div>
+        <style>
+            a.adisabled {
+                cursor: not-allowed;
+                opacity: .65;
+            }
+
+            a.adisabled:hover { text-decoration: none; }
+            a.adisabled:focus { text-decoration: none; }
+            a.adisabled:active { text-decoration: none; }
+
+            .aPanel {
+                margin: 1em;
+            }
+        </style>
+    </div>
+    <div id="page_content_inner">
+
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="uk-grid " data-uk-grid-margin>
+                    <div class="uk-width-large-1-1 ">
+                        <div id="info_detail" class="md-btn-group float-right">
+                            <a data-uk-modal="{target:'#attachments_modal'}" class="md-btn uk-form-file md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-indent uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <!--<div style="margin-left:30px;">-->
+                                <div>
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;{{column.ProductionOrder|translate}}
+                                    </p>
+                                </div>
+                            </a>
+                            <a data-uk-modal="{target:'#attachments_modal'}" class="md-btn uk-form-file md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-cogs uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <!--<div style="margin-left:30px;">-->
+                                <div>
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        {{column.eco|translate}}
+                                    </p>
+                                </div>
+                            </a>
+                            <!--<a ng-mouseenter="mouseHoverStatus()" ng-mouseleave="mouseLeaveStatus()"
+                               class="fixed-size md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-gr" href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-archive uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div>
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        <span class="uk-text-danger uk-text-bold" id="activeBtn" ng-class="activeClass">{{status}}</span>
+                                    </p>
+                                </div>
+                            </a>-->
+                            <activate model="bomDetail"
+                                      activate-service="CbxActivate.activateService"
+                                      deactivate-service="CbxActivate.deactivateService">
+                            </activate>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin="">
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <label class="label-bold">{{field.Product|translate}}</label>
+                        <input-hyperlink-attr-by-id inputid="inputIdProductName" url="urlProductName" keyvalue="bomDetail.productId" attr="attrProductName" suffix="suffixProductName" prefix="prefixProductName"></input-hyperlink-attr-by-id><br/>
+                        <label class="label-bold">{{field.ProductVersion|translate}}</label>
+                        <input-attr-by-id inputid="inputIdProductVersion" url="urlProductVersion" keyvalue="bomDetail.productVersion" attr="attrProductVersion"></input-attr-by-id><br/>
+                        <label class="label-bold">{{field.BomRdVersion|translate}}</label>
+                        <input-hyperlink-attr-by-id inputid="inputIdBomRdVersion" url="urlBomRdVersion" keyvalue="bomDetail.refBomId" attr="attrBomRdVersion" suffix="suffixBomRdVersion" prefix="prefixBomRdVersion"></input-hyperlink-attr-by-id><br/>
+                        <label class="label-bold">{{field.Routing|translate}}</label>
+                        <input-hyperlink-attr-by-id inputid="inputIdRouting" url="urlRouting" keyvalue="bomDetail.routingId" attr="attrRouting" suffix="suffixRouting" prefix="prefixRouting"></input-hyperlink-attr-by-id><br/>
+                    </div>
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <label class="label-bold" for="name">{{field.ManBomName|translate}}</label>
+                        <input readonly id="name" class="md-input ng-isolate-scope md-input-processed" ng-model="bomDetail.name"><br/>
+                        <label class="label-bold" for="type">{{field.BomType|translate}}</label>
+                        <input readonly id="type" class="md-input ng-isolate-scope md-input-processed" value="Man BOM"><br/>
+                        <label class="label-bold" for="reference">{{field.Reference|translate}}</label>
+                        <input readonly id="reference" class="md-input ng-isolate-scope md-input-processed" ng-model="bomDetail.reference"><br/>
+                    </div>
+                </div>
+
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-1-1">
+                        <div>
+                            <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1'}">
+                                <li class="uk-active"><a class="custom-tab" href="#">{{common.Components|translate}}</a></li>
+                                <li><a class="custom-tab" href="#">{{common.ActivityLogs|translate}}</a></li>
+                            </ul>
+                        </div>
+                        <ul id="tabs_1" class="uk-switcher uk-margin">
+                            <li style="min-height: 400px;">
+                                <div style="text-align: right">
+                                    <div class="uk-button-dropdown uk-margin-right" data-uk-dropdown="{mode:'click'}">
+                                        <button class="md-btn md-btn-small">
+                                            <span class="uk-text-bold" style="padding-right: 5px;">{{button.columns| translate}}</span><i class="uk-icon-caret-down"></i>
+                                        </button>
+                                        <div class="uk-dropdown">
+                                            <label class="container-checkbox" style="text-align: left">All
+                                                <input ng-model="checkColumnAll" type="checkbox" checked="checked" ng-change="handleColumn()">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <ul class="uk-nav uk-nav-dropdown" ng-repeat="c in myColumns">
+                                                <li class="checkbox-padding-left" style="text-align: left">
+                                                    <label class="container-checkbox">{{c}}
+                                                        <input ng-model=myColumnsShow[$index] type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="md-card-content">
+                                    <div class="md-card">
+                                        <!--<div class="md-card-content">-->
+                                        <div class="uk-overflow-container uk-margin-bottom">
+                                            <table class="hoverTable uk-table uk-table-align-vertical uk-table-striped uk-table-nowrap tablesorter tablesorter-altair" id="tbl_man_detail">
+                                                <thead>
+                                                <tr>
+                                                    <th ng-show="myColumnsShow[0]" class="pointerMouse boldHeader">Level</th>
+                                                    <th ng-show="myColumnsShow[1]" class="pointerMouse boldHeader">{{field.Product|translate}}</th>
+                                                    <th ng-show="myColumnsShow[2]" class="pointerMouse boldHeader">{{field.OldPN|translate}}</th>
+                                                    <th ng-show="myColumnsShow[3]" class="pointerMouse boldHeader" style="text-align: center">{{field.Quantity|translate}}</th>
+                                                    <th ng-show="myColumnsShow[4]" class="pointerMouse boldHeader" style="text-align: center">{{field.UoM|translate}}</th>
+                                                    <th ng-show="myColumnsShow[5]" class="pointerMouse boldHeader">{{field.RoutingOperation|translate}}</th>
+                                                    <th ng-show="myColumnsShow[6]" class="pointerMouse boldHeader">{{field.Reference|translate}}</th>
+                                                    <th ng-show="myColumnsShow[7]" class="pointerMouse boldHeader">{{field.MaterialType|translate}}</th>
+                                                    <th ng-show="myColumnsShow[8]" class="pointerMouse boldHeader">{{field.Note|translate}}</th>
+                                                </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td ng-show="myColumnsShow[0]"><input class="filter-table-cell" ng-model="param_filter_list[0]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="1" style="height: 38px;"></td>
+                                                    <td ng-show="myColumnsShow[1]"><input class="filter-table-cell" ng-model="param_filter_list[1]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="2" style="height: 38px;"></td>
+                                                    <td ng-show="myColumnsShow[2]"><input class="filter-table-cell" ng-model="param_filter_list[2]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="3" style="height: 38px;"></td>
+                                                    <td ng-show="myColumnsShow[3]">
+                                                        <!--<input class="filter-table-cell" ng-model="param_filter_list[3]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="4" style="height: 38px;">-->
+                                                        <number-range-filter ng-model="numberFilter.ngModel" number-start="numberFilter.numberStart" number-end="numberFilter.numberEnd"></number-range-filter>
+                                                    </td>
+                                                    <!--<td ng-show="myColumnsShow[4]"><input class="filter-table-cell" ng-model="param_filter_list[4]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="5"></td>-->
+                                                    <td ng-show="myColumnsShow[4]">
+                                                        <select kendo-combo-box
+                                                                k-placeholder="'Unit'"
+                                                                k-data-text-field="'name'"
+                                                                k-data-value-field="'id'"
+                                                                k-filter="'contains'"
+                                                                k-auto-bind="true"
+                                                                k-min-length="3"
+                                                                k-data-source="uomDataSource"
+                                                                k-ng-model="cbxUom.chooseUom"
+                                                                k-on-change="selectUom()"
+                                                                style="width:120px;">
+                                                        </select>
+                                                    </td>
+                                                    <!--<td ng-show="myColumnsShow[5]"><input class="filter-table-cell" ng-model="param_filter_list[5]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="6"></td>-->
+                                                    <td ng-show="myColumnsShow[5]">
+                                                        <select kendo-combo-box
+                                                                k-placeholder="'Routing operation'"
+                                                                k-data-text-field="'name'"
+                                                                k-data-value-field="'id'"
+                                                                k-filter="'contains'"
+                                                                k-auto-bind="true"
+                                                                k-min-length="3"
+                                                                k-data-source="routingOperationDataSource"
+                                                                k-ng-model="cbxRoutingOperation.choose"
+                                                                k-on-change="selectRoutingOperation()"
+                                                                style="width:170px;">
+                                                        </select>
+                                                    </td>
+                                                    <td ng-show="myColumnsShow[6]"><input class="filter-table-cell" ng-model="param_filter_list[6]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="7" style="height: 38px;"></td>
+                                                    <!--<td ng-show="myColumnsShow[7]"><input class="filter-table-cell" ng-model="param_filter_list[7]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="8"></td>-->
+                                                    <td ng-show="myColumnsShow[7]">
+                                                        <select kendo-combo-box
+                                                                k-placeholder="'Material...'"
+                                                                k-data-text-field="'name'"
+                                                                k-data-value-field="'id'"
+                                                                k-filter="'contains'"
+                                                                k-auto-bind="true"
+                                                                k-min-length="3"
+                                                                k-data-source="materialTypeDataSource"
+                                                                k-ng-model="cbxMaterialType.choose"
+                                                                k-on-change="selectMaterialType()"
+                                                                style="width:150px;">
+                                                        </select>
+                                                    </td>
+                                                    <td ng-show="myColumnsShow[8]"><input class="filter-table-cell" ng-model="param_filter_list[8]" ng-model-options='{ debounce: 300 }' type="search" placeholder="" data-column="9" style="height: 38px;"></td>
+                                                </tr>
+                                                <tbody>
+                                                <tr ng-repeat="item in bomcomponents" on-last-repeat>
+                                                    <td ng-show="myColumnsShow[0]" class="uk-text-left">{{item.level}}</td>
+                                                    <td ng-show="myColumnsShow[1]" class="uk-text-left">
+                                                        <a ui-sref="products-detail({productId: item.productId})">{{item.productName}}</a>
+                                                    </td>
+                                                    <td ng-show="myColumnsShow[2]" class="uk-text-left" style="white-space: normal">
+                                                        <span data-uk-tooltip="{cls:'long-text'}" title="{{spaceString(item.productOldName)}}">{{cutString(item.productOldName)}}</span>
+                                                    </td>
+                                                    <td ng-show="myColumnsShow[3]" class="uk-text-center">{{item.productQuantity}}</td>
+                                                    <td ng-show="myColumnsShow[4]" class="uk-text-center">
+                                                        <get-attr-by-id url="urlUomName" value="item.uomId" attr="attrUomName"></get-attr-by-id>
+                                                    </td>
+                                                    <td ng-show="myColumnsShow[5]" class="uk-text-left" style="white-space: normal;">
+                                                        <get-attr-by-id url="urlOperationName" value="item.operationId" attr="attrOperationName"></get-attr-by-id>
+                                                    </td>
+                                                    <td ng-show="myColumnsShow[6]" class="uk-text-left" style="white-space: normal">
+                                                        <span data-uk-tooltip="{cls:'long-text'}" title="{{spaceString(item.reference)}}">{{cutString(item.reference)}}</span>
+                                                    </td>
+                                                    <td ng-show="myColumnsShow[7]" class="uk-text-center" style="white-space: normal;">{{getPartType(item.partType)}}</td>
+                                                    <td ng-show="myColumnsShow[8]" class="uk-text-left" style="white-space: normal;">
+                                                        <span data-uk-tooltip="{cls:'long-text'}" title="{{spaceString(item.note)}}">{{cutString(item.note)}}</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <p class="uk-text-italic" ng-hide="bomcomponents.length>0">&nbsp;&nbsp;&nbsp;{{common.Loading|translate}}</p>
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!--<style>
+    .loading {
+        background-color: #ffffff;
+        background-image: url("http://loadinggif.com/images/image-selection/3.gif");
+        background-size: 25px 25px;
+        background-position:right center;
+        background-repeat: no-repeat;
+    }
+</style>-->

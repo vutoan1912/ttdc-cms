@@ -1,0 +1,250 @@
+<div id="page_content">
+    <form name="form_createseq" id="form_createseq" class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">
+    <div id="page_heading" data-uk-sticky="{ top: 30, media: 960 }" class="custom-heading">
+        <!--<div class="heading_actions action-padding-top">-->
+            <!--<div><a ui-sref="products" data-uk-tooltip="{pos:'bottom'}" title="Print"><i class="md-icon material-icons">&#xE8AD;</i></a></div>-->
+            <!--<div div class="uk-button-dropdown " data-uk-dropdown="{mode:'click'}" style="padding-bottom: 6px !important;">-->
+                <!--<i class="md-icon material-icons">&#xE5D4;</i>-->
+                <!--<div class="uk-dropdown uk-dropdown-small">-->
+                    <!--<ul class="uk-nav">-->
+                        <!--<li disabled=""><a href="#">Import</a></li>-->
+                        <!--<li disabled=""><a href="#">Export list</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <span class=" route-header"><a disabled="" ui-sref="#">{{common.Inventory|translate}}</a>
+            <span> / </span><a disabled="" ui-sref="#" data-translate="masterdata.common.configuration"></a>
+            <span> / </span><a ui-sref="sequences"  data-translate="masterdata.common.reference"></a>
+            <span> / </span><span data-translate="inventory.common.new"></span>
+        </span>
+        </br>
+        <div class="btn-custom-action-group">
+            <button ng-click="submit()" class="md-btn md-btn-primary md-btn-small" type="submit"><span class="uk-text-bold">{{button.Save|translate}}</span></button>
+            <a ui-sref="sequences" class="md-btn  md-btn-small"><span class="uk-text-bold">{{button.Cancel|translate}}</span></a>
+        </div>
+
+    </div>
+    <div id="page_content_inner" class="custom-inner-1st">
+        <jhi-alert></jhi-alert>
+        <div class="md-card" id="seq_create">
+            <div class="md-card-content">
+                <div class="uk-grid " data-uk-grid-margin>
+                    <div class="uk-width-small-1-1 ">
+                        <div  class="md-btn-group float-right">
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-active float-right"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-archive uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div >
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        <span class="uk-text-success uk-text-bold custom-active-txt" id="activeBtn" data-translate="global.common.active"></span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-grid" style="margin-top: 0px !important;">
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <div class="parsley-row">
+                            <div><label class="label-bold" for="sname">{{columnsName.Name|translate}}<span class="req">*</span></label>
+                                <input  data-parsley-required-message={{required_msg}}
+                                        data-parsley-maxlength-message={{maxLengthRule|translate}}
+                                        data-parsley-pattern-message="{{wrongPatternRule|translate}}"
+                                        data-parsley-maxlength="255"
+                                        data-parsley-whitespace="trim"
+                                        pattern="^[a-zA-Z0-9]+"
+                                        data-parsley-pattern="^[a-zA-Z0-9]+"
+                                        ng-model="newSequence.name" id="sname" type="text" name="sname" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                <span class="md-input-bar "></span></div>
+                        </div>
+
+                        <div class="parsley-row custom-input-row">
+                            <div><label class="label-bold" for="implementation">{{columnsName.Implementation|translate}}</label><br/>
+                                <input  name="implementation" id="implementation" config="selectize_c_config" options="selectize_c_options" position="bottom" ng-model="newSequence.implementation" selectize>
+                            </div>
+                        </div>
+
+                        <div class="parsley-row custom-input-row">
+                            <div><label class="label-bold" for="prefix">{{columnsName.Prefix|translate}}</label>
+                                <div style="padding-top: 4px">
+                                    <input
+                                            data-parsley-maxlength-message={{maxLengthRule|translate}}
+                                            data-parsley-pattern-message="{{wrongPatternRule|translate}}"
+                                            data-parsley-maxlength="255"
+                                            data-parsley-whitespace="trim"
+                                            pattern="^[a-zA-Z0-9-/]+"
+                                            data-parsley-pattern="^[a-zA-Z0-9]+"
+                                            ng-model="newSequence.prefix" id="prefix" type="text" name="prefix" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                    <span class="md-input-bar "></span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="parsley-row custom-input-row">
+                            <div><label class="label-bold" for="suffix">{{columnsName.Suffix|translate}}</label>
+                                <input
+                                        data-parsley-maxlength-message={{maxLengthRule|translate}}
+                                        data-parsley-pattern-message="{{wrongPatternRule|translate}}"
+                                        data-parsley-maxlength="255"
+                                        data-parsley-whitespace="trim"
+                                        pattern="^[a-zA-Z0-9-/]+"
+                                        data-parsley-pattern="^[a-zA-Z0-9]+"
+                                        ng-model="newSequence.suffix" id="suffix" type="text" name="suffix" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                <span class="md-input-bar "></span>
+                            </div>
+                        </div>
+
+                        <div class="parsley-row custom-input-row">
+                            <div><label class="label-bold" for="useSubsequence">{{columnsName.useSubsequence|translate}}</label>
+                                <input type="checkbox" name="useSubsequence" id="useSubsequence" icheck ng-model="newSequence.useSubsequence" />
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <!--<div class="parsley-row">-->
+                        <!--<div><label class="label-bold" for="code">{{columnsName.Code|translate}}</label>-->
+                        <!--<input  ng-model="newSequence.code" id="code" type="text" name="code" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">-->
+                        <!--<span class="md-input-bar "></span></div>-->
+                        <!--</div>-->
+                        <div class="parsley-row">
+                            <div><label class="label-bold" for="length">{{columnsName.Size|translate}}<span class="req">*</span></label>
+                                <input  data-parsley-required-message={{required_msg}} ng-model="newSequence.length" id="length" type="number"  min=0 name="length" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                <span class="md-input-bar "></span>
+                            </div>
+                        </div>
+
+                        <div class="parsley-row custom-input-row">
+                            <div><label class="label-bold" for="step">{{columnsName.Step|translate}}</label>
+                                <div style="padding-top: 4px;">
+                                    <input   ng-model="newSequence.step" id="step" type="number" min=0 name="step" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                    <span class="md-input-bar "></span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="parsley-row custom-input-row" ng-show=!newSequence.useSubsequence>
+                            <div><label class="label-bold" for="snextNumber">{{columnsName.nextNumber|translate}}</label>
+                                <input   ng-model="newSequence.nextNumber" id="snextNumber" type="number" min=0 name="snextNumber" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                <span class="md-input-bar "></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <form ng-show="newSequence.useSubsequence" name="form_createsub" id="form_createsub" class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">
+        <div class="custom-inner-2nd">
+            <div class="md-card">
+                <div class="md-card-content" style="padding-top: 0px !important;">
+                    <table class="uk-table uk-table-align-vertical  uk-table-nowrap" >
+                        <thead>
+                        <tr>
+                            <th class="label-bold" style="width: 30%;">{{columnsName.from|translate}}</th>
+                            <th class="label-bold" style="width: 30%;">{{columnsName.to|translate}}</th>
+                            <th class="label-bold" style="width: 30%;">{{columnsName.nextNumber|translate}}</th>
+                            <!--<th class="small_col"></th>-->
+                            <th class="small_col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="s in subSequence" id="{{ 'r_' + $index }}" ng-click="edit($event,$index)">
+                            <td ng-show=s.editable>
+                                <div class="parsley-row">
+                                    <label for="uk_dp_start">{{msg.from|translate}}</label>
+                                    <input data-parsley-required-message={{required_msg}}  class="md-input" type="text"  ng-attr-id="{{ 'uk_dp_start-' + $index }}" md-input ng-model=s.from required="">
+                                    <span class="uk-text-danger" ng-hide="s.fromDateValid" >{{s.dateError|translate}}</span>
+                                    <span class="uk-text-danger" ng-hide="s.fromRequire">{{msg.required|translate}}</span>
+                                </div>
+                            </td>
+                            <td ng-show=!s.editable>{{s.from|date: 'dd-MM-yyyy 00:00:00'}}</td>
+                            <td ng-show=s.editable>
+                                <div class="parsley-row">
+                                    <label for="uk_dp_end">{{msg.to|translate}}</label>
+                                    <input ng-disabled="!s.fromDateValid" data-parsley-required-message={{required_msg}}  class="md-input" type="text" ng-attr-id="{{ 'uk_dp_end-' + $index }}" md-input ng-model=s.to required="">
+                                    <span class="uk-text-danger" ng-hide="s.toDateValid" >{{s.dateError|translate}}</span>
+                                    <span class="uk-text-danger" ng-hide="s.fromDateValid">{{msg.selectDate|translate}}</span>
+                                    <span class="uk-text-danger" ng-hide="s.toRequire">{{msg.required|translate}}</span>
+                                </div>
+                            </td>
+                            <td ng-show=!s.editable>{{s.to|date: 'dd-MM-yyyy 23:59:59'}}</td>
+                            <td ng-show=s.editable>
+                                <div class="parsley-row" style="padding-top: 4px">
+                                    <div>
+                                        <input  data-parsley-required-message={{required_msg}}  ng-model="s.nextNumber"  type="number" min=0  ng-attr-id="{{ 'nextNumber-' + $index }}" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="" required="" >
+                                        <span class="md-input-bar "></span>
+                                        <span class="uk-text-danger" ng-hide="s.numRequire">{{msg.required|translate}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td ng-show=!s.editable>{{s.nextNumber}}</td>
+                            <!--<td>-->
+                                <!--<a  ng-click="edit($event,$index)" ng-hide="s.editable"><i class="md-icon material-icons">&#xE254;</i></a>-->
+                                <!--<a  ng-click="save($event,$index)" ng-show="s.editable" ng-class="s.saveClass"><i class="md-icon material-icons">&#xE161;</i></a>-->
+                            <!--</td>-->
+                            <td>
+                                <a  ng-click=removeSub($index)><i class="md-icon material-icons">&#xE872;</i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tbody id="newItem" ng-show="isNewItem">
+                        <tr id="newRecord">
+                            <td>
+                                <div class="parsley-row">
+                                    <label for="uk_dp_start">{{msg.from|translate}}</label>
+                                    <input ng-change="fromDateValidation()" data-parsley-required-message={{required_msg}}  class="md-input" type="text"  id="uk_dp_start" name="uk_dp_start" md-input ng-model="fromDate" data-parsley-trigger="change" required="">
+                                    <span class="uk-text-danger" ng-hide="fromDateValid">{{dateError|translate}}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="parsley-row">
+                                    <label for="uk_dp_end">{{msg.to|translate}}</label>
+                                    <input ng-change="toDateValidation()" ng-disabled="!fromDateValid" data-parsley-required-message={{required_msg}}  class="md-input" type="text" id="uk_dp_end" name="uk_dp_end" md-input ng-model="toDate" data-parsley-trigger="change" required="">
+                                    <span class="uk-text-danger" ng-hide="toDateValid">{{dateError|translate}}</span>
+                                    <span class="uk-text-danger" ng-hide="fromDateValid">{{msg.selectDate|translate}}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="parsley-row" style="padding-top: 4px">
+                                    <div>
+                                        <input  data-parsley-required-message={{required_msg}}  ng-model="nextNumber" id="nextNumber" type="number" min=0 name="nextNumber" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="" required="" >
+                                        <span class="md-input-bar "></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <!--<td></td>-->
+                            <td></td>
+
+                        </tr>
+
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td><button class="custom-fake-button" ng-click="addNewItem()" type="submit">{{button.addItem|translate}}</button></td>
+                            <td></td>
+                            <!--<td ng-show=isNewItem><button class="md-btn md-btn-primary md-btn-small" ng-click="createNewItem()">{{button.add|translate}}</button><button class="md-btn  md-btn-small" ng-click="addNewItem()" style="padding-left: 20px">{{button.Cancel|translate}}</button></td>-->
+                            <td></td>
+                            <td></td>
+                            <!--<td></td>-->
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+

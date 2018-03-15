@@ -1,0 +1,244 @@
+<!-- main sidebar -->
+<style xmlns:ui="http://www.w3.org/1999/xhtml" xmlns:ui="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://www.w3.org/1999/xhtml">
+    body { height: 1000px; }
+    thead{
+        background-color:white;
+    }
+</style>
+<div ui-view>
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions action-padding-top">
+            <div data-uk-dropdown="{mode:'click'}">
+                <i class="md-icon material-icons">&#xE5D4;</i>
+                <div class="uk-dropdown">
+                    <ul class="uk-nav uk-nav-dropdown" >
+                        <li><a ng-click="activate()" data-translate="route.headerPage.active"></a></li>
+                        <li><a ng-click="deactivate()" data-translate="route.headerPage.inactive"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="heading_actions action-padding-top">
+            <div class="uk-button-dropdown " data-uk-dropdown="{mode:'click'}">
+                <button class="md-btn md-btn-small custom-btn-type">Columns <i class="uk-icon-caret-down"></i></button>
+                <div class="uk-dropdown">
+                    <label class="container-checkbox">All
+                        <input ng-model="checkColumnAll" type="checkbox" checked="checked" ng-change="handleColumn()">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <ul class="uk-nav uk-nav-dropdown" ng-repeat="c in myColumns">
+                        <li class="checkbox-padding-left">
+                            <label ng-class="checkboxType">{{c}}
+                                <input ng-model=myColumnsShow[$index] type="checkbox" checked="checked" ng-change="handleColumn()">
+                                <span class="checkmark"></span>
+                            </label></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a ui-sref="products" class="uk-text-large" data-translate="route.titlePage.home"></a>
+        <span> / </span><a class="uk-text-large" data-translate="route.titlePage.configuration"></a>
+        <span> / </span><a class="uk-text-large" data-translate="route.titlePage.warehouseMan"></a>
+        <span> / </span><a ui-sref="warehouses" class="uk-text-large" data-translate="route.titlePage.warehouse"></a>
+        <span> / </span><span class="uk-text-large" data-translate="route.titlePage.route"></span>
+        </br>
+
+        <div class="btn-custom-action-group">
+            <a ui-sref="routes-create" class="md-btn md-btn-primary md-btn-small"><span class="uk-text-bold">{{button.create| translate}}</span></a>
+            <button id="deleteBtn" class="md-btn md-btn-small hideElement" ng-click="deleteList('table_ot')"><span class="uk-text-bold">{{button.delete| translate}}</span></button>
+        </div>
+    </div>
+
+    <div id="page_content_inner">
+        <jhi-alert></jhi-alert>
+        <!--FOR ROUTE LIST WITHOUT WAREHOUSE-->
+        <div class="md-card" id="ot_list">
+            <div class="md-card-content">
+                <div class="uk-grid" data-uk-grid-margin="" data-uk-grid-match="{target:'.md-card'}">
+                    <div class="uk-width-medium-10-10">
+                        <div>
+                            <div class="uk-overflow-container uk-margin-bottom">
+                                <table class="uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair"
+                                       id="table_ot">
+                                    <thead>
+                                    <tr>
+                                        <th data-name="Select" data-priority="5">
+                                            <input type="checkbox" class="ts_checkbox_all" data-md-icheck icheck ng-model="row_select">
+                                        </th>
+                                        <th ng-show="myColumnsShow[0]"
+                                            class="pointerMouse label-bold  custom-txt-center"
+                                            ng-click="handleSort($event, 1, 'table_ot')"
+                                            data-priority="1">
+                                            <span data-translate="route.column.routeName"></span>
+                                            <i class="material-icons md-20 rightCell">
+                                                {{TABLES['table_ot'].param_sort_list[1]}}
+                                            </i>
+                                        </th>
+                                        <th ng-show="myColumnsShow[1]"
+                                            class="pointerMouse label-bold  custom-cl-header-large"
+                                            ng-click="handleSort($event, 2, 'table_ot')"
+                                            data-priority="2">
+                                            <span data-translate="inventory.column.created"></span>
+                                            <i class="material-icons md-20 rightCell">
+                                                {{TABLES['table_ot'].param_sort_list[2]}}
+                                            </i>
+                                        </th>
+                                        <th ng-show="myColumnsShow[2]"
+                                            class="pointerMouse label-bold  custom-cl-header-large"
+                                            ng-click="handleSort($event, 3, 'table_ot')"
+                                            data-priority="3">
+                                            <span data-translate="inventory.column.createdby"></span>
+                                            <i class="material-icons md-20 rightCell">
+                                                {{TABLES['table_ot'].param_sort_list[3]}}
+                                            </i>
+                                        </th>
+                                        <th ng-show="myColumnsShow[3]"
+                                            class="pointerMouse label-bold  custom-cl-header-large"
+                                            ng-click="handleSort($event, 4, 'table_ot')"
+                                            data-priority="4">
+                                            <span data-translate="inventory.column.updated"></span>
+                                            <i class="material-icons md-20 rightCell">
+                                                {{TABLES['table_ot'].param_sort_list[4]}}
+                                            </i>
+                                        </th>
+                                        <th ng-show="myColumnsShow[4]"
+                                            class="pointerMouse label-bold  custom-cl-header-large"
+                                            ng-click="handleSort($event, 5, 'table_ot')"
+                                            data-priority="5">
+                                            <span data-translate="inventory.column.updatedby"></span>
+                                            <i class="material-icons md-20 rightCell">
+                                                {{TABLES['table_ot'].param_sort_list[5]}}
+                                            </i>
+                                        </th>
+                                        <th ng-show="myColumnsShow[5]" style="width: 20%"
+                                            class="pointerMouse label-bold  custom-txt-center"
+                                            ng-click="handleSort($event, 6, 'table_ot')"
+                                            data-priority="6">
+                                            <span data-translate="route.column.active"></span>
+                                            <i class="material-icons md-20 rightCell">
+                                                {{TABLES['table_ot'].param_sort_list[6]}}
+                                            </i>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td ng-show="myColumnsShow[0]">
+                                            <input class="filter-table-cell"
+                                                   ng-model="TABLES['table_ot'].param_filter_list[1]"
+                                                   ng-change="handleFilter('table_ot')"
+                                                   type="search" placeholder="" data-column="1" style="height: 38px;">
+                                        </td>
+                                        <td ng-show="myColumnsShow[1]">
+                                            <date-picker-filter date-start="DatetimeRange1.dateStart" date-end="DatetimeRange1.dateEnd"
+                                                                    table="DatetimeRange1.Table"
+                                                                    column="DatetimeRange1.Column"
+                                                                    scope-controller="DatetimeRange1.Scope">
+                                            </date-picker-filter>
+                                        </td>
+                                        <td ng-show="myColumnsShow[2]">
+                                            <input class="filter-table-cell"
+                                                   ng-model="TABLES['table_ot'].param_filter_list[3]"
+                                                   ng-change="handleFilter('table_ot')"
+                                                   type="search" placeholder=""
+                                                   data-column="4" style="height: 38px;">
+                                        </td>
+                                        <td ng-show="myColumnsShow[3]">
+                                            <date-picker-filter date-start="DatetimeRange2.dateStart" date-end="DatetimeRange2.dateEnd"
+                                                                    table="DatetimeRange2.Table"
+                                                                    column="DatetimeRange2.Column"
+                                                                    scope-controller="DatetimeRange2.Scope">
+                                            </date-picker-filter>
+                                        </td>
+                                        <td ng-show="myColumnsShow[4]">
+                                            <input class="filter-table-cell"
+                                                   ng-model="TABLES['table_ot'].param_filter_list[5]"
+                                                   ng-change="handleFilter('table_ot')"
+                                                   type="search" placeholder=""
+                                                   data-column="6" style="height: 38px;">
+                                        </td>
+                                        <td ng-show="myColumnsShow[5]">
+                                            <active-search-table cbxplaceholder="CbxActive.Placeholder"
+                                                                 api="CbxActive.Api"
+                                                                 table="CbxActive.Table"
+                                                                 column="CbxActive.Column"
+                                                                 scopecontroller="CbxActive.Scope"
+                                                                 ngmodel="CbxActive.ngModel">
+                                            </active-search-table>
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="ot in operationTypes"  on-last-repeat>
+                                        <td>
+                                            <input id="{{ot.id}}" type="checkbox" class="ts_checkbox custom-table-border" data-md-icheck icheck ng-model="row_select">
+                                        </td>
+                                        <td ng-show="myColumnsShow[0]" title="{{ot.name}}">
+                                            <a ui-sref="routes-detail({routeId: ot.id })">{{ot.name}}</a>
+                                        </td>
+                                        <td ng-show="myColumnsShow[1]">
+                                            {{ot.created|date: 'dd-MM-yyyy HH:mm:ss'}}
+                                        </td>
+                                        <td ng-show="myColumnsShow[2]">
+                                            <get-attr-by-key-hyperlink
+                                                    url="CbxCreatedBy.url"
+                                                    key="CbxCreatedBy.key"
+                                                    value="ot.createdBy"
+                                                    attr="CbxCreatedBy.attr"
+                                                    prefix="CbxCreatedBy.prefix"
+                                                    suffix="CbxCreatedBy.suffix">
+                                            </get-attr-by-key-hyperlink>
+                                        </td>
+                                        <td ng-show="myColumnsShow[3]">
+                                            {{ot.updated|date: 'dd-MM-yyyy HH:mm:ss'}}
+                                        </td>
+                                        <td ng-show="myColumnsShow[4]">
+                                            <get-attr-by-key-hyperlink
+                                                    url="CbxCreatedBy.url"
+                                                    key="CbxCreatedBy.key"
+                                                    value="ot.updatedBy"
+                                                    attr="CbxCreatedBy.attr"
+                                                    prefix="CbxCreatedBy.prefix"
+                                                    suffix="CbxCreatedBy.suffix">
+                                            </get-attr-by-key-hyperlink>
+                                        </td>
+                                        <td ng-show="myColumnsShow[5]">
+                                            <div ng-show=ot.active class="uk-badge uk-badge-success" >Active</div>
+                                            <div ng-show=!ot.active class="uk-badge uk-badge-danger" >Archived</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="ts_pager" id="table_ot_pager">
+                                <ul class="uk-pagination ts_pager">
+                                    <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                                        <input ng-change="selectPageHandle('table_ot')" id="rd_selectize_page" type="text"
+                                               config="TABLES['table_ot'].selectize_page_config" options="TABLES['table_ot'].selectize_page_options"
+                                               ng-model="TABLES['table_ot'].selectize_page" name="TABLES['table_ot'].selectize_page" selectize>
+                                    </li>
+                                    <li><a href="javascript:void(0)" class="firstPage" ng-click="handleFirstPage('table_ot')"><i class="uk-icon-angle-double-left"></i></a></li>
+                                    <li><a href="javascript:void(0)" class="prevPage" ng-click="handlePreviousPage('table_ot')"><i class="uk-icon-angle-left"></i></a></li>
+                                    <li><span class="pageDisplay">1-20/50</span></li>
+                                    <li><a href="javascript:void(0)" class="nextPage" ng-click="handleNextPage('table_ot')"><i class="uk-icon-angle-right"></i></a></li>
+                                    <li><a href="javascript:void(0)" class="lastPage"ng-click="handleLastPage('table_ot')"><i class="uk-icon-angle-double-right"></i></a></li>
+                                    <li data-uk-tooltip title="{{pageSize}}">
+                                        <input ng-change="selectPageNumHandle('table_ot')" id="rd_selectize_pageNum" type="text"
+                                               config="TABLES['table_ot'].selectize_pageNum_config" options="TABLES['table_ot'].selectize_pageNum_options"
+                                               ng-model="TABLES['table_ot'].selectize_pageNum" name="TABLES['table_ot'].selectize_pageNum" selectize>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>

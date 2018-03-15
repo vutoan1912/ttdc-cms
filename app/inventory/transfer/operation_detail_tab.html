@@ -1,0 +1,179 @@
+<div class="uk-overflow-container uk-margin-bottom"  id="table-container">
+    <!--<div ng-show="list_op_detail.length == 0" class="uk-margin-medium-top uk-margin-small-bottom">
+        <h4 class="heading_b uk-text-center" data-translate="transfer.messages.noData"></h4>
+    </div>-->
+    <table class="hoverTable uk-table uk-table-align-vertical uk-table-striped uk-table-nowrap tablesorter tablesorter-altair" id="table_op_detail_tab" style="margin-bottom: -5px;">
+        <thead>
+        <tr>
+            <th data-name="Select" data-priority="5"><input type="checkbox" class="ts_checkbox_all"></th>
+            <th class="pointerMouse boldHeader custom-cl-header-xlarge" ng-click="handleSort($event, 1, 'table_op_detail_tab')" data-priority="1" ng-show="myColumnsShowOpDetail[0]">VNPT P/N<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[1]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-xlarge" ng-click="handleSort($event, 2, 'table_op_detail_tab')" data-priority="2" ng-show="myColumnsShowOpDetail[1]">Description<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[2]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-xlarge" ng-click="handleSort($event, 3, 'table_op_detail_tab')" data-priority="3" ng-show="myColumnsShowOpDetail[2]">Manufacturer<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[3]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" data-priority="4" ng-show="myColumnsShowOpDetail[3]">VNPT ManPN</th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 5, 'table_op_detail_tab')" data-priority="5" ng-show="myColumnsShowOpDetail[4]">Man P/N<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[5]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 6, 'table_op_detail_tab')" data-priority="6" ng-show="myColumnsShowOpDetail[5]">UOM<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[6]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 7, 'table_op_detail_tab')" data-priority="7" ng-show="myColumnsShowOpDetail[6]">Source Package<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[7]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-xlarge" ng-click="handleSort($event, 8, 'table_op_detail_tab')" data-priority="8" ng-show="myColumnsShowOpDetail[7]">From<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[8]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-xlarge" ng-click="handleSort($event, 9, 'table_op_detail_tab')" data-priority="9" ng-show="myColumnsShowOpDetail[8]">To<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[9]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 10, 'table_op_detail_tab')" data-priority="10" ng-show="myColumnsShowOpDetail[9]">Des'Package<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[10]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 11, 'table_op_detail_tab')" data-priority="11" ng-show="myColumnsShowOpDetail[10]">Serial/Lot<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[11]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 12, 'table_op_detail_tab')" data-priority="12" ng-show="myColumnsShowOpDetail[11]">Reserved<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[12]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 13, 'table_op_detail_tab')" data-priority="13" ng-show="myColumnsShowOpDetail[12]">Done<i class="material-icons md-20 rightCell">{{TABLES['table_op_detail_tab'].param_sort_list[13]}}</i></th>
+
+        </tr>
+        <tr>
+            <td></td>
+            <!--<td><input class="filter-table-cell-small disableMouse" type="search" placeholder="" disabled data-column="0"></td>-->
+            <td ng-show="myColumnsShowOpDetail[0]">
+                <!--<input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[1]"-->
+                <!--ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="1"  style="height: 38px;">-->
+                <select-search-table cbxplaceholder="CbxProductDetail.Placeholder"
+                                     api="CbxProductDetail.Api"
+                                     size="CbxProductDetail.Size"
+                                     cbxtextfield="CbxProductDetail.TextField"
+                                     cbxvaluefield="CbxProductDetail.ValueField"
+                                     table="CbxProductDetail.Table"
+                                     column="CbxProductDetail.Column"
+                                     scopecontroller="CbxProductDetail.Scope"
+                                     ngmodel="CbxProductDetail.ngModel"
+                                     originparams="CbxProductDetail.OriginParams">
+                </select-search-table>
+            </td>
+            <td ng-show="myColumnsShowOpDetail[1]">
+                <!--<input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[2]"-->
+                <!--ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="2"  style="height: 38px;">-->
+                <select-search-table cbxplaceholder="CbxProductDesDetail.Placeholder"
+                                     api="CbxProductDesDetail.Api"
+                                     size="CbxProductDesDetail.Size"
+                                     cbxtextfield="CbxProductDesDetail.TextField"
+                                     cbxvaluefield="CbxProductDesDetail.ValueField"
+                                     table="CbxProductDesDetail.Table"
+                                     column="CbxProductDesDetail.Column"
+                                     scopecontroller="CbxProductDesDetail.Scope"
+                                     ngmodel="CbxProductDesDetail.ngModel"
+                                     originparams="CbxProductDesDetail.OriginParams">
+                </select-search-table>
+            </td>
+            <td ng-show="myColumnsShowOpDetail[2]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[3]"
+                       ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="3"  style="height: 38px;">
+            </td>
+
+            <td ng-show="myColumnsShowOpDetail[3]">
+
+            </td>
+
+            <td ng-show="myColumnsShowOpDetail[4]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[5]"
+                       ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="5" style="height: 38px;">
+            </td>
+
+            <td ng-show="myColumnsShowOpDetail[5]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[6]"
+                       ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="6" style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowOpDetail[6]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[7]"
+                       ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="7" style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowOpDetail[7]">
+                <!--<input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[6]"-->
+                       <!--ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="6" style="height: 38px;">-->
+                <select-search-table cbxplaceholder="CbxFromLocDetail.Placeholder"
+                                     api="CbxFromLocDetail.Api"
+                                     size="CbxFromLocDetail.Size"
+                                     cbxtextfield="CbxFromLocDetail.TextField"
+                                     cbxvaluefield="CbxFromLocDetail.ValueField"
+                                     table="CbxFromLocDetail.Table"
+                                     column="CbxFromLocDetail.Column"
+                                     scopecontroller="CbxFromLocDetail.Scope"
+                                     ngmodel="CbxFromLocDetail.ngModel"
+                        >
+                </select-search-table>
+            </td>
+            <td ng-show="myColumnsShowOpDetail[8]">
+                <!--<input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[7]"-->
+                       <!--ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="7" style="height: 38px;">-->
+                <select-search-table cbxplaceholder="CbxFromLocDetail.Placeholder"
+                                     api="CbxFromLocDetail.Api"
+                                     size="CbxFromLocDetail.Size"
+                                     cbxtextfield="CbxFromLocDetail.TextField"
+                                     cbxvaluefield="CbxFromLocDetail.ValueField"
+                                     table="CbxFromLocDetail.Table"
+                                     column="CbxToLocSelectColumn"
+                                     scopecontroller="CbxFromLocDetail.Scope"
+                                     ngmodel="CbxFromLocDetail.ngModel"
+                >
+                </select-search-table>
+            </td>
+            <td ng-show="myColumnsShowOpDetail[9]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[10]"
+                       ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="10" style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowOpDetail[10]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[11]"
+                       ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="11" style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowOpDetail[11]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[12]"
+                       ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="12" style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowOpDetail[12]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_detail_tab'].param_filter_list[13]"
+                       ng-change="handleFilter('table_op_detail_tab')" type="search" placeholder="" data-column="13" style="height: 38px;">
+            </td>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in list_op_detail" on-last-repeat class="hoverRow" ng-click="showOperationDetailInfo($event,$index)">
+            <td><input id="{{item.id}}" type="checkbox" class="ts_checkbox" data-md-icheck icheck ng-model="row_select"></td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[0]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                <a ui-sref="products-detail({productId: item.productId})" ng-click="$event.stopPropagation();">
+                    {{item.productName}}
+                </a>
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[1]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.productDescription}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[2]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.manCode}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[3]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.internalReference}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[4]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.manPn}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[5]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.uomName}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[6]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.srcPackageNumber}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[7]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                <!--<get-attr-by-id url="urlLocationName" value="item.srcLocationId" attr="attrProductName"></get-attr-by-id>-->
+                {{item.srcLocationName}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[8]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                <!--<get-attr-by-id url="urlLocationName" value="item.destLocationId" attr="attrProductName"></get-attr-by-id>-->
+                {{item.destLocationName}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[9]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.destPackageNumber}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[10]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.traceNumber}}
+            </td>
+            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[11]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.reserved}}
+            </td>
+            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[12]" ng-class="item.scrapId > 0? 'custom-color-text-scrap' : '' ">
+                {{item.doneQuantity}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="bottom_anchor_rd"></div>

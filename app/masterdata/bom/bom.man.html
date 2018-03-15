@@ -1,0 +1,128 @@
+<table class="hoverTable uk-table uk-table-align-vertical uk-table-striped uk-table-nowrap tablesorter tablesorter-altair" id="table_man_bom" style="margin-bottom: -5px;height: 300px;">
+    <thead>
+    <tr>
+        <th data-name="Select" data-priority="0"><input type="checkbox" class="ts_checkbox_all"></th>
+        <th class="pointerMouse boldHeader" ng-click="handleSort($event, 1, 'table_man_bom')" data-priority="1" ng-show="myColumnsShowMan[0]">Product
+            <!--<i class="material-icons md-20 rightCell">{{TABLES['table_man_bom'].param_sort_list[1]}}</i>-->
+        </th>
+        <th class="pointerMouse boldHeader" ng-click="handleSort($event, 2, 'table_man_bom')" data-priority="2" ng-show="myColumnsShowMan[1]">Product version
+            <!--<i class="material-icons md-20 rightCell">{{TABLES['table_man_bom'].param_sort_list[2]}}</i>-->
+        </th>
+        <th class="pointerMouse boldHeader" ng-click="handleSort($event, 3, 'table_man_bom')" data-priority="3" ng-show="myColumnsShowMan[2]">Man Bom
+            <i class="material-icons md-20 rightCell">{{TABLES['table_man_bom'].param_sort_list[3]}}</i>
+        </th>
+        <th class="pointerMouse boldHeader" ng-click="handleSort($event, 4, 'table_man_bom')" data-priority="4" ng-show="myColumnsShowMan[3]">Man Bom Version
+            <i class="material-icons md-20 rightCell">{{TABLES['table_man_bom'].param_sort_list[4]}}</i>
+        </th>
+        <th class="pointerMouse boldHeader" ng-click="handleSort($event, 5, 'table_man_bom')" data-priority="5" ng-show="myColumnsShowMan[4]">R&D Bom Version
+            <!--<i class="material-icons md-20 rightCell">{{TABLES['table_man_bom'].param_sort_list[5]}}</i>-->
+        </th>
+    </tr>
+    <tr>
+        <td><!--<input class="filter-table-cell-small disableMouse" type="search" placeholder="" disabled data-column="0">--></td>
+        <td ng-show="myColumnsShowMan[0]">
+            <!--<select-search-table cbxplaceholder="CbxProductMan.Placeholder"
+                                 api="CbxProductMan.Api"
+                                 size="CbxProductMan.Size"
+                                 cbxtextfield="CbxProductMan.TextField"
+                                 cbxvaluefield="CbxProductMan.ValueField"
+                                 table="CbxProductMan.Table"
+                                 column="CbxProductMan.Column"
+                                 scopecontroller="CbxProductMan.Scope"
+                                 ngmodel="CbxProductMan.ngModel"
+                                 fieldrelatedafter="CbxProductMan.FieldRelatedAfter"
+                                 valuerelatedafter="CbxProductMan.ValueRelatedAfter"
+                                 apiafter="CbxProductMan.ApiAfter"
+                                 valuefieldafter="CbxProductMan.ValueFieldAfter"
+                                 attrgetfromafter="CbxProductMan.AttrGetFromAfter"
+                                 originparams="CbxProductMan.OriginParams">
+            </select-search-table>-->
+            <div style="height: 39px;max-width: 300px;">
+                <selectize id="cbx_product_man"
+                           config="cbxProductMan.Config"
+                           options="cbxProductMan.Options"
+                           position="bottom"
+                           ng-model="cbxProductMan.ngModel"
+                           table="cbxProductMan.Table"
+                           column="cbxProductMan.Column"
+                           scope-controller="cbxProductMan.Scope"
+                           reset-scroll="cbxProductManInit.resetScroll"
+                           key-field-after="cbxProductMan.KeyFieldAfter"
+                           get-field-after="cbxProductMan.GetFieldAfter"
+                           value-related-after="cbxProductMan.ValueRelatedAfter"
+                           field-related-after="cbxProductMan.FieldRelatedAfter"
+                           api-after="cbxProductMan.ApiAfter"
+                           query-relate="cbxProductManInit.queryRelate"
+                           total-count="cbxProductManInit.totalCount">
+                </selectize>
+            </div>
+        </td>
+        <td ng-show="myColumnsShowMan[1]">
+            <!--<select-search-table cbxplaceholder="CbxProductVersionMan.Placeholder"
+                                 api="CbxProductVersionMan.Api"
+                                 size="CbxProductVersionMan.Size"
+                                 cbxtextfield="CbxProductVersionMan.TextField"
+                                 cbxvaluefield="CbxProductVersionMan.ValueField"
+                                 table="CbxProductVersionMan.Table"
+                                 column="CbxProductVersionMan.Column"
+                                 scopecontroller="CbxProductVersionMan.Scope"
+                                 ngmodel="CbxProductVersionMan.ngModel"
+                                 fieldrelatedbefore="CbxProductVersionMan.FieldRelatedBefore"
+                                 valuerelatedbefore="CbxProductVersionMan.ValueRelatedBefore">
+            </select-search-table>-->
+            <div style="height: 39px;max-width: 300px;">
+                <selectize id="cbx_product_version_man"
+                           config="cbxProductVersionMan.Config"
+                           options="cbxProductVersionMan.Options"
+                           position="bottom"
+                           ng-model="cbxProductVersionMan.ngModel"
+                           table="cbxProductVersionMan.Table"
+                           column="cbxProductVersionMan.Column"
+                           scope-controller="cbxProductVersionMan.Scope"
+                           value-related-before="cbxProductVersionMan.ValueRelatedBefore"
+                           field-related-before="cbxProductVersionMan.FieldRelatedBefore"
+                           total-count="cbxProductVersionManInit.totalCount"
+                           page="cbxProductVersionManInit.page"
+                           per-page="cbxProductVersionManInit.perPage"
+                           query-relate="cbxProductVersionManInit.queryRelate"
+                           reset-scroll="cbxProductVersionManInit.resetScroll">
+                </selectize>
+            </div>
+
+        </td>
+        <td ng-show="myColumnsShowMan[2]"><input class="filter-table-cell" ng-model="TABLES['table_man_bom'].param_filter_list[3]" ng-change="handleFilter('table_man_bom')" type="search" placeholder="" data-column="3" style="height: 38px;"></td>
+        <td ng-show="myColumnsShowMan[3]"><input class="filter-table-cell" ng-model="TABLES['table_man_bom'].param_filter_list[4]" ng-change="handleFilter('table_man_bom')" type="search" placeholder="" data-column="4" style="height: 38px;"></td>
+        <td ng-show="myColumnsShowMan[4]">
+            <select-search-table cbxplaceholder="CbxRdBom.Placeholder"
+                                 api="CbxRdBom.Api"
+                                 size="CbxRdBom.Size"
+                                 cbxtextfield="CbxRdBom.TextField"
+                                 cbxvaluefield="CbxRdBom.ValueField"
+                                 table="CbxRdBom.Table"
+                                 column="CbxRdBom.Column"
+                                 scopecontroller="CbxRdBom.Scope"
+                                 ngmodel="CbxRdBom.ngModel">
+            </select-search-table>
+        </td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in list_bom_man" on-last-repeat class="hoverRow">
+        <td><input id="{{item.id}}" type="checkbox" class="ts_checkbox" data-md-icheck icheck ng-model="row_select"></td>
+        <td class="uk-text-left" ng-show="myColumnsShowMan[0]">
+            <a ui-sref="products-detail({productId: item.productId})"><get-attr-by-id url="urlProductName" value="item.productId" attr="attrProductName"></get-attr-by-id></a>
+        </td>
+        <td class="uk-text-left" ng-show="myColumnsShowMan[1]">
+            <get-attr-by-key url="urlProductVersionName" key="keyProductVersionName" value="item.productVersion" attr="attrProductVersionName"></get-attr-by-key>
+        </td>
+        <td class="uk-text-left" ng-show="myColumnsShowMan[2]"><a ui-sref="bom-man-detail({id: item.id})">{{item.name}}</a></td>
+        <td class="uk-text-center" ng-show="myColumnsShowMan[3]">{{item.version}}</td>
+        <td class="uk-text-left" ng-show="myColumnsShowMan[4]">
+            <a ui-sref="bom-rd-detail({id: item.refBomId})"><get-attr-by-key url="urlRdBomName" key="keyRdBomName" value="item.refBomId" attr="attrRdBomName"></get-attr-by-key></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div id="bottom_anchor_man"></div>

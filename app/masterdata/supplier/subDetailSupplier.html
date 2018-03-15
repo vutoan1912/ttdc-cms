@@ -1,0 +1,180 @@
+<!-- main sidebar -->
+<style>
+    body { height: 1000px; }
+    thead{
+        background-color:white;
+    }
+
+</style>
+<div id="page_content"  ng-controller="SubSupplierDetailController">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions">
+            <a href="#" data-uk-tooltip="{pos:'bottom'}" title="Archive"><i class="md-icon material-icons">&#xE149;</i></a>
+            <a href="#" data-uk-tooltip="{pos:'bottom'}" title="Print"><i class="md-icon material-icons">&#xE8AD;</i></a>
+            <div data-uk-dropdown>
+                <i class="md-icon material-icons">&#xE5D4;</i>
+                <div class="uk-dropdown uk-dropdown-small">
+                    <ul class="uk-nav uk-nav-dropdown">
+                        <li><a ng-click="deleteRows()">Delete Manufacturer(s)</a></li>
+                        <li><a href="javascript:void(0)" style="cursor:  no-drop;">Export to Excel</a></li>
+                        <li><a href="javascript:void(0)" style="cursor:  no-drop;">Import Manufacturer(s)</a></li>
+                        <li><a href="javascript:void(0)" style="cursor:  no-drop;">Duplicate</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a ui-sref="products" class="uk-text-large">Home</a>
+        <span> / </span><a ui-sref="products" class="uk-text-large">Master Data</a>
+        <span> / </span><a ui-sref="suppliers" class="uk-text-large">Supplier</a>
+        <span> / </span><a ui-sref="suppliers.detail({id:id})" class="uk-text-large">{{man_detail.name}}</a>
+        <!--<span class="uk-text-large"> / {{man_detail.name}}</span>-->
+
+        </br>
+        <div class="btn-custom-action-group">
+            <button class="md-btn md-btn-primary md-btn-small"><span class="uk-text-bold"> EDIT</span></button>
+            <button class="md-btn md-btn-small"><span class="uk-text-bold"> Create</span></button>
+        </div>
+    </div>
+    <div id="page_content_inner">
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-large-1-1">
+                        <div id="info_detail" class="md-btn-group uk-float-right">
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100" ui-sref="manufacturers.sub_detail({id:id})">
+                                <div style="float:left;display:inline-block;">
+                                    <!--<i class="uk-icon-ship "></i>-->
+                                    <i class="material-icons md-40 uk-icon-medium icon-padding-top">&#xE156;</i>
+                                </div>
+                                <div style="margin-left:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <span class="text-number">10</span><br/>
+                                        Manufacturer
+                                    </p>
+
+                                </div>
+                            </a>
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100" href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-shopping-cart  md-40 uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-left:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <span class="text-number">1</span><br/>
+                                        Purchasing
+                                    </p>
+
+                                </div>
+                            </a>
+                            <a ng-mouseenter="mouseHoverStatus()" ng-mouseleave="mouseLeaveStatus()"
+                               class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-archive  md-40 uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-left:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        <span id="activeBtn" ng-class="activeClass">{{status}}</span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md-card uk-margin-medium-bottom" >
+                <div class="md-card-content">
+                    <div  class="md-card-content" >
+                        <div class="uk-float-right">
+                            <div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+                                <button class="md-btn">Columns <i class="uk-icon-caret-down"></i></button>
+                                <div class="uk-dropdown">
+                                    <ul class="uk-nav uk-nav-dropdown" ng-repeat="c in myColumns">
+                                        <li class="checkbox-padding-left">
+                                            <label class="container-checkbox">{{c}}
+                                                <input ng-model=myColumnsShow[$index]  type="checkbox" checked="checked">
+                                                <span class="checkmark"></span>
+                                            </label></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" uk-margin-bottom"  id="table-container">
+                            <table class="uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair" id="ts_pager_filter">
+                                <thead>
+                                <tr>
+                                    <th data-name="Select" data-priority="5"> <input type="checkbox" class="ts_checkbox_all"></th>
+                                    <th ng-show="myColumnsShow[0]" class="pointerMouse label-bold" ng-click="handleSort($event, 1)" data-priority="1">Manufacturer Alias<i class="material-icons md-20 rightCell">{{param_sort_list[1]}}</i></th>
+                                    <th ng-show="myColumnsShow[1]" class="pointerMouse label-bold" ng-click="handleSort($event, 2)" data-priority="2">Manufacturer Address<i class="material-icons md-20 rightCell">{{param_sort_list[2]}}</i></th>
+                                    <th ng-show="myColumnsShow[2]" class="pointerMouse label-bold" ng-click="handleSort($event, 3)" data-priority="3">Manufacturer Phone<i class="material-icons md-20 rightCell">{{param_sort_list[3]}}</i></th>
+                                    <th ng-show="myColumnsShow[3]" class="pointerMouse label-bold" ng-click="handleSort($event, 4)" data-priority="4">Manufacturer Email<i class="material-icons md-20 rightCell">{{param_sort_list[4]}}</i></th>
+                                    <th ng-show="myColumnsShow[4]" class="pointerMouse label-bold" ng-click="handleSort($event, 5)" data-priority="5">Quanlity<i class="material-icons md-20 rightCell">{{param_sort_list[5]}}</i></th>
+
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <td><input class="filter-table-cell-small disableMouse" type="search" placeholder="" disabled data-column="0"></td>
+                                    <td ng-show="myColumnsShow[0]"><input class="filter-table-cell" ng-model="param_filter_list[1]" ng-change="handleFilter()" type="search" placeholder="" data-column="1"></td>
+                                    <td ng-show="myColumnsShow[1]"><input class="filter-table-cell" ng-model="param_filter_list[2]" ng-change="handleFilter()" type="search" placeholder="" data-column="2"></td>
+                                    <td ng-show="myColumnsShow[2]"><input class="filter-table-cell" ng-model="param_filter_list[3]" ng-change="handleFilter()" type="search" placeholder="" data-column="3"></td>
+                                    <td ng-show="myColumnsShow[3]"><input class="filter-table-cell" ng-model="param_filter_list[4]" ng-change="handleFilter()" type="search" placeholder="" data-column="4"></td>
+                                    <td ng-show="myColumnsShow[4]">
+                                    </td>
+
+                                </tr>
+
+                                <tbody>
+
+                                <tr ng-repeat="item in list_sup" on-last-repeat>
+                                    <td><input id="{{item.id}}" type="checkbox" class="ts_checkbox" data-md-icheck icheck ng-model="row_select"></td>
+                                    <td ng-show="myColumnsShow[0]" style="white-space:normal">
+                                        <span data-uk-tooltip="{cls:'long-text'}"  title="{{item.alias}}"> <a ui-sref="manufacturers.detail({id: item.id})"> {{cutString(item.alias)}}</a></span>
+                                    </td>
+                                    <td ng-show="myColumnsShow[1]" style="white-space:normal">
+                                        <span data-uk-tooltip="{cls:'long-text'}"  title="{{item.addressLine_1}}">  {{cutString(item.addressLine_1)}}</span>
+                                    </td>
+                                    <td ng-show="myColumnsShow[2]">{{item.phoneNumber}}</td>
+                                    <td ng-show="myColumnsShow[3]" style="white-space:normal">
+                                        <span data-uk-tooltip="{cls:'long-text'}"  title="{{item.email}}">  {{cutString(item.email)}}</span>
+                                    </td>
+                                    <td ng-show="myColumnsShow[4]">
+                                        <style> .angular-input-stars li {
+                                            cursor: default;
+                                        } </style>
+                                        <input-stars max="5" icon-base="uk-icon-star" style="color: aliceblue !important;" ng-model="item.rating" readonly="true"></input-stars>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div id="bottom_anchor"></div>
+                        </div>
+                        <div class="ts_pager">
+                            <ul class="uk-pagination ts_pager">
+                                <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                                    <input ng-change="selectPageHandle()" id="selectize_page" type="text"
+                                           config="selectize_page_config" options="selectize_page_options"
+                                           ng-model="selectize_page" name="selectize_page" selectize>
+                                </li>
+                                <li><a href="javascript:void(0)" class="firstPage"><i class="uk-icon-angle-double-left"></i></a></li>
+                                <li><a href="javascript:void(0)" class="prevPage"><i class="uk-icon-angle-left"></i></a></li>
+                                <li><span class="pageDisplay">1-20/50</span></li>
+                                <li><a href="javascript:void(0)" class="nextPage"><i class="uk-icon-angle-right"></i></a></li>
+                                <li><a href="javascript:void(0)" class="lastPage"><i class="uk-icon-angle-double-right"></i></a></li>
+                                <li data-uk-tooltip title="{{pageSize}}">
+                                    <input ng-change="selectPageNumHandle()" id="selectize_pageNum" type="text"
+                                           config="selectize_pageNum_config" options="selectize_pageNum_options"
+                                           ng-model="selectize_pageNum" name="selectize_pageNum" selectize>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

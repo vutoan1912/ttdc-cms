@@ -1,0 +1,55 @@
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 30, media: 960 }" class="custom-heading">
+        <span class=" route-header"><a ui-sref="products">Master Data</a>
+            <span> / </span><a ui-sref="packages" data-translate="masterdata.common.lots"></a>
+            <span> / </span><span data-translate="inventory.common.new"></span>
+        </span>
+        </br>
+        <div class="btn-custom-action-group">
+            <button ng-click="submit()" class="md-btn md-btn-primary md-btn-small" type="submit"><span class="uk-text-bold" data-translate="masterdata.button.Save"></span></button>
+            <a ui-sref="operation-types" class="md-btn  md-btn-small"><span class="uk-text-bold" data-translate="masterdata.button.Cancel"></span></a>
+        </div>
+
+    </div>
+    <div id="page_content_inner">
+        <jhi-alert></jhi-alert>
+        <div class="md-card" id="package_create">
+            <div class="md-card-content">
+                <div class="uk-grid " data-uk-grid-margin>
+                    <div class="uk-width-small-1-1 ">
+                        <div  class="md-btn-group float-right">
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100 custom-btn-active float-right"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-arrows-v uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div >
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        <span class="uk-text-bold" id="activeBtn" data-translate="masterdata.column.lotTransfer"></span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-grid" style="margin-top: 0px !important;">
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <div class="parsley-row">
+                            <div><label class="label-bold" data-translate="masterdata.column.lotReference"><span class="req">*</span></label>
+                                <div style="padding-top: 4px">
+                                    <input readonly
+                                           data-parsley-required-message={{required_msg}}
+                                           data-parsley-maxlength-message={{maxLengthRule|translate}}
+                                           data-parsley-maxlength="255"
+                                           ng-model="newLot.lotNumber" id="lotReference" type="text" name="lotReference"
+                                           data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

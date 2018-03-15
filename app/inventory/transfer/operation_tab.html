@@ -1,0 +1,102 @@
+<div class="uk-overflow-container uk-margin-bottom"  id="table-container">
+    <!--<div ng-show="list_op_item.length == 0" class="uk-margin-medium-top uk-margin-small-bottom">
+        <h4 class="heading_b uk-text-center" data-translate="transfer.messages.noData"></h4>
+    </div>-->
+    <table class="hoverTable uk-table uk-table-align-vertical uk-table-striped uk-table-nowrap tablesorter tablesorter-altair" id="table_op_tab" style="margin-bottom: -5px;">
+        <thead>
+        <tr>
+            <th data-name="Select" data-priority="5"><input type="checkbox" class="ts_checkbox_all"></th>
+            <th class="pointerMouse boldHeader custom-cl-header-xlarge" ng-click="handleSort($event, 1, 'table_op_tab')" data-priority="1" ng-show="myColumnsShowRd[0]">VNPT P/N<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[1]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-xlarge" ng-click="handleSort($event, 2, 'table_op_tab')" data-priority="2" ng-show="myColumnsShowRd[1]">Description<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[2]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-xlarge" ng-click="handleSort($event, 3, 'table_op_tab')" data-priority="3" ng-show="myColumnsShowRd[2]">Manufacturer<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[3]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 4, 'table_op_tab')" data-priority="4" ng-show="myColumnsShowRd[3]">VNPT ManPN<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[4]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 5, 'table_op_tab')" data-priority="5" ng-show="myColumnsShowRd[4]">Man P/N<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 6, 'table_op_tab')" data-priority="6" ng-show="myColumnsShowRd[5]">Initial Demand<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[6]}}</i></th>
+            <th class="pointerMouse boldHeader custom-cl-header-large" ng-click="handleSort($event, 7, 'table_op_tab')" data-priority="7" ng-show="myColumnsShowRd[6]">Done<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[7]}}</i></th>
+        </tr>
+        <tr>
+            <td></td>
+            <!--<td><input class="filter-table-cell-small disableMouse" type="search" placeholder="" disabled data-column="0"></td>-->
+            <td ng-show="myColumnsShowRd[0]">
+                <!--<input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[1]"-->
+                <!--ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="1"  style="height: 38px;">-->
+                <select-search-table cbxplaceholder="CbxProductRd.Placeholder"
+                                     api="CbxProductRd.Api"
+                                     size="CbxProductRd.Size"
+                                     cbxtextfield="CbxProductRd.TextField"
+                                     cbxvaluefield="CbxProductRd.ValueField"
+                                     table="CbxProductRd.Table"
+                                     column="CbxProductRd.Column"
+                                     scopecontroller="CbxProductRd.Scope"
+                                     ngmodel="CbxProductRd.ngModel"
+                                     originparams="CbxProductRd.OriginParams">
+                </select-search-table>
+            </td>
+            <td ng-show="myColumnsShowRd[1]">
+                <!--<input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[2]"-->
+                <!--ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="2"  style="height: 38px;">-->
+                <select-search-table cbxplaceholder="CbxProductDes.Placeholder"
+                                     api="CbxProductDes.Api"
+                                     size="CbxProductDes.Size"
+                                     cbxtextfield="CbxProductDes.TextField"
+                                     cbxvaluefield="CbxProductDes.ValueField"
+                                     table="CbxProductDes.Table"
+                                     column="CbxProductDes.Column"
+                                     scopecontroller="CbxProductDes.Scope"
+                                     ngmodel="CbxProductDes.ngModel"
+                                     originparams="CbxProductDes.OriginParams">
+                </select-search-table>
+            </td>
+            <td ng-show="myColumnsShowRd[2]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[3]"
+                       ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="3"  style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowRd[3]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[4]"
+                       ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="4" style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowRd[4]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[5]"
+                       ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="5" style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowRd[5]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[6]"
+                       ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="6" style="height: 38px;">
+            </td>
+            <td ng-show="myColumnsShowRd[6]">
+                <input class="filter-table-cell" ng-model="TABLES['table_op_tab'].param_filter_list[7]"
+                       ng-change="handleFilter('table_op_tab')" type="search" placeholder="" data-column="7" style="height: 38px;">
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in list_op_item" on-last-repeat class="hoverRow" ng-click="showOperationInfo($event,$index)">
+            <td><input id="{{item.id}}" type="checkbox" class="ts_checkbox" data-md-icheck icheck ng-model="row_select"></td>
+            <td class="uk-text-left" ng-show="myColumnsShowRd[0]">
+                <a ui-sref="products-detail({productId: item.productId})" ng-click="$event.stopPropagation();">
+                    {{item.productName}}
+                </a>
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowRd[1]">
+                {{item.productDescription}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowRd[2]">
+                {{item.manCode}}
+            </td>
+            <td class="uk-text-left" ng-show="myColumnsShowRd[3]">
+                {{item.internalReference}}
+            </td>
+            <td class="uk-text-center" ng-show="myColumnsShowRd[4]">
+                {{item.manPn}}
+            </td>
+            <td class="uk-text-center" ng-show="myColumnsShowRd[5]">
+                {{item.initialQuantity}}
+            </td>
+            <td class="uk-text-center" ng-show="myColumnsShowRd[6]">
+                {{item.doneQuantity}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="bottom_anchor_rd"></div>

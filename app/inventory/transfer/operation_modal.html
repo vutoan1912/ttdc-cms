@@ -1,0 +1,64 @@
+<div class="uk-modal" id="operation_modal">
+    <div class="uk-modal-dialog uk-modal-dialog-large">
+        <jhi-alert></jhi-alert>
+        <div class="uk-modal-header">
+            <span><span class="uk-modal-title" data-translate="transfer.common.productMove"></span><a class="uk-modal-close" style="float: right;"><i class="material-icons">&#xE14C;</i></a></span>
+            <div class="uk-width-medium-1-1">
+                <div class="wizard" style="text-align: right;padding-top: 4px;">
+                    <a class="current" ng-show="currentItem.state == 'new'"><span class="badge"></span>NEW</a>
+                    <a ng-show="currentItem.state != 'draft'"><span class="badge"></span>NEW</a>
+
+                    <a class="current" ng-show="currentItem.state == 'cancelled'"><span class="badge"></span>CANCEL</a>
+                    <a ng-show="currentItem.state != 'cancelled'"><span class="badge"></span>CANCEL</a>
+
+                    <a class="current" ng-show="currentItem.state == 'waiting_another_move'"><span class="badge"></span>WAITING ANOTHER MOVE</a>
+                    <a ng-show="currentItem.state != 'waiting_another_move'"><span class="badge"></span>WAITING ANOTHER MOVE</a>
+
+                    <a class="current" ng-show="currentItem.state == 'waiting_availability'"><span class="badge"></span>WAITING AVAILABILITY</a>
+                    <a ng-show="currentItem.state != 'waiting_availability'"><span class="badge"></span>WAITING AVAILABILITY</a>
+
+                    <a class="current" ng-show="currentItem.state == 'partial_available'"><span class="badge"></span>PARTIAL AVAILABLE</a>
+                    <a ng-show="currentItem.state != 'partial_available'"><span class="badge"></span>PARTIAL AVAILABLE</a>
+
+                    <a class="current" ng-show="currentItem.state == 'available'"><span class="badge"></span>AVAILABLE</a>
+                    <a ng-show="currentItem.state != 'available'"><span class="badge"></span>AVAILABLE</a>
+
+                    <a class="current" ng-show="currentItem.state == 'done'"><span class="badge"></span>DONE</a>
+                    <a ng-show="currentItem.state != 'done'"><span class="badge"></span>DONE</a>
+
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="uk-grid custom-input-row">
+            <div class="uk-width-small-1-2 uk-row-first">
+                <div class="label-bold" data-translate="transfer.column.Reference"></div>
+                <input readonly value={{transfer.transferNumber}} class="md-input ng-isolate-scope md-input-processed">
+
+                <div class="label-bold custom-input-row" data-translate="masterdata.common.Product"></div>
+                <hyperlink-attr-by-id inputid="productId" url="urlProductName" keyvalue="currentItem.productId" attr="attrProductName" hyperlink="urlProductLink"></hyperlink-attr-by-id>
+
+                <div class="label-bold custom-input-row" data-translate="masterdata.column.Description"></div>
+                <hyperlink-attr-by-id inputid="productId" url="urlProductName" keyvalue="currentItem.productId" attr="attrProductDes" hyperlink="urlProductLink"></hyperlink-attr-by-id>
+
+                <div class="label-bold custom-input-row">Man P/N</div>
+                <input readonly value={{currentItem.manPn}} class="md-input ng-isolate-scope md-input-processed">
+
+            </div>
+            <div class="uk-width-small-1-2 uk-row-first">
+                <div class="label-bold" data-translate="transfer.column.InitialDemand"></div>
+                <input readonly value={{currentItem.initialQuantity}}  class="md-input ng-isolate-scope md-input-processed">
+
+                <div class="label-bold custom-input-row" data-translate="transfer.column.Availability"></div>
+                <input readonly value={{currentItem.doneQuantity}}  class="md-input ng-isolate-scope md-input-processed">
+
+            </div>
+        </div>
+
+        <div class="uk-modal-footer uk-text-right">
+            <button id="closeReturnForm" class="md-btn md-btn-small uk-modal-close"><span class="uk-text-bold" data-translate="masterdata.button.Close"></span></button>
+        </div>
+    </div>
+</div>
+
+<button id="showOperationModal" data-uk-modal="{target:'#operation_modal'}" ng-hide="true"></button>

@@ -1,0 +1,106 @@
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions">
+
+            <div data-uk-dropdown="{mode:'click'}">
+                <i class="md-icon material-icons">&#xE5D4;</i>
+                <div class="uk-dropdown uk-dropdown-small">
+                    <ul class="uk-nav">
+                        <li><a ng-click="deleleUomById()">{{common.Delete|translate}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <span class=" route-header">
+        <a ui-sref="">{{common.Configuration|translate}}</a>
+            <span> / </span><a ui-sref="uoms" ui-sref-opts="{ reload: true }">{{common.Uom|translate}}</a>
+            <span> / {{uom.name}}</span>
+        </span>
+        </br>
+
+        <div class="btn-custom-action-group">
+            <a ui-sref="uoms-edit({uomId: uom.id })" class="md-btn md-btn-primary md-btn-small"><span
+                    class="uk-text-bold"> {{common.Edit|translate}}</span></a>
+            <a ui-sref="uoms-create({type: uom.id})" class="md-btn md-btn-small"><span class="uk-text-bold">{{common.Create|translate}}</span></a>
+        </div>
+    </div>
+
+    <div id="page_content_inner">
+
+        <div class="uk-grid data-uk-grid-margin">
+
+            <div class="uk-width-medium-1-1">
+                <div class="md-card">
+                    <div class="md-card-content">
+                        <jhi-alert></jhi-alert>
+
+                        <div class="uk-grid" data-uk-grid-margin="">
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <div class="parsley-row">
+                                        <label class="label-bold" for="unit">Unit of Measure<span class="req">*</span></label>
+                                    <input readonly value={{uom.name}} id="unit" class="md-input ng-isolate-scope md-input-processed"> <br/>
+                                </div>
+                                </div>
+
+                            <div class="uk-width-medium-1-2">
+                                <div  class="md-btn-group float-right">
+                                    <activate model="uom"
+                                              activate-service="CbxActivate.activateService"
+                                              deactivate-service="CbxActivate.deactivateService"
+                                    ></activate>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-grid" data-uk-grid-margin="">
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <label class="label-bold">Category<span class="req">*</span></label>
+                                <input readonly value={{uom.category}} id="category" class="md-input ng-isolate-scope md-input-processed"> <br/>
+                                <!--<input readonly config="uom_category_config" options="uom_category_options" ng-model="uom.categoryId" selectize>-->
+                            </div>
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <div class="parsley-row">
+                                    <label class="label-bold" for="rounding">Rounding Precision<span class="req">*</span></label>
+                                    <input readonly value={{uom.rounding}} id="rounding" class="md-input ng-isolate-scope md-input-processed"> <br/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-grid" data-uk-grid-margin="">
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <label class="label-bold">Type<span class="req">*</span></label>
+                                <input readonly value={{uom.type}} id="type" class="md-input ng-isolate-scope md-input-processed"> <br/>
+                            </div>
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <div class="parsley-row">
+                                        <label class="label-bold" for="factor">Ratio<span class="req">*</span></label>
+                                         <input readonly value={{uom.factor}} id="factor" class="md-input ng-isolate-scope md-input-processed"> <br/>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!--<div class="uk-width-medium-1-3">-->
+                <!--<div class="md-card">-->
+                    <!--<div class="md-card-content">-->
+                        <!--<h3 class="label-bold uk-margin-medium-bottom">Other settings</h3>-->
+                        <!--<div class="uk-width-medium-1-2">-->
+                            <!--<div class="uk-form-row uk-text-center">-->
+                                <!--<input type="checkbox" ng-disabled="true" checked id="uom_edit_active" ui-switch ng-model="uom.active" />-->
+                                <!--<label for="uom_edit_active" class="inline-label">Uom Active</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<hr class="md-hr">&ndash;&gt;-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,98 @@
+<div id="page_content">
+    <form name="form_createot" id="form_createot" class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">
+    <div id="page_heading" data-uk-sticky="{ top: 30, media: 960 }" class="custom-heading">
+        <span ng-hide="isLink" class=" route-header"><a disabled="" ui-sref="#" data-translate="masterdata.common.Home"></a>
+                <span> / </span><a data-translate="masterdata.common.reporting"></a>
+                <span> / </span><a ui-sref="product-move" data-translate="masterdata.common.productmove"></a>
+                <span> / </span><span>{{currentItemDetail.productName}}</span>
+        </span>
+
+        <span ng-show="isLink" class=" route-header"><a  ui-sref="products" data-translate="masterdata.common.Product"></a>
+                <span> / </span><a ui-sref="products-detail({productId: product.id })">{{product.name}}</a>
+                <span> / </span><a ui-sref="product-move" data-translate="masterdata.common.productmove"></a>
+                <span> / </span><span>{{product.name}}</span>
+        </span>
+
+        </br>
+
+    </div>
+    <div id="page_content_inner" class="custom-inner-1st">
+        <div class="md-card" id="ot_detail">
+            <div class="md-card-content">
+                <div class="uk-width-medium-1-1">
+                    <div class="wizard" style="text-align: right;padding-top: 4px;">
+                        <a class="current" ng-show="currentItemDetail.state == 'new'"><span class="badge"></span>NEW</a>
+                        <a ng-show="currentItemDetail.state != 'draft'"><span class="badge"></span>NEW</a>
+
+                        <a class="current" ng-show="currentItemDetail.state == 'cancelled'"><span class="badge"></span>CANCEL</a>
+                        <a ng-show="currentItemDetail.state != 'cancelled'"><span class="badge"></span>CANCEL</a>
+
+                        <a class="current" ng-show="currentItemDetail.state == 'waiting_another_move'"><span class="badge"></span>WAITING ANOTHER MOVE</a>
+                        <a ng-show="currentItemDetail.state != 'waiting_another_move'"><span class="badge"></span>WAITING ANOTHER MOVE</a>
+
+                        <a class="current" ng-show="currentItemDetail.state == 'waiting_availability'"><span class="badge"></span>WAITING AVAILABILITY</a>
+                        <a ng-show="currentItemDetail.state != 'waiting_availability'"><span class="badge"></span>WAITING AVAILABILITY</a>
+
+                        <a class="current" ng-show="currentItemDetail.state == 'partial_available'"><span class="badge"></span>PARTIAL AVAILABLE</a>
+                        <a ng-show="currentItemDetail.state != 'partial_available'"><span class="badge"></span>PARTIAL AVAILABLE</a>
+
+                        <a class="current" ng-show="currentItemDetail.state == 'available'"><span class="badge"></span>AVAILABLE</a>
+                        <a ng-show="currentItemDetail.state != 'available'"><span class="badge"></span>AVAILABLE</a>
+
+                        <a class="current" ng-show="currentItemDetail.state == 'done'"><span class="badge"></span>DONE</a>
+                        <a ng-show="currentItemDetail.state != 'done'"><span class="badge"></span>DONE</a>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="uk-grid custom-input-row">
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <div class="label-bold" data-translate="transfer.column.Reference"></div>
+                        <input readonly value={{currentItemDetail.reference}} class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="masterdata.common.Product"></div>
+                        <hyperlink-attr-by-id inputid="productId" url="urlProductName" keyvalue="currentItemDetail.productId" attr="attrProductName" hyperlink="urlProductLink"></hyperlink-attr-by-id>
+
+                        <div class="label-bold custom-input-row" data-translate="masterdata.column.Description"></div>
+                        <hyperlink-attr-by-id inputid="productId" url="urlProductName" keyvalue="currentItemDetail.productId" attr="attrProductDes" hyperlink="urlProductLink"></hyperlink-attr-by-id>
+
+                        <div class="label-bold custom-input-row">Man P/N</div>
+                        <input readonly value={{currentItemDetail.manPn}} class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="transfer.detail.detail-operation-column.From"></div>
+                        <hyperlink-attr-by-id inputid="source" url="urlLocationName" keyvalue="currentItemDetail.srcLocationId" attr="attrCompleteName" hyperlink="urlSourceLink"></hyperlink-attr-by-id>
+
+                        <div class="label-bold custom-input-row" data-translate="transfer.detail.detail-operation-column.To"></div>
+                        <hyperlink-attr-by-id inputid="dest" url="urlLocationName" keyvalue="currentItemDetail.destLocationId" attr="attrCompleteName" hyperlink="urlDestLink"></hyperlink-attr-by-id>
+
+                        <div class="label-bold custom-input-row" data-translate="transfer.column.Date"></div>
+                        <div class="custom-opr">
+                            <span>{{currentItemDetail.created|date: 'dd-MM-yyyy HH:mm:ss'}}</span><span>&nbsp;</span>
+                        </div>
+                    </div>
+                    <div class="uk-width-small-1-2 uk-row-first">
+                        <div class="label-bold" data-translate="transfer.column.Reserved"></div>
+                        <input readonly value={{currentItemDetail.reserved}}  class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="transfer.column.Done"></div>
+                        <input readonly value={{currentItemDetail.doneQuantity}}  class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="transfer.detail.detail-operation-column.LotSerial"></div>
+                        <input readonly value="{{currentItemDetail.traceNumber}}"  class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="transfer.detail.detail-operation-column.SourcePackage"></div>
+                        <input readonly value="{{currentItemDetail.srcPackageNumber}}"  class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="transfer.detail.detail-operation-column.DestinationPackage"></div>
+                        <input readonly value="{{currentItemDetail.destPackageNumber}}"  class="md-input ng-isolate-scope md-input-processed">
+
+                        <div class="label-bold custom-input-row" data-translate="transfer.column.Owner"></div>
+                        <hyperlink-attr-by-id  inputid="ownerId" url="urlOwnerName" keyvalue="transfer.ownerId" attr="attrEmail" hyperlink="urlOwnerLink"></hyperlink-attr-by-id>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+

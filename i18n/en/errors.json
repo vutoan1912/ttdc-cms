@@ -1,0 +1,45 @@
+{
+  "error": {
+    "userAndPermission":{
+      "emailexists":"This email is in used, please use another email",
+      "roleHasNoPrivilege":"Please select at least one privilege for creating role.",
+      "userHasRole":"This user have role already. Can not delete.",
+      "roleHasPrivilege":"This role have privilege already. Can not delete.",
+      "roleExist": "This role name is in used, please use another name"
+    },
+    "permission":{
+      "canNotDeleteSystemObject":"Can not delete system object."
+    },
+    "common":{
+      "deleteError": "Can not delete records with id: ",
+      "maxLengthRule":"This field is too long. It should have maximum 255 characters.",
+      "referenceError":"Can not delete this record. It has been referenced by another."
+    },
+    "warehouse":{
+      "nameExist":"Warehouse name is already exist.",
+      "codeExist":"Warehouse code is already exist.",
+      "referenced": "Can not delete this warehouse. It has been referenced by route."
+    },
+    "uom":{
+      "nameExist":"UOM name is already exist."
+    },
+    "operation-type":{
+      "nameExist":"Operation type name is already exist.",
+      "codeExist":"Operation type code is already exist."
+    },
+    "sequence": {
+      "nameExist": "Sequence name is already exist.",
+      "codeExist": "Sequence code is already exist.",
+      "referenced": "Can not delete this sequence. It has been referenced by operation type."
+    },
+    "uomCategory":{
+      "nameExist":"UOM Category name is already exist."
+    },
+    "locaion": {
+      "delete": "Cannot delete Location which is applied on transfer!"
+    },
+    "transfer": {
+      "canNotDeleteDoneTransfer":"Can not delete done transfer."
+    }
+  }
+}

@@ -1,0 +1,1033 @@
+
+<div id="page_content">
+    <form name="form_create_transfer" id="form_create_transfer" class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">
+        <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+            <div class="heading_actions action-padding-top">
+                <!--<div data-uk-dropdown="{mode:'click'}">
+                    <i class="md-icon material-icons">&#xE5D4;</i>
+                    <div class="uk-dropdown uk-dropdown-small">
+                        <ul class="uk-nav">
+                            <li><a class="custom-disabled" href="#">Import</a></li>
+                            <li><a class="custom-disabled" href="#">Export list</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+            </div>
+            <span class=" route-header"><!--<a ui-sref="products">{{titlePage.home|translate}}</a>-->
+                <!--<span> / </span>--><a disabled="" ui-sref="#">{{inventoryTitle|translate}}</a>
+            <span> / <a ui-sref="transfers">{{operationTitle|translate}}</a></span>
+            <span> / <a ui-sref="transfers">{{transferTitle|translate}}</a></span>
+            <span> / {{button.create|translate}}</span></span>
+            </br>
+            <div class="btn-custom-action-group uk-margin-small-top">
+                <button ng-if="form_create_transfer.$valid && validateLocationSuccess" ng-click="submit()" type="submit" class="md-btn md-btn-primary md-btn-small"><span
+                        class="uk-text-bold">{{button.save|translate}}</span></button>
+                <button ng-if="!validateLocationSuccess || !form_create_transfer.$valid" ng-click="submit()" type="submit" class="md-btn md-btn-primary md-btn-small disabled"><span
+                        class="uk-text-bold">{{button.save|translate}}</span></button>
+                <a ui-sref="transfers" ui-sref-opts="{ reload: true }" class="md-btn md-btn-small"><span
+                        class="uk-text-bold"> {{button.cancel|translate}}</span></a>
+            </div>
+        </div>
+
+        <div id="page_content_inner" class="custom-inner-1st">
+            <jhi-alert></jhi-alert>
+            <div class="md-card" id="create_form">
+                <div class="md-card-content">
+                    <div class="uk-grid">
+                        <div class="uk-width-medium-1-6" style="margin-top: 0px !important;">
+                            <div class="label-bold" style="padding-top: 20px" ><span data-translate="transfer.column.OperationType"></span><span>*</span></div>
+                            <div class="label-bold" style="padding-top: 20px" data-translate="transfer.column.Partner"></div>
+                            <div class="label-bold" style="padding-top: 20px" ><span data-translate="transfer.column.SourceLocation"></span><span>*</span></div>
+                            <div class="label-bold" style="padding-top: 20px" ><span data-translate="transfer.column.DestinationLocation"></span><span>*</span></div>
+                        </div>
+
+                        <div class="uk-width-medium-2-6" style="margin-top: 0px !important;">
+                            <div class="parsley-row">
+                                <selectize
+                                        config="cbxSelectizeOperationType.Config"
+                                        options="cbxSelectizeOperationType.Options"
+                                        position="bottom"
+                                        ng-model="transfer.operationTypeId"
+                                        ng-model-object="cbxSelectizeOperationType.ngModelObject"
+                                        scope-controller="cbxSelectizeOperationType.Scope"
+                                        reset-scroll="cbxSelectizeOperationTypeInit.resetScroll"
+                                        query-relate="cbxSelectizeOperationTypeInit.queryRelate"
+                                        more-params="cbxSelectizeOperationTypeInit.MoreParams"
+                                        total-count="cbxSelectizeOperationTypeInit.totalCount"
+                                >
+                                </selectize>
+                            </div>
+                            <div class="parsley-row">
+                                <selectize
+                                        config="cbxSelectizePartner.Config"
+                                        options="cbxSelectizePartner.Options"
+                                        position="bottom"
+                                        ng-model="transfer.partnerId"
+                                        ng-model-object="cbxSelectizePartner.ngModelObject"
+                                        scope-controller="cbxSelectizePartner.Scope"
+                                        reset-scroll="cbxSelectizePartnerInit.resetScroll"
+                                        query-relate="cbxSelectizePartnerInit.queryRelate"
+                                        more-params="cbxSelectizePartnerInit.MoreParams"
+                                        total-count="cbxSelectizePartnerInit.totalCount"
+                                >
+                                </selectize>
+                            </div>
+                            <div class="parsley-row">
+                                <selectize
+                                        config="cbxSelectizeSourceLocation.Config"
+                                        options="cbxSelectizeSourceLocation.Options"
+                                        position="bottom"
+                                        ng-model="transfer.srcLocationId"
+                                        ng-model-object="cbxSelectizeSourceLocation.ngModelObject"
+                                        scope-controller="cbxSelectizeSourceLocation.Scope"
+                                        reset-scroll="cbxSelectizeSourceLocationInit.resetScroll"
+                                        query-relate="cbxSelectizeSourceLocationInit.queryRelate"
+                                        more-params="cbxSelectizeSourceLocationInit.MoreParams"
+                                        total-count="cbxSelectizeSourceLocationInit.totalCount"
+                                >
+                                </selectize>
+                            </div>
+                            <div class="parsley-row">
+                                <selectize
+                                        config="cbxSelectizeDestinationLocation.Config"
+                                        options="cbxSelectizeDestinationLocation.Options"
+                                        position="bottom"
+                                        ng-model="transfer.destLocationId"
+                                        ng-model-object="cbxSelectizeDestinationLocation.ngModelObject"
+                                        scope-controller="cbxSelectizeDestinationLocation.Scope"
+                                        reset-scroll="cbxSelectizeDestinationLocationInit.resetScroll"
+                                        query-relate="cbxSelectizeDestinationLocationInit.queryRelate"
+                                        more-params="cbxSelectizeDestinationLocationInit.MoreParams"
+                                        total-count="cbxSelectizeDestinationLocationInit.totalCount"
+                                >
+                                </selectize>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-medium-1-6" style="margin-top: 0px !important;">
+                            <div class="label-bold" style="padding-top: 20px"  data-translate="transfer.column.Owner"></div>
+                            <div class="label-bold" style="padding-top: 20px" data-translate="transfer.column.ScheduleDate"></div>
+                            <div class="label-bold" style="padding-top: 20px" data-translate="transfer.column.SourceDocument"></div>
+                            <div class="label-bold" style="padding-top: 20px" data-translate="transfer.column.Assignee"></div>
+                        </div>
+
+                        <div class="uk-width-medium-2-6" style="margin-top: 0px !important;">
+                            <div>
+                                <selectize
+                                        config="cbxSelectizeAssignee.Config"
+                                        options="cbxSelectizeAssignee.Options"
+                                        position="bottom"
+                                        ng-model="transfer.ownerId"
+                                        ng-model-object="cbxSelectizeAssignee.ngModelObject"
+                                        scope-controller="cbxSelectizeAssignee.Scope"
+                                        reset-scroll="cbxSelectizeAssigneeInit.resetScroll"
+                                        query-relate="cbxSelectizeAssigneeInit.queryRelate"
+                                        more-params="cbxSelectizeAssigneeInit.MoreParams"
+                                        total-count="cbxSelectizeAssigneeInit.totalCount"
+                                >
+                                </selectize>
+                            </div>
+
+                            <div class="parsley-row" style="padding-top: 12px">
+                                <input id="datetimepicker" style="width: 100% "/>
+                                <!--<input class="md-input ng-isolate-scope md-input-processed" type="text" data-uk-datepicker="{format:'DD/MM/YYYY'}" md-input ng-model="scheduledDateModel" id="scheduledDate" name="scheduledDate">-->
+                            </div>
+                            <div class="parsley-row">
+                                <input ng-model="transfer.sourceDocument" id="sourceDocument" type="text" name="sourceDocument" data-parsley-trigger="change" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                            </div>
+                            <div class="parsley-row">
+                                <selectize
+                                        config="cbxSelectizeAssignee.Config"
+                                        options="cbxSelectizeAssignee.Options"
+                                        position="bottom"
+                                        ng-model="transfer.assigneeId"
+                                        ng-model-object="cbxSelectizeAssignee.ngModelObject"
+                                        scope-controller="cbxSelectizeAssignee.Scope"
+                                        reset-scroll="cbxSelectizeAssigneeInit.resetScroll"
+                                        query-relate="cbxSelectizeAssigneeInit.queryRelate"
+                                        more-params="cbxSelectizeAssigneeInit.MoreParams"
+                                        total-count="cbxSelectizeAssigneeInit.totalCount"
+                                >
+                                </selectize>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- TABS-->
+                    <!--<div class="uk-margin-top">
+                        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_anim1', animation:'scale'}">
+                            <li class="uk-active"><a href="#">{{operationTitle|translate}}</a></li>
+                            <li><a href="#">{{operationDetailTitle|translate}}</a></li>
+                        </ul>
+                        <ul id="tabs_anim1" class="uk-switcher uk-margin">
+                            &lt;!&ndash; Operation Tab &ndash;&gt;
+                            <li>
+
+                            </li>
+                            &lt;!&ndash; End of Operation Tab &ndash;&gt;
+
+                            &lt;!&ndash; Detail Operation Tab &ndash;&gt;
+                            <li>
+                                <div>
+                                    <h4 class="heading_b">DETAIL OPERATION TABLE</h4>
+                                </div>
+                            </li>
+                            &lt;!&ndash; End of Detail Operation Tab &ndash;&gt;
+                        </ul>
+                    </div>-->
+                    <!-- End of TABS -->
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div id="page_content_inner_2" class="custom-inner-2nd uk-margin-bottom">
+        <div class="md-card" id="create_operation">
+            <div class="md-card-content">
+                <!-- TABS-->
+                <div>
+                    <ul class="uk-tab" data-uk-tab="{connect:'#tabs_anim1'}">
+                        <li class="uk-active" ng-click="clickTab(1)"><a href="#"><h4 class="heading_a" data-translate="transfer.common.Operation"></h4></a></li>
+                        <li  ng-click="clickTab(2)"><a href="#"><h4 class="heading_a" data-translate="transfer.common.OperationDetail"></h4></a></li>
+                        <li><a href="#"><h4 class="heading_a" data-translate="transfer.common.additionInfo"></h4></a></li>
+                    </ul>
+                    <ul id="tabs_anim1" class="uk-switcher uk-margin" style="overflow: visible !important;">
+                        <!-- Operation Tab -->
+                        <li>
+                            <div class="uk-overflow-container" id="operation_tab" ng-style="fullsizeCreate">
+                                <table class="uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair"
+                                       id="table_op_tab_sorter">
+                                    <thead>
+                                    <tr>
+                                        <!--<th data-name="Select" data-priority="8"><input type="checkbox"
+                                                                                        class="ts_checkbox_all"></th>-->
+                                        <th class="custom-cl-header-xlarge" data-priority="1">VNPT P/N</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="2">Description</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="3">VNPT ManPN</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="4">Man P/N</th>
+                                        <th class="custom-cl-header-small" data-priority="5">Initial Demand</th>
+                                        <th class="custom-cl-header-small" data-priority="6">Done</th>
+                                        <th class="filter-false remove sorter-false uk-text-center" data-priority="7">Actions</th>
+
+                                    </tr>
+                                    </thead>
+                                    <form name="form_create_operation" id="form_create_operation"
+                                          class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required"
+                                          novalidate="">
+                                        <tbody id="main_content_body">
+                                        <tr ng-repeat="item in list_op_item" on-last-repeat id="{{ 'operation_' + $index }}" ng-click="editOperation($event,$index)">
+                                            <!--<td><input id="{{item.id}}" type="checkbox" class="ts_checkbox"
+                                                       data-md-icheck icheck ng-model="row_select"></td>-->
+
+                                            <!-- VNPT P/N -->
+                                            <td class="uk-text-left" ng-show="myColumnsShowRd[0] && !item.editable">
+                                                <a ui-sref="products-detail({productId: item.productId})">
+                                                    <get-attr-by-id url="urlProductName" value="item.productId" attr="attrProductName"></get-attr-by-id>
+                                                </a>
+                                            </td>
+                                            <td class="uk-text-left" ng-show="myColumnsShowRd[0] && item.editable">
+                                                <a ui-sref="products-detail({productId: item.productId})">
+                                                    <get-attr-by-id url="urlProductName" value="item.productId" attr="attrProductName"></get-attr-by-id>
+                                                </a>
+                                            </td>
+                                            <!-- End of VNPT P/N -->
+
+                                            <!-- Description -->
+                                            <td class="uk-text-left" ng-show="myColumnsShowRd[1] && !item.editable">
+                                                <get-attr-by-id url="urlProductName" value="item.productId" attr="attrProductDes"></get-attr-by-id>
+                                            </td>
+                                            <td class="uk-text-left" ng-show="myColumnsShowRd[1] && item.editable">
+                                                <get-attr-by-id url="urlProductName" value="item.productId" attr="attrProductDes"></get-attr-by-id>
+                                            </td>
+                                            <!-- End of Description -->
+
+                                            <!-- Man -->
+                                            <!--<td class="uk-text-left" ng-show="myColumnsShowRd[2] && !item.editable">
+                                                {{item.manCode}}
+                                            </td>
+                                            <td class="uk-text-left" ng-show="myColumnsShowRd[2] && item.editable">
+                                                <div style="display: none"><input type="text" ng-change="handleEditManIdOperation($index)" config="selectize_man_id_config" options="selectize_man_id_edit_options_operation[$index]" ng-model="selectize_man_id_edit_operation[$index]" name="selectize_man_id_edit_operation[$index]" selectize></div>
+                                                <input type="text" ng-change="handleEditManOperation($index)" ng-disabled="!enabledManEditOperation[$index]" config="selectize_man_config" options="selectize_man_edit_options_operation[$index]" ng-model="selectize_man_edit_operation[$index]" name="selectize_man_edit_operation[$index]" selectize>
+                                            </td>-->
+                                            <!-- End of Man -->
+
+                                            <!-- VNPT Man P/N -->
+                                            <td  class="uk-text-left" ng-show="myColumnsShowRd[3] && !item.editable">
+                                                <div ng-if="item.manId != null">
+                                                <get-attr-by-id url="urlProductName" value="item.productId"
+                                                                attr="attrProductName"></get-attr-by-id><!--
+                                                --><get-attr-by-id url="urlProductManufacturerName" value="item.manId"
+                                                                attr="attrProductManufacturerCode"></get-attr-by-id>
+                                                </div>
+                                            </td>
+                                            <td  class="uk-text-left" ng-show="myColumnsShowRd[3] && item.editable">
+                                                <!--<get-attr-by-id ng-if="selectize_man_edit_operation[$index] != ''" url="urlProductName" value="item.productId"
+                                                                attr="attrProductName"></get-attr-by-id>&lt;!&ndash;
+                                            &ndash;&gt;{{selectize_man_edit[$index]}}-->
+                                                {{item.internalReference}}
+                                            </td>
+                                            <!-- End of VNPT Man P/N -->
+
+                                            <!-- Man PN-->
+                                            <td class="uk-text-left" ng-show="myColumnsShowRd[4] && !item.editable">
+                                                {{item.manPn}}
+                                            </td>
+                                            <td class="uk-text-left" ng-show="myColumnsShowRd[4] && item.editable">
+                                                <!--<input type="text" ng-change="handleEditManPnOperation($index)" ng-disabled="!enabledManEditOperation[$index]" config="selectize_man_pn_config" options="selectize_man_pn_edit_options_operation[$index]" ng-model="selectize_man_pn_edit_operation[$index]" name="selectize_man_pn_edit_operation[$index]" selectize>-->
+                                                {{item.manPn}}
+                                            </td>
+                                            <!-- End of Man PN -->
+
+                                            <!-- Initial Demand -->
+                                            <td class="uk-text-center" ng-show="myColumnsShowRd[5] && !item.editable">
+                                                {{item.initialQuantity}}
+                                            </td>
+                                            <td class="uk-text-center" ng-show="myColumnsShowRd[5] && item.editable">
+                                                <div class="parsley-row">
+                                                    <input data-parsley-required-message={{required_msg}}
+                                                           data-parsley-type="number"
+                                                           ng-model="item.initialQuantity" type="number" name="initialQuantity" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                                </div>
+                                            </td>
+                                            <!-- End of Initial Demand -->
+
+                                            <!-- Done Quantity -->
+                                            <td class="uk-text-center" ng-show="myColumnsShowRd[6]">
+                                                {{item.doneQuantity}}
+                                            </td>
+                                            <!--<td class="uk-text-center" ng-show="myColumnsShowRd[6] && item.editable">
+                                                <div class="parsley-row">
+                                                    <input data-parsley-required-message={{required_msg}}
+                                                           data-parsley-type="number"
+                                                           ng-model="item.doneQuantity" type="number" name="doneQuantity" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                                </div>
+                                            </td>-->
+                                            <!-- End of Done Quantity -->
+
+                                            <!--<td>
+                                                <a ng-click="editOperation($event,$index)" ng-hide="item.editable"><i
+                                                        class="md-icon material-icons">&#xE254;</i></a>
+                                                <a ng-click="saveOperation($event,$index)" ng-show="item.editable"
+                                                   ng-class="item.saveClass"><i
+                                                        class="md-icon material-icons">&#xE161;</i></a>
+                                            </td>-->
+                                            <!--<td>
+                                                <a ng-click=removeSubOperation($index)><i
+                                                        class="md-icon material-icons">&#xE872;</i></a>
+                                            </td>-->
+                                            <td class="uk-text-center">
+                                                <a href="#" id="{{ 'operation_remove_' + $index }}" class="ts_remove_row" ng-click="ts_remove_item($event,item)"><i class="md-icon material-icons">&#xE872;</i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tbody id="newItemOperation" ng-show="isNewItemOperation">
+                                        <tr>
+                                            <!--<td></td>-->
+
+                                            <!-- VNPT P/N -->
+                                            <td>
+                                                <selectize id="cbx_product_rd"
+                                                           config="cbxSelectizeProductOperation.Config"
+                                                           options="cbxSelectizeProductOperation.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeProductOperation.ngModel"
+                                                           ng-model-object="cbxSelectizeProductOperation.ngModelObject"
+                                                           scope-controller="cbxSelectizeProductOperation.Scope"
+                                                           reset-scroll="cbxSelectizeProductOperationInit.resetScroll"
+                                                           query-relate="cbxSelectizeProductOperationInit.queryRelate"
+                                                           more-params="cbxSelectizeProductOperationInit.MoreParams"
+                                                           is-shown="cbxSelectizeProductOperationInit.IsShown"
+                                                           total-count="cbxSelectizeProductOperationInit.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of VNPT P/N -->
+
+                                            <!-- Description -->
+                                            <td>
+                                                <selectize id="cbx_product_description"
+                                                           config="cbxSelectizeDescriptionOperation.Config"
+                                                           options="cbxSelectizeProductOperation.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeProductOperation.ngModel"
+                                                           ng-model-object="cbxSelectizeProductOperation.ngModelObject"
+                                                           scope-controller="cbxSelectizeProductOperation.Scope"
+                                                           reset-scroll="cbxSelectizeProductOperationInit.resetScroll"
+                                                           query-relate="cbxSelectizeProductOperationInit.queryRelate"
+                                                           more-params="cbxSelectizeProductOperationInit.MoreParams"
+                                                           is-shown="cbxSelectizeDescriptionOperationInit.IsShown"
+                                                           total-count="cbxSelectizeProductOperationInit.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Description -->
+
+                                            <!-- Manufacturer -->
+                                            <!--<td>
+                                                <div style="display: none"><input type="text" config="selectize_man_id_config" options="selectize_man_id_options_operation" ng-model="selectize_man_id_operation" name="selectize_man_id_operation" selectize></div>
+                                                <input type="text" ng-disabled="!enabledManOperation" config="selectize_man_config" options="selectize_man_options_operation" ng-model="selectize_man_operation" name="selectize_man_operation" selectize>
+                                            </td>-->
+                                            <!-- End of Manufacture -->
+
+                                            <!-- VNPT Man PN -->
+                                            <td class="custom-cl-header-xlarge">
+                                                <!--<get-attr-by-id ng-if="selectize_man_operation != ''" url="urlProductName" value="createItemOperation.productId"
+                                                                attr="attrProductName"></get-attr-by-id>{{selectize_man}}-->
+                                                <selectize id="cbx_product_man"
+                                                           config="cbxSelectizeVNPTManPNOperation.Config"
+                                                           options="cbxSelectizeVNPTManPNOperation.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeVNPTManPNOperation.ngModel"
+                                                           ng-model-object="cbxSelectizeVNPTManPNOperation.ngModelObject"
+                                                           scope-controller="cbxSelectizeVNPTManPNOperation.Scope"
+                                                           reset-scroll="cbxSelectizeVNPTManPNOperationInit.resetScroll"
+                                                           query-relate="cbxSelectizeVNPTManPNOperationInit.queryRelate"
+                                                           more-params="cbxSelectizeVNPTManPNOperationInit.MoreParams"
+                                                           is-shown="cbxSelectizeVNPTManPNOperationInit.IsShown"
+                                                           total-count="cbxSelectizeVNPTManPNOperationInit.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of VNPT Man PN -->
+
+                                            <!-- Man P/N -->
+                                            <td>
+                                                <!--<input type="text" ng-disabled="!enabledManOperation" config="selectize_man_pn_config" options="selectize_man_pn_options_operation" ng-model="selectize_man_pn_operation" name="selectize_man_pn_operation" selectize>-->
+                                                <selectize id="cbx_product_man_pn"
+                                                           config="cbxSelectizeManPNOperation.Config"
+                                                           options="cbxSelectizeManPNOperation.Options"
+                                                           position="bottom"
+                                                           ng-disabled="(cbxSelectizeVNPTManPNOperation.ngModel == undefined && cbxSelectizeProductOperation.ngModel != undefined)
+                                                                        || (cbxSelectizeVNPTManPNOperation.ngModel.length == 0 && cbxSelectizeProductOperation.ngModel != undefined && cbxSelectizeProductOperation.ngModel != -1)"
+                                                           ng-model="cbxSelectizeManPNOperation.ngModel"
+                                                           ng-model-object="cbxSelectizeManPNOperation.ngModelObject"
+                                                           scope-controller="cbxSelectizeManPNOperation.Scope"
+                                                           reset-scroll="cbxSelectizeManPNOperationInit.resetScroll"
+                                                           query-relate="cbxSelectizeManPNOperationInit.queryRelate"
+                                                           more-params="cbxSelectizeManPNOperationInit.MoreParams"
+                                                           is-shown="cbxSelectizeManPNOperationInit.IsShown"
+                                                           total-count="cbxSelectizeManPNOperationInit.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Man P/N -->
+
+                                            <!-- Initial Demand -->
+                                            <td>
+                                                <div class="parsley-row">
+                                                    <input data-parsley-required-message={{required_msg}}
+                                                           data-parsley-type="number"
+                                                           ng-model="createItemOperation.initialQuantity" type="number" name="initialQuantityOperation" id="initialQuantityOperation" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                                </div>
+                                            </td>
+                                            <!-- End of Initial Demand -->
+
+                                            <!-- Done Quantity -->
+                                            <td>
+                                                <!--<div class="parsley-row">
+                                                    <input data-parsley-required-message={{required_msg}}
+                                                           data-parsley-type="number"
+                                                           ng-model="createItemOperation.doneQuantity" type="number" name="doneQuantityOperation" id="doneQuantityOperation" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                                </div>-->
+                                            </td>
+                                            <!-- End of Done Quantity -->
+
+                                            <td class="uk-text-center">
+                                                <a href="#" ng-click="deleteNewItemOperation($event)"><i class="md-icon material-icons">&#xE872;</i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td><button class="custom-fake-button" ng-click="addNewItemOperation()" type="submit">Add new item...</button></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </form>
+                                </table>
+                            </div>
+                        </li>
+                        <!-- End of Operation Tab -->
+
+                        <!-- Operation Detail Tab -->
+                        <li>
+                            <div class="uk-overflow-container" id="operation_detail_tab" ng-style="fullsizeCreate">
+                                <table class="uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair"
+                                       id="table_op_detail_tab_sorter" style="margin-bottom: -5px;">
+                                    <thead>
+                                    <tr>
+                                        <!--<th data-name="Select" data-priority="5"><input type="checkbox"
+                                                                                        class="ts_checkbox_all"></th>-->
+                                        <th class="custom-cl-header-xlarge" data-priority="1">VNPT P/N</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="2">Description</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="4">VNPT ManPN</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="5">Man P/N</th>
+                                        <th class="custom-cl-header-small" data-priority="6">UOM</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="7">Source Package</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="8">From</th>
+                                        <th class="custom-cl-header-xlarge" data-priority="9">To</th>
+                                        <th class="custom-cl-header-slarge" data-priority="10">Des'Package</th>
+                                        <th class="custom-cl-header-slarge" data-priority="11">Serail/Lot</th>
+                                        <th class="custom-cl-header-small" data-priority="12">Reserved</th>
+                                        <th class="custom-cl-header-small" data-priority="13">Done</th>
+                                        <th class="custom-cl-header-small" data-priority="14">Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <form name="form_create_operation_detail" id="form_create_operation_detail"
+                                          class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required"
+                                          novalidate="">
+                                        <tbody>
+                                        <tr ng-repeat="item in list_op_detail" on-last-repeat id="{{ 'operation_detail_' + $index }}" ng-click="edit($event,$index)">
+                                            <!--<td><input id="{{item.id}}" type="checkbox" class="ts_checkbox"
+                                                       data-md-icheck icheck ng-model="row_select"></td>-->
+
+                                            <!-- VNPT P/N -->
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[0] && !item.editable">
+                                                <a ui-sref="products-detail({productId: item.productId})">
+                                                    <get-attr-by-id url="urlProductName" value="item.productId"
+                                                                    attr="attrProductName"></get-attr-by-id>
+                                                </a>
+                                            </td>
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[0] && item.editable">
+                                                <selectize id="cbx_product_rd_edit_detail"
+                                                           config="cbxSelectizeProductOperationEditDetail[$index].Config"
+                                                           options="cbxSelectizeProductOperationEditDetail[$index].Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeProductOperationEditDetail[$index].ngModel"
+                                                           ng-model-object="cbxSelectizeProductOperationEditDetail[$index].ngModelObject"
+                                                           scope-controller="cbxSelectizeProductOperationEditDetail[$index].Scope"
+                                                           reset-scroll="cbxSelectizeProductOperationEditInitDetail[$index].resetScroll"
+                                                           query-relate="cbxSelectizeProductOperationEditInitDetail[$index].queryRelate"
+                                                           more-params="cbxSelectizeProductOperationEditInitDetail[$index].MoreParams"
+                                                           is-shown="cbxSelectizeProductOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeProductOperationEditInitDetail[$index].totalCount"
+                                                           ng-change="handleChangeVNPTPNEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of VNPT P/N -->
+
+                                            <!-- Description -->
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[1] && !item.editable">
+                                                <get-attr-by-id url="urlProductName" value="item.productId"
+                                                                attr="attrProductDes"></get-attr-by-id>
+                                            </td>
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[1] && item.editable">
+                                                <selectize id="cbx_product_description_edit_detail"
+                                                           config="cbxSelectizeDescriptionOperationEditDetail[$index].Config"
+                                                           options="cbxSelectizeProductOperationEditDetail[$index].Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeProductOperationEditDetail[$index].ngModel"
+                                                           ng-model-object="cbxSelectizeProductOperationEditDetail[$index].ngModelObject"
+                                                           scope-controller="cbxSelectizeProductOperationEditDetail[$index].Scope"
+                                                           reset-scroll="cbxSelectizeProductOperationEditInitDetail[$index].resetScroll"
+                                                           query-relate="cbxSelectizeProductOperationEditInitDetail[$index].queryRelate"
+                                                           more-params="cbxSelectizeProductOperationEditInitDetail[$index].MoreParams"
+                                                           is-shown="cbxSelectizeDescriptionOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeProductOperationEditInitDetail[$index].totalCount"
+                                                           ng-change="handleChangeVNPTPNEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Description -->
+
+                                            <!-- Man -->
+                                            <!--<td class="uk-text-left" ng-show="myColumnsShowOpDetail[2] && !item.editable">
+                                                {{item.manCode}}
+                                            </td>
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[2] && item.editable">
+                                                <div style="display: none"><input type="text" ng-change="handleEditManId($index)" config="selectize_man_id_config" options="selectize_man_id_edit_options[$index]" ng-model="selectize_man_id_edit[$index]" name="selectize_man_id_edit[$index]" selectize></div>
+                                                <input type="text" ng-change="handleEditMan($index)" ng-disabled="!enabledManEdit[$index]" config="selectize_man_config" options="selectize_man_edit_options[$index]" ng-model="selectize_man_edit[$index]" name="selectize_man_edit[$index]" selectize>
+                                            </td>-->
+                                            <!-- End of Man -->
+
+                                            <!-- VNPT Man P/N -->
+                                            <td  class="uk-text-left" ng-show="myColumnsShowOpDetail[3] && !item.editable">
+                                                <div ng-if="item.manId != null">
+                                                <get-attr-by-id url="urlProductName" value="item.productId"
+                                                                attr="attrProductName"></get-attr-by-id><!--
+                                                --><get-attr-by-id url="urlProductManufacturerName" value="item.manId"
+                                                                attr="attrProductManufacturerCode"></get-attr-by-id>
+                                                </div>
+                                            </td>
+                                            <td  class="uk-text-left" ng-show="myColumnsShowOpDetail[3] && item.editable">
+                                                <!--<get-attr-by-id ng-if="selectize_man_edit[$index] != ''" url="urlProductName" value="item.productId"
+                                                                attr="attrProductName"></get-attr-by-id>&lt;!&ndash;
+                                                &ndash;&gt;{{selectize_man_edit[$index]}}-->
+                                                <selectize id="cbx_product_man_edit_detail"
+                                                           config="cbxSelectizeVNPTManPNOperationEditDetail[$index].Config"
+                                                           options="cbxSelectizeVNPTManPNOperationEditDetail[$index].Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeVNPTManPNOperationEditDetail[$index].ngModel"
+                                                           ng-model-object="cbxSelectizeVNPTManPNOperationEditDetail[$index].ngModelObject"
+                                                           scope-controller="cbxSelectizeVNPTManPNOperationEditDetail[$index].Scope"
+                                                           reset-scroll="cbxSelectizeVNPTManPNOperationEditInitDetail[$index].resetScroll"
+                                                           query-relate="cbxSelectizeVNPTManPNOperationEditInitDetail[$index].queryRelate"
+                                                           more-params="cbxSelectizeVNPTManPNOperationEditInitDetail[$index].MoreParams"
+                                                           is-shown="cbxSelectizeVNPTManPNOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeVNPTManPNOperationEditInitDetail[$index].totalCount"
+                                                           ng-change="handleChangeVNPTManPNEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of VNPT Man P/N -->
+
+                                            <!-- Man PN-->
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[4] && !item.editable">
+                                                {{item.manPn}}
+                                            </td>
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[4] && item.editable">
+                                                <!--<input type="text" ng-change="handleEditManPn($index)" ng-disabled="!enabledManEdit[$index]" config="selectize_man_pn_config" options="selectize_man_pn_edit_options[$index]" ng-model="selectize_man_pn_edit[$index]" name="selectize_man_pn_edit[$index]" selectize>-->
+                                                <selectize id="cbx_product_man_pn_edit_detail"
+                                                           config="cbxSelectizeManPNOperationEditDetail[$index].Config"
+                                                           options="cbxSelectizeManPNOperationEditDetail[$index].Options"
+                                                           position="bottom"
+                                                           ng-disabled="(cbxSelectizeVNPTManPNOperationEditDetail[$index].ngModel == undefined && cbxSelectizeProductOperationEditDetail[$index].ngModel != undefined)
+                                                                        || (cbxSelectizeVNPTManPNOperationEditDetail[$index].ngModel.length == 0 && cbxSelectizeProductOperationEditDetail[$index].ngModel != undefined && cbxSelectizeProductOperationEditDetail[$index].ngModel != -1)"
+                                                           ng-model="cbxSelectizeManPNOperationEditDetail[$index].ngModel"
+                                                           ng-model-object="cbxSelectizeManPNOperationEditDetail[$index].ngModelObject"
+                                                           scope-controller="cbxSelectizeManPNOperationEditDetail[$index].Scope"
+                                                           reset-scroll="cbxSelectizeManPNOperationEditInitDetail[$index].resetScroll"
+                                                           query-relate="cbxSelectizeManPNOperationEditInitDetail[$index].queryRelate"
+                                                           more-params="cbxSelectizeManPNOperationEditInitDetail[$index].MoreParams"
+                                                           is-shown="cbxSelectizeManPNOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeManPNOperationEditInitDetail[$index].totalCount"
+                                                           ng-change="handleChangeManPNEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Man PN -->
+
+                                            <!-- UOM -->
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[5]">
+                                                {{item.uomName}}
+                                            </td>
+                                            <!-- End of UOM -->
+
+                                            <!-- Source Package -->
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[6] && !item.editable">
+                                                {{item.srcPackageNumber}}
+                                            </td>
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[6] && item.editable">
+                                                <selectize
+                                                           config="cbxSelectizeSourcePackageOperationEditDetail[$index].Config"
+                                                           options="cbxSelectizeSourcePackageOperationEditDetail[$index].Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeSourcePackageOperationEditDetail[$index].ngModel"
+                                                           ng-model-object="cbxSelectizeSourcePackageOperationEditDetail[$index].ngModelObject"
+                                                           scope-controller="cbxSelectizeSourcePackageOperationEditDetail[$index].Scope"
+                                                           reset-scroll="cbxSelectizeSourcePackageOperationEditInitDetail[$index].resetScroll"
+                                                           query-relate="cbxSelectizeSourcePackageOperationEditInitDetail[$index].queryRelate"
+                                                           more-params="cbxSelectizeSourcePackageOperationEditInitDetail[$index].MoreParams"
+                                                           is-shown="cbxSelectizeSourcePackageOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeSourcePackageOperationEditInitDetail[$index].totalCount"
+                                                           ng-change="handleChangeSourcePackageEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Source Package -->
+
+                                            <!-- From -->
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[7] && !item.editable">
+                                                <get-attr-by-id url="urlLocationName" value="item.srcLocationId" attr="attrDisplayName"></get-attr-by-id>
+                                            </td>
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[7] && item.editable">
+                                                <selectize
+                                                        config="cbxSelectizeFromOperationEditDetail[$index].Config"
+                                                        options="cbxSelectizeFromOperationEditDetail[$index].Options"
+                                                        position="bottom"
+                                                        ng-model="cbxSelectizeFromOperationEditDetail[$index].ngModel"
+                                                        ng-model-object="cbxSelectizeFromOperationEditDetail[$index].ngModelObject"
+                                                        scope-controller="cbxSelectizeFromOperationEditDetail[$index].Scope"
+                                                        reset-scroll="cbxSelectizeFromOperationEditInitDetail[$index].resetScroll"
+                                                        query-relate="cbxSelectizeFromOperationEditInitDetail[$index].queryRelate"
+                                                        more-params="cbxSelectizeFromOperationEditInitDetail[$index].MoreParams"
+                                                        total-count="cbxSelectizeFromOperationEditInitDetail[$index].totalCount"
+                                                        ng-change="handleChangeFromEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of From -->
+
+                                            <!-- To -->
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[8] && !item.editable">
+                                                <get-attr-by-id url="urlLocationName" value="item.destLocationId" attr="attrDisplayName"></get-attr-by-id>
+                                            </td>
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[8] && item.editable">
+                                                <selectize
+                                                        config="cbxSelectizeToOperationEditDetail[$index].Config"
+                                                        options="cbxSelectizeToOperationEditDetail[$index].Options"
+                                                        position="bottom"
+                                                        ng-model="cbxSelectizeToOperationEditDetail[$index].ngModel"
+                                                        ng-model-object="cbxSelectizeToOperationEditDetail[$index].ngModelObject"
+                                                        scope-controller="cbxSelectizeToOperationEditDetail[$index].Scope"
+                                                        reset-scroll="cbxSelectizeToOperationEditInitDetail[$index].resetScroll"
+                                                        query-relate="cbxSelectizeToOperationEditInitDetail[$index].queryRelate"
+                                                        more-params="cbxSelectizeToOperationEditInitDetail[$index].MoreParams"
+                                                        total-count="cbxSelectizeToOperationEditInitDetail[$index].totalCount"
+                                                        ng-change="handleChangeToEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of To -->
+
+                                            <!-- Des'Package -->
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[9] && !item.editable">
+                                                {{item.destPackageNumber}}
+                                            </td>
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[9] && item.editable">
+                                                <selectize
+                                                        config="cbxSelectizeDestinationPackageOperationEditDetail[$index].Config"
+                                                        options="cbxSelectizeDestinationPackageOperationEditDetail[$index].Options"
+                                                        position="bottom"
+                                                        ng-model="cbxSelectizeDestinationPackageOperationEditDetail[$index].ngModel"
+                                                        ng-model-object="cbxSelectizeDestinationPackageOperationEditDetail[$index].ngModelObject"
+                                                        scope-controller="cbxSelectizeDestinationPackageOperationEditDetail[$index].Scope"
+                                                        reset-scroll="cbxSelectizeDestinationPackageOperationEditInitDetail[$index].resetScroll"
+                                                        query-relate="cbxSelectizeDestinationPackageOperationEditInitDetail[$index].queryRelate"
+                                                        more-params="cbxSelectizeDestinationPackageOperationEditInitDetail[$index].MoreParams"
+                                                        is-shown="cbxSelectizeDestinationPackageOperationInitDetail.IsShown"
+                                                        total-count="cbxSelectizeDestinationPackageOperationEditInitDetail[$index].totalCount"
+                                                        ng-change="handleChangeDestinationPackageEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Des'Package -->
+
+                                            <!-- Serial/Lot -->
+                                            <td class="uk-text-left" ng-show="myColumnsShowOpDetail[10] && !item.editable">
+                                                {{item.traceNumber}}
+                                            </td>
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[10] && item.editable">
+                                                <selectize
+                                                        config="cbxSelectizeSerialLotOperationEditDetail[$index].Config"
+                                                        options="cbxSelectizeSerialLotOperationEditDetail[$index].Options"
+                                                        position="bottom"
+                                                        ng-model="cbxSelectizeSerialLotOperationEditDetail[$index].ngModel"
+                                                        ng-model-object="cbxSelectizeSerialLotOperationEditDetail[$index].ngModelObject"
+                                                        scope-controller="cbxSelectizeSerialLotOperationEditDetail[$index].Scope"
+                                                        reset-scroll="cbxSelectizeSerialLotOperationEditInitDetail[$index].resetScroll"
+                                                        query-relate="cbxSelectizeSerialLotOperationEditInitDetail[$index].queryRelate"
+                                                        more-params="cbxSelectizeSerialLotOperationEditInitDetail[$index].MoreParams"
+                                                        is-shown="cbxSelectizeSerialLotOperationInitDetail.IsShown"
+                                                        total-count="cbxSelectizeSerialLotOperationEditInitDetail[$index].totalCount"
+                                                        ng-change="handleChangeSerialLotEditDetail($index)">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Serial/Lot -->
+
+                                            <!-- Reserved -->
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[11]">
+                                                {{item.reserved}}
+                                            </td>
+                                            <!--<td class="uk-text-center" ng-show="myColumnsShowOpDetail[11] && item.editable">
+                                                <div class="parsley-row">
+                                                    <input data-parsley-type="number"
+                                                           ng-model="item.reserved" type="number" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                                </div>
+                                            </td>-->
+                                            <!-- End of Reserved -->
+
+                                            <!-- Done Quantity -->
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[12] && !item.editable">
+                                                {{item.doneQuantity}}
+                                            </td>
+                                            <td class="uk-text-center" ng-show="myColumnsShowOpDetail[12] && item.editable">
+                                                <div class="parsley-row">
+                                                    <input data-parsley-required-message={{required_msg}}
+                                                           data-parsley-type="number"
+                                                           ng-model="item.doneQuantity" type="number" name="doneQuantity" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                                </div>
+                                            </td>
+                                            <!-- End of Done Quantity -->
+
+                                            <!--<td>
+                                                <a ng-click="edit($event,$index)" ng-hide="item.editable"><i
+                                                        class="md-icon material-icons">&#xE254;</i></a>
+                                                <a ng-click="save($event,$index)" ng-show="item.editable"
+                                                   ng-class="item.saveClass"><i
+                                                        class="md-icon material-icons">&#xE161;</i></a>
+                                            </td>-->
+                                            <!--<td>
+                                                <a ng-click=removeSub($index)><i
+                                                        class="md-icon material-icons">&#xE872;</i></a>
+                                            </td>-->
+                                            <td class="uk-text-center">
+                                                <a id="{{ 'operation_detail_remove_' + $index }}" href="#" class="ts_remove_row" ng-click="ts_remove_item($event,item)"><i class="md-icon material-icons">&#xE872;</i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tbody id="newItemDetail" ng-show="isNewItem">
+                                        <tr>
+                                            <!--<td></td>-->
+
+                                            <!-- VNPT P/N -->
+                                            <td>
+                                                <selectize id="cbx_product_rd_detail"
+                                                           config="cbxSelectizeProductOperationDetail.Config"
+                                                           options="cbxSelectizeProductOperationDetail.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeProductOperationDetail.ngModel"
+                                                           ng-model-object="cbxSelectizeProductOperationDetail.ngModelObject"
+                                                           scope-controller="cbxSelectizeProductOperationDetail.Scope"
+                                                           reset-scroll="cbxSelectizeProductOperationInitDetail.resetScroll"
+                                                           query-relate="cbxSelectizeProductOperationInitDetail.queryRelate"
+                                                           more-params="cbxSelectizeProductOperationInitDetail.MoreParams"
+                                                           is-shown="cbxSelectizeProductOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeProductOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of VNPT P/N -->
+
+                                            <!-- Description -->
+                                            <td>
+                                                <selectize id="cbx_product_description_detail"
+                                                           config="cbxSelectizeDescriptionOperationDetail.Config"
+                                                           options="cbxSelectizeProductOperationDetail.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeProductOperationDetail.ngModel"
+                                                           ng-model-object="cbxSelectizeProductOperationDetail.ngModelObject"
+                                                           scope-controller="cbxSelectizeProductOperationDetail.Scope"
+                                                           reset-scroll="cbxSelectizeProductOperationInitDetail.resetScroll"
+                                                           query-relate="cbxSelectizeProductOperationInitDetail.queryRelate"
+                                                           more-params="cbxSelectizeProductOperationInitDetail.MoreParams"
+                                                           is-shown="cbxSelectizeDescriptionOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeProductOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Description -->
+
+                                            <!-- Manufacturer -->
+                                            <!--<td>
+                                                <div style="display: none"><input type="text" config="selectize_man_id_config" options="selectize_man_id_options" ng-model="selectize_man_id" name="selectize_man_id" selectize></div>
+                                                <input type="text" ng-disabled="!enabledMan" config="selectize_man_config" options="selectize_man_options" ng-model="selectize_man" name="selectize_man" selectize>
+                                            </td>-->
+                                            <!-- End of Manufacture -->
+
+                                            <!-- VNPT Man PN -->
+                                            <td>
+                                                <!--<get-attr-by-id ng-if="selectize_man != ''" url="urlProductName" value="createItem.productId"
+                                                                attr="attrProductName"></get-attr-by-id>&lt;!&ndash;
+                                                &ndash;&gt;{{selectize_man}}-->
+                                                <selectize id="cbx_product_man_detail"
+                                                           config="cbxSelectizeVNPTManPNOperationDetail.Config"
+                                                           options="cbxSelectizeVNPTManPNOperationDetail.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeVNPTManPNOperationDetail.ngModel"
+                                                           ng-model-object="cbxSelectizeVNPTManPNOperationDetail.ngModelObject"
+                                                           scope-controller="cbxSelectizeVNPTManPNOperationDetail.Scope"
+                                                           reset-scroll="cbxSelectizeVNPTManPNOperationInitDetail.resetScroll"
+                                                           query-relate="cbxSelectizeVNPTManPNOperationInitDetail.queryRelate"
+                                                           more-params="cbxSelectizeVNPTManPNOperationInitDetail.MoreParams"
+                                                           is-shown="cbxSelectizeVNPTManPNOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeVNPTManPNOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of VNPT Man PN -->
+
+                                            <!-- Man P/N -->
+                                            <td>
+                                                <!--<input type="text" ng-disabled="!enabledMan" config="selectize_man_pn_config" options="selectize_man_pn_options" ng-model="selectize_man_pn" name="selectize_man_pn" selectize>-->
+                                                <selectize id="cbx_product_man_pn_detail"
+                                                           config="cbxSelectizeManPNOperationDetail.Config"
+                                                           ng-disabled="(cbxSelectizeVNPTManPNOperationDetail.ngModel == undefined && cbxSelectizeProductOperationDetail.ngModel != undefined)
+                                                                        || (cbxSelectizeVNPTManPNOperationDetail.ngModel.length == 0 && cbxSelectizeProductOperationDetail.ngModel != undefined && cbxSelectizeProductOperationDetail.ngModel != -1)"
+                                                           options="cbxSelectizeManPNOperationDetail.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeManPNOperationDetail.ngModel"
+                                                           ng-model-object="cbxSelectizeManPNOperationDetail.ngModelObject"
+                                                           scope-controller="cbxSelectizeManPNOperationDetail.Scope"
+                                                           reset-scroll="cbxSelectizeManPNOperationInitDetail.resetScroll"
+                                                           query-relate="cbxSelectizeManPNOperationInitDetail.queryRelate"
+                                                           more-params="cbxSelectizeManPNOperationInitDetail.MoreParams"
+                                                           is-shown="cbxSelectizeManPNOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeManPNOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Man P/N -->
+
+                                            <!-- UOM -->
+                                            <td></td>
+                                            <!-- End of UOM -->
+
+                                            <!-- Source Package -->
+                                            <td>
+                                                <selectize
+                                                           config="cbxSelectizeSourcePackageOperationDetail.Config"
+                                                           options="cbxSelectizeSourcePackageOperationDetail.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeSourcePackageOperationDetail.ngModel"
+                                                           ng-model-object="cbxSelectizeSourcePackageOperationDetail.ngModelObject"
+                                                           scope-controller="cbxSelectizeSourcePackageOperationDetail.Scope"
+                                                           reset-scroll="cbxSelectizeSourcePackageOperationInitDetail.resetScroll"
+                                                           query-relate="cbxSelectizeSourcePackageOperationInitDetail.queryRelate"
+                                                           more-params="cbxSelectizeSourcePackageOperationInitDetail.MoreParams"
+                                                           is-shown="cbxSelectizeSourcePackageOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeSourcePackageOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Source Package -->
+
+                                            <!-- From -->
+                                            <td>
+                                                <div ng-if="!allowDetailAddFromField">Not Available</div>
+                                                <selectize ng-if="allowDetailAddFromField" id="cbx_from_detail"
+                                                           config="cbxSelectizeFromOperationDetail.Config"
+                                                           options="cbxSelectizeFromOperationDetail.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeFromOperationDetail.ngModel"
+                                                           ng-model-object="cbxSelectizeFromOperationDetail.ngModelObject"
+                                                           scope-controller="cbxSelectizeFromOperationDetail.Scope"
+                                                           reset-scroll="cbxSelectizeFromOperationInitDetail.resetScroll"
+                                                           query-relate="cbxSelectizeFromOperationInitDetail.queryRelate"
+                                                           more-params="cbxSelectizeFromOperationInitDetail.MoreParams"
+                                                           is-shown="cbxSelectizeFromOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeFromOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of From -->
+
+                                            <!-- To -->
+                                            <td>
+                                                <div ng-if="!allowDetailAddToField">Not Available</div>
+                                                <selectize ng-if="allowDetailAddToField" id="cbx_To_detail"
+                                                           config="cbxSelectizeToOperationDetail.Config"
+                                                           options="cbxSelectizeToOperationDetail.Options"
+                                                           position="bottom"
+                                                           ng-model="cbxSelectizeToOperationDetail.ngModel"
+                                                           ng-model-object="cbxSelectizeToOperationDetail.ngModelObject"
+                                                           scope-controller="cbxSelectizeToOperationDetail.Scope"
+                                                           reset-scroll="cbxSelectizeToOperationInitDetail.resetScroll"
+                                                           query-relate="cbxSelectizeToOperationInitDetail.queryRelate"
+                                                           more-params="cbxSelectizeToOperationInitDetail.MoreParams"
+                                                           is-shown="cbxSelectizeToOperationInitDetail.IsShown"
+                                                           total-count="cbxSelectizeToOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of To -->
+
+                                            <!-- Des'Package -->
+                                            <td>
+                                                <selectize
+                                                        config="cbxSelectizeDestinationPackageOperationDetail.Config"
+                                                        options="cbxSelectizeDestinationPackageOperationDetail.Options"
+                                                        position="bottom"
+                                                        ng-model="cbxSelectizeDestinationPackageOperationDetail.ngModel"
+                                                        ng-model-object="cbxSelectizeDestinationPackageOperationDetail.ngModelObject"
+                                                        scope-controller="cbxSelectizeDestinationPackageOperationDetail.Scope"
+                                                        reset-scroll="cbxSelectizeDestinationPackageOperationInitDetail.resetScroll"
+                                                        query-relate="cbxSelectizeDestinationPackageOperationInitDetail.queryRelate"
+                                                        more-params="cbxSelectizeDestinationPackageOperationInitDetail.MoreParams"
+                                                        is-shown="cbxSelectizeDestinationPackageOperationInitDetail.IsShown"
+                                                        total-count="cbxSelectizeDestinationPackageOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Des'Package -->
+
+                                            <!-- Serial/Lot -->
+                                            <td>
+                                                <selectize
+                                                        config="cbxSelectizeSerialLotOperationDetail.Config"
+                                                        options="cbxSelectizeSerialLotOperationDetail.Options"
+                                                        position="bottom"
+                                                        ng-model="cbxSelectizeSerialLotOperationDetail.ngModel"
+                                                        ng-model-object="cbxSelectizeSerialLotOperationDetail.ngModelObject"
+                                                        scope-controller="cbxSelectizeSerialLotOperationDetail.Scope"
+                                                        reset-scroll="cbxSelectizeSerialLotOperationInitDetail.resetScroll"
+                                                        query-relate="cbxSelectizeSerialLotOperationInitDetail.queryRelate"
+                                                        more-params="cbxSelectizeSerialLotOperationInitDetail.MoreParams"
+                                                        is-shown="cbxSelectizeSerialLotOperationInitDetail.IsShown"
+                                                        total-count="cbxSelectizeSerialLotOperationInitDetail.totalCount">
+                                                </selectize>
+                                            </td>
+                                            <!-- End of Serial/Lot -->
+
+                                            <!-- Reserved -->
+                                            <td>
+                                                <!--<div class="parsley-row">
+                                                    <input data-parsley-type="number"
+                                                           ng-model="createItem.reserved" type="number" id="reserved" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                                </div>-->
+                                            </td>
+                                            <!-- End of reserved -->
+
+                                            <!-- Done Quantity -->
+                                            <td>
+                                                <div class="parsley-row">
+                                                    <input data-parsley-required-message={{required_msg}}
+                                                           data-parsley-type="number"
+                                                           ng-model="createItem.doneQuantity" type="number" name="doneQuantity" id="doneQuantity" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                                </div>
+                                            </td>
+                                            <!-- End of Done Quantity -->
+
+                                            <td class="uk-text-center">
+                                                <a href="#" ng-click="deleteNewOperationDetail($event)"><i class="md-icon material-icons">&#xE872;</i></a>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td><button class="custom-fake-button" ng-click="addNewItem()" type="submit">Add new item...</button></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </form>
+                                </table>
+                            </div>
+                            <div id="bottom_anchor_rd"></div>
+                        </li>
+                        <!-- End of Operation Detail Tab -->
+
+                        <li>
+                            <div class="uk-grid" ng-style="fullsizeCreate" >
+
+                                <div class="uk-width-medium-1-6 ">
+                                    <div class="label-bold" style="padding-top: 20px"  data-translate="transfer.column.Priority"></div>
+                                </div>
+
+                                <div class="uk-width-medium-2-6 ">
+                                    <div class="parsley-row">
+                                        <input type="text" config="selectize_priority_config" options="selectize_priority_options" ng-model="selectize_priority" name="selectize_priority" selectize>
+                                    </div>
+                                </div>
+
+                                <div class="uk-width-medium-1-6 uk-margin-top">
+                                    <div class="label-bold" style="padding-top: 20px"  data-translate="transfer.column.Project"></div>
+                                </div>
+
+                                <div class="uk-width-medium-2-6 ">
+                                    <selectize
+                                            config="cbxSelectizeProject.Config"
+                                            options="cbxSelectizeProject.Options"
+                                            position="bottom"
+                                            ng-model="transfer.productVersionId"
+                                            ng-model-object="cbxSelectizeProject.ngModelObject"
+                                            scope-controller="cbxSelectizeProject.Scope"
+                                            reset-scroll="cbxSelectizeProjectInit.resetScroll"
+                                            query-relate="cbxSelectizeProjectInit.queryRelate"
+                                            more-params="cbxSelectizeProjectInit.MoreParams"
+                                            total-count="cbxSelectizeProjectInit.totalCount"
+                                    >
+                                    </selectize>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+                <!-- End of TABS -->
+            </div>
+        </div>
+    </div>
+
+</div>

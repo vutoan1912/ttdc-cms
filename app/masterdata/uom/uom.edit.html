@@ -1,0 +1,142 @@
+<div id="page_content">
+    <jhi-alert></jhi-alert>
+    <form name="form_createuom" id="form_createuom" class="uk-form-stacked ng-pristine ng-invalid ng-invalid-required" novalidate="">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions">
+        </div>
+
+        <span class=" route-header">
+        <a ui-sref="">{{common.Configuration|translate}}</a>
+            <span> / </span><a ui-sref="uoms" ui-sref-opts="{ reload: true }">{{common.Uom|translate}}</a>
+                <span> / {{common.Edit|translate}}</span>
+        </span>
+        </br>
+
+        <div class="uk-margin-small-top">
+            <button id="editUom" ng-disabled="!validateButton()" ng-click="submit()" type="submit" class="md-btn md-btn-primary md-btn-small"><span
+                    class="uk-text-bold">{{common.Save|translate}}</span></button>
+            <a ui-sref="uoms-detail({uomId: uom.id })" class="md-btn md-btn-small"><span
+                    class="uk-text-bold"> {{common.Cancel|translate}}</span></a>
+        </div>
+
+    </div>
+
+    <div id="page_content_inner">
+
+        <div class="uk-grid data-uk-grid-margin">
+
+            <div class="uk-width-medium-1-1">
+                <div class="md-card">
+                    <div class="md-card-content">
+
+                        <jhi-alert></jhi-alert>
+
+                        <div class="uk-grid" data-uk-grid-margin="">
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <div class="parsley-row">
+                                    <label class="label-bold" for="unit">Unit of Measure<span class="req">*</span></label>
+                                        <input ng-model="uom.name"
+                                               data-parsley-required-message={{required_msg|translate}}
+                                               data-parsley-maxlength-message={{maxLengthRule|translate}}
+                                               data-parsley-maxlength="255"
+                                               id="unit" type="text" name="unit" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                        <span class="md-input-bar "></span>
+                                </div>
+                            </div>
+
+                            <div class="uk-width-medium-1-2">
+                                <div  class="md-btn-group float-right">
+                                    <activate model="uom"
+                                              activate-service="CbxActivate.activateService"
+                                              deactivate-service="CbxActivate.deactivateService"
+                                    ></activate>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="uk-grid" data-uk-grid-margin="">
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <div class="parsley-row">
+                                <label class="label-bold">Category<span class="req">*</span></label>
+
+                                    <input
+                                            ng-required="true"
+                                            config="cbxSrc2UomCate.Config"
+                                            options="cbxSrc2UomCate.Options"
+                                            position="bottom"
+                                            ng-model="uom.categoryId"
+                                            scope-controller="cbxSrc2UomCate.Scope"
+                                            total-count="cbxSrc2UomCateInit.totalCount"
+                                            page="cbxSrc2UomCateInit.page"
+                                            per-page="cbxSrc2UomCateInit.perPage"
+                                            query-relate="cbxSrc2UomCateInit.queryRelate"
+                                            reset-scroll="cbxSrc2UomCate.resetScroll" selectize/>
+
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <div class="parsley-row">
+                                    <label class="label-bold" for="rounding">Rounding Precision<span class="req">*</span></label>
+                                        <input ng-model="uom.rounding" onkeypress="return event.charCode >= 46" step="0.001" min="0" id="rounding" type="number" name="rounding" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                        <span class="md-input-bar "></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-grid" data-uk-grid-margin="">
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <div class="parsley-row">
+                                    <label class="label-bold">Type<span class="req">*</span></label>
+
+                                    <input
+                                            ng-required="true"
+                                            config="cbxSrc2UomType.Config"
+                                            options="cbxSrc2UomType.Options"
+                                            position="bottom"
+                                            ng-model="uom.type"
+                                            scope-controller="cbxSrc2UomType.Scope"
+                                            total-count="cbxSrc2UomTypeInit.totalCount"
+                                            page="cbxSrc2UomTypeInit.page"
+                                            per-page="cbxSrc2UomTypeInit.perPage"
+                                            query-relate="cbxSrc2UomTypeInit.queryRelate"
+                                            reset-scroll="cbxSrc2UomType.resetScroll" selectize/>
+
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-2 uk-row-first">
+                                <div class="parsley-row">
+                                    <label class="label-bold" for="factor">Ratio<span class="req">*</span></label>
+                                        <input
+                                               onkeypress="return event.charCode >= 46" step="0.001" min="0"
+                                               ng-model="uom.factor" id="factor" type="number" name="factor" data-parsley-trigger="change" required="" class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                        <span class="md-input-bar "></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="uk-width-medium-1-3">-->
+                <!--<div class="md-card">-->
+                    <!--<div class="md-card-content">-->
+                        <!--<h3 class="label-bold uk-margin-medium-bottom">Other settings</h3>-->
+                        <!--<div class="uk-width-medium-1-2">-->
+                            <!--<div class="uk-form-row uk-text-center">-->
+                                <!--<input type="checkbox" id="uom_edit_active" ui-switch ng-model="uom.active" />-->
+                                <!--<label for="uom_edit_active" class="inline-label">Uom Active</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<hr class="md-hr">&ndash;&gt;-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+    </form>
+</div>

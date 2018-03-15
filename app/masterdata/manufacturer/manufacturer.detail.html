@@ -1,0 +1,329 @@
+<style>
+    body { height: 1000px; }
+    thead{
+        background-color:white;
+    }
+
+</style>
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions action-padding-top">
+            <!--<a href="javascript:void(0)" data-uk-tooltip="{pos:'bottom'}" title="Archive"><i class="md-icon material-icons">&#xE149;</i></a>-->
+            <!--<a href="javascript:void(0)" data-uk-tooltip="{pos:'bottom'}" title="Print"><i class="md-icon material-icons">&#xE8AD;</i></a>-->
+            <div data-uk-dropdown>
+                <i class="md-icon material-icons">&#xE5D4;</i>
+                <div class="uk-dropdown uk-dropdown-small">
+                    <ul class="uk-nav uk-nav-dropdown">
+                        <!--<li><a ng-click="deleteRows()">{{manPage.deleteMan | translate}}</a></li>-->
+                        <!--<li><a href="javascript:void(0)" style="cursor:  no-drop;">{{manPage.exportExcel | translate}}</a></li>-->
+                        <!--<li><a href="javascript:void(0)" style="cursor:  no-drop;">{{manPage.importMan | translate}}</a></li>-->
+                        <!--<li><a href="javascript:void(0)" style="cursor:  no-drop;">{{manPage.duplicateMan | translate}}</a></li>-->
+                        <li><a href="javascript:void(0)" style="cursor:  no-drop;">Import</a></li>
+                        <li><a href="javascript:void(0)" style="cursor:  no-drop;">Export List</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a ui-sref="products" class="uk-text-large" data-translate="common-ui-element.titlePage.Home"></a>
+        <span> / </span><a ui-sref="products" class="uk-text-large" data-translate="common-ui-element.titlePage.Inventory"></a>
+        <span> / </span><a ui-sref="products" class="uk-text-large" data-translate="common-ui-element.titlePage.MasterData"></a>
+        <span> / </span><a ui-sref="manufacturers" class="uk-text-large" data-translate="common-ui-element.ManPage.Manufacturer"></a>
+        <span> / </span>{{man_detail.name}}
+        <!--<span class="uk-text-large"> / {{man_detail.name}}</span>-->
+
+        </br>
+        <div class="btn-custom-action-group">
+            <a ui-sref="javascript:void(0)" class="md-btn md-btn-primary md-btn-small" style="cursor:  no-drop;"><span class="uk-text-bold"  data-translate="common-ui-element.button.Edit"></span></a>
+            <a ui-sref="javascript:void(0)" class="md-btn md-btn-small" style="cursor:  no-drop;"><span class="uk-text-bold" data-translate="common-ui-element.button.Create"></span></a>
+
+        </div>
+    </div>
+    <div id="page_content_inner">
+
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-large-1-1">
+                        <div id="info_detail" class="md-btn-group uk-float-right">
+                            <!--<a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100" ui-sref="manufacturers.sub_detail({id:id})">-->
+                            <a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100" style="cursor:  no-drop;">
+                                <div style="float:left;display:inline-block;">
+                                    <!--<i class="uk-icon-ship "></i>-->
+                                    <i class="material-icons md-40 uk-icon-medium icon-padding-top">&#xE156;</i>
+                                </div>
+                                <div style="margin-left:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <span class="text-number">{{number_suppplier}}</span><br/>
+                                        Supplier
+                                    </p>
+
+                                </div>
+                            </a>
+                            <!--<a class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100" href="javascript:void(0)">-->
+                                <!--<div style="float:left;display:inline-block;">-->
+                                    <!--<i class="uk-icon-shopping-cart  md-40 uk-icon-medium icon-padding-top"></i>-->
+                                <!--</div>-->
+                                <!--<div style="margin-left:30px;">-->
+                                    <!--<p class="line-big text-padding-top uk-text-bold">-->
+                                        <!--<span class="text-number">1</span><br/>-->
+                                        <!--Purchasing-->
+                                    <!--</p>-->
+
+                                <!--</div>-->
+                            <!--</a>-->
+                            <a style="cursor:  no-drop;"
+                               class="md-btn md-btn-small md-btn-wave-light md-btn-icon md-bg-grey-100"
+                               href="javascript:void(0)">
+                                <div style="float:left;display:inline-block;">
+                                    <i class="uk-icon-archive  md-40 uk-icon-medium icon-padding-top"></i>
+                                </div>
+                                <div style="margin-left:30px;">
+                                    <p class="line-big text-padding-top uk-text-bold">
+                                        <br/>
+                                        <span id="activeBtn" ng-class="activeClass">{{status}}</span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div  class="uk-grid uk-grid-medium" data-uk-grid-margin data-uk-grid-match="{target:'.md-card'}">
+                    <div class="uk-width-xLarge-2-10 uk-width-large-3-10">
+                        <div class="md-card">
+                            <!--<div class="uk-grid" data-uk-grid-margin="">-->
+                                <!--<div class="uk-width-xLarge-2-10 uk-width-large-3-10">-->
+                                <div class="md-card">
+                                    <div class="md-card-toolbar">
+                                        <h3 class="md-card-toolbar-heading-text">
+                                            Photo
+                                        </h3>
+                                    </div>
+                                    <div class="md-card-content">
+                                        <div class="uk-margin-bottom uk-text-center">
+                                            <img ng-src="assets/img/gallery/Image01.jpg" alt="" class="img_medium" />
+                                        </div>
+                                        <!--<ul class="uk-grid uk-grid-width-small-1-3 uk-text-center" data-uk-grid-margin>-->
+                                            <!--<li ng-repeat="image in man_detail.other_img">-->
+                                                <!--<img ng-src="{{image}}" alt="" class="img_small"/>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+
+                                    </div>
+                                    <div class="md-card-toolbar" style="padding-top: 78px;">
+                                        <h3 class="md-card-toolbar-heading-text">
+
+                                        </h3>
+                                    </div>
+                                    <div class="md-card-toolbar-heading-text uk-margin-bottom" style="float: none !important;">
+                                        <div class="rating-field" style="text-align: center;">
+                                            <input-stars max="5" icon-base="uk-icon-star" style="color: aliceblue !important;" ng-model="man_detail.rating" readonly="true"></input-stars>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="md-card">-->
+                                    <!--<div class="md-card-toolbar-heading-text" style="float: none !important;">-->
+                                    <!--<div class="rating-field" style="text-align: center;">-->
+                                     <!--<input-stars max="5" icon-base="uk-icon-star" style="color: aliceblue !important;" ng-model="man_detail.rating" readonly="true"></input-stars>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                        </div>
+                    </div>
+                    <div class="uk-width-xLarge-8-10  uk-width-large-7-10">
+                        <div class="md-card" style="padding-top: 5px;">
+                            <div class="uk-grid" data-uk-grid-margin="">
+                                <div class="uk-width-medium-1-2 uk-row-first">
+                                    <div class="parsley-row">
+                                        <div style="margin-left: 5px;"><label  class="label-bold" for="man_name" data-translate="common-ui-element.ManPage.ManufacturerName"></label>
+                                            <input  readonly value={{man_detail.name}} id="man_name" type="text"
+                                                    name="man_name"  required="" data-uk-tooltip="{cls:'long-text'}"  title="{{man_detail.name}}"
+                                                    class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                            <span class="md-input-bar "></span></div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2 uk-row-first">
+                                    <div class="parsley-row">
+                                        <div style="margin-left: 5px;"><label  class="label-bold" for="phone" data-translate="common-ui-element.ManPage.Phone"></label>
+                                            <input readonly value={{man_detail.phoneNumber}} id="phone" type="text" name="phone" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                            <span class="md-input-bar "></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-grid" data-uk-grid-margin="">
+                                <div class="uk-width-medium-1-2 uk-row-first">
+                                    <div class="parsley-row">
+                                        <div style="margin-left: 5px;"><label  class="label-bold" for="alias" data-translate="common-ui-element.ManPage.ManufacturerAlias"></label>
+                                            <input readonly value={{man_detail.alias}} id="alias" type="text" name="alias"  data-uk-tooltip="{cls:'long-text'}"  title="{{man_detail.alias}}"
+                                                   data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                            <span class="md-input-bar "></span></div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2 uk-row-first">
+                                    <div class="parsley-row">
+                                        <div style="margin-left: 5px;"><label class="label-bold"  for="fax" data-translate="common-ui-element.ManPage.Fax"></label>
+                                            <input  readonly value={{man_detail.faxNumber}} id="fax" type="text" name="fax" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                            <span class="md-input-bar "></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-grid" data-uk-grid-margin="">
+                                <div class="uk-width-medium-1-2 uk-row-first">
+                                    <div class="parsley-row">
+                                        <div style="margin-left: 5px;"><label class="label-bold"  for="address"  data-translate="common-ui-element.ManPage.Address"></label>
+                                            <input readonly value={{man_detail.addressLine_1}}  data-uk-tooltip="{cls:'long-text'}"  title="{{man_detail.addressLine_1}}"
+                                                   data-uk-tooltip="{cls:'long-text'}"  title="{{man_detail.addressLine_1}}"  type="text" id="address" name="address"  class="md-input ng-isolate-scope md-input-processed" md-input="   ">
+                                            <span class="md-input-bar "></span></div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2 uk-row-first">
+                                    <div class="parsley-row">
+                                        <div style="margin-left: 5px;"><label class="label-bold"  for="email" data-translate="common-ui-element.ManPage.Email"></label>
+                                            <input  readonly value={{man_detail.email}} id="email" type="text" name="fax" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                            <span class="md-input-bar "></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-grid" data-uk-grid-margin="">
+                                <div class="uk-width-medium-1-1 uk-row-first">
+                                    <div class="parsley-row" style="margin-left: 5px;">
+                                            <label  class="label-bold" for="description" data-translate="common-ui-element.ManPage.Description"></label>
+                                            <input readonly value={{man_detail.description}} data-uk-tooltip="{cls:'long-text'}"  title="{{man_detail.description}}"
+                                                   id="description" type="text" name="description"  class="md-input ng-isolate-scope md-input-processed" md-input="  ">
+
+                                            <span class="md-input-bar "></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-grid" data-uk-grid-margin="" style="margin-bottom: 12px !important;">
+                                <div class="uk-width-medium-1-2 uk-row-first">
+                                    <div class="parsley-row"  style="margin-left: 5px;">
+                                        <div class="label-bold custom-input-row" data-translate="inventory.column.createdby"></div>
+                                        <div class="custom-opr" style="margin-left: 5px;">
+                                            <get-attr-by-key-hyperlink url="CbxCreatedBy.url" key="CbxCreatedBy.key" value="man_detail.createdBy" attr="CbxCreatedBy.attr" prefix="CbxCreatedBy.prefix" suffix="CbxCreatedBy.suffix"></get-attr-by-key-hyperlink><span>&nbsp;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2 uk-row-first">
+                                    <div class="parsley-row"  style="margin-left: 5px;">
+                                        <div class="label-bold custom-input-row" data-translate="inventory.column.created"></div>
+                                        <div class="custom-opr"  style="margin-left: 5px;">
+                                            <span>{{man_detail.created|date: 'dd-MM-yyyy  h:mma'}}</span><span>&nbsp;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-grid uk-grid-medium" data-uk-grid-margin data-uk-grid-match="{target:'.md-card'}" style="margin-top: 0px;margin-bottom: 10px">
+                    <div class="uk-width-large-3-10">
+                        <!--<div class="rating-field" style="text-align: center; margin-top: 10px;">-->
+                            <!--<input-stars max="5" icon-base="uk-icon-star" style="color: aliceblue !important;" ng-model="man_detail.rating" readonly="true"></input-stars>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="uk-width-large-7-10" style="text-align: right">
+                        <div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+                            <button class="md-btn"><span data-translate="common-ui-element.button.Columns"></span>  <i class="uk-icon-caret-down"></i></button>
+
+                            <div class="uk-dropdown" style="text-align: left">
+                                <ul class="uk-nav uk-nav-dropdown" ng-repeat="c in myColumnsDetail">
+                                    <li class="checkbox-padding-left">
+                                        <label class="container-checkbox">{{c}}
+                                            <input ng-model=myColumnsShowDetail[$index]  type="checkbox" checked="checked">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="md-card uk-margin-medium-bottom" style="margin-top: 0px;">
+
+                    <div class="md-card-content">
+                        <div class=" uk-margin-bottom" >
+                            <div class="uk-overflow-container uk-margin-bottom table-min-height"  id="table-container">
+                                <table class="hoverTable uk-table-striped uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair" id="ts_pager_filter">
+                                    <thead>
+                                    <tr>
+                                        <th data-name="Select" data-priority="5">
+                                            <!--<input type="checkbox" class="ts_checkbox_all">-->
+                                            <input type="checkbox" class="ts_checkbox_all" data-md-icheck icheck ng-model="row_select">
+                                        </th>
+                                        <th ng-show="myColumnsShowDetail[0]" class="pointerMouse label-bold custom-cl-header-slarge" ng-click="handleSort($event, 1)" data-priority="1">VNPT MAN PN<i class="material-icons md-20 rightCell">{{param_sort_list[1]}}</i></th>
+                                        <th ng-show="myColumnsShowDetail[1]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 2)" data-priority="2">Description<i class="material-icons md-20 rightCell">{{param_sort_list[2]}}</i></th>
+                                        <th ng-show="myColumnsShowDetail[2]" class="pointerMouse label-bold custom-cl-header-slarge" ng-click="handleSort($event, 3)" data-priority="3">Manufacturer PN<i class="material-icons md-20 rightCell">{{param_sort_list[3]}}</i></th>
+                                        <th ng-show="myColumnsShowDetail[3]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 4)" data-priority="4">Supplier<i class="material-icons md-20 rightCell">{{param_sort_list[4]}}</i></th>
+                                        <th ng-show="myColumnsShowDetail[4]" class="pointerMouse label-bold custom-cl-header-large tablesorter-headerAsc" ng-click="handleSort($event, 5)" data-priority="5"><span data-translate="inventory.column.created"></span><i class="material-icons md-20 rightCell">{{param_sort_list[5]}}</i></th>
+                                        <th ng-show="myColumnsShowDetail[5]" class="pointerMouse label-bold custom-cl-header-large" ng-click="handleSort($event, 6)" data-priority="6"><span data-translate="inventory.column.createdby"></span><i class="material-icons md-20 rightCell">{{param_sort_list[6]}}</i></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tr style="background: white!important;">
+                                        <td></td>
+                                        <td ng-show="myColumnsShowDetail[0]"><input class="filter-table-cell" ng-model="param_filter_list[1]" ng-change="handleFilter()" type="search" placeholder="" data-column="1"></td>
+                                        <td ng-show="myColumnsShowDetail[1]"><input class="filter-table-cell" ng-model="param_filter_list[2]" ng-change="handleFilter()" type="search" placeholder="" data-column="2"></td>
+                                        <td ng-show="myColumnsShowDetail[2]"><input class="filter-table-cell" ng-model="param_filter_list[3]" ng-change="handleFilter()" type="search" placeholder="" data-column="3"></td>
+                                        <td ng-show="myColumnsShowDetail[3]"><input class="filter-table-cell" ng-model="param_filter_list[4]" ng-change="handleFilter()" type="search" placeholder="" data-column="4"></td>
+                                        <td ng-show="myColumnsShowDetail[4]"><input class="filter-table-cell" ng-model="param_filter_list[5]" ng-change="handleFilter()" type="search" placeholder="" data-column="5"></td>
+                                        <td ng-show="myColumnsShowDetail[5]"><input class="filter-table-cell" ng-model="param_filter_list[6]" ng-change="handleFilter()" type="search" placeholder="" data-column="6"></td>
+
+                                    </tr>
+                                    <tbody>
+                                    <tr ng-repeat-start="(key1, blList) in list_part" ng-if="false"></tr>
+                                    <tr ng-repeat="(key2, bl) in blList.man_tmp.suplier">
+                                        <td ng-if="$first" rowspan="{{blList.man_tmp.suplier.length}}"><input id="{{item.id}}" type="checkbox" class="ts_checkbox" data-md-icheck icheck ng-model="row_select"></td>
+                                        <td ng-show="myColumnsShowDetail[0]" class="text-center" ng-if="$first" rowspan="{{blList.man_tmp.suplier.length}}">{{blList.man_tmp.vnptMan}}</td>
+                                        <td ng-show="myColumnsShowDetail[1]" class="text-center" ng-if="$first" rowspan="{{blList.man_tmp.suplier.length}}"  style="white-space:normal">
+                                            <span data-uk-tooltip="{cls:'long-text'}"  title="{{cutString(blList.description)}}">{{ cutString(blList.description) }}</span>
+                                        </td>
+                                        <td  ng-show="myColumnsShowDetail[2]" class="text-center" ng-if="$first" rowspan="{{blList.man_tmp.suplier.length}}">
+                                           <span ng-repeat="sup in blList.man_tmp.manPN" data-uk-tooltip title="{{sup}}">
+                                                <p style="white-space: nowrap"> {{sup}}</p>
+                                             </span>
+                                        </td>
+                                        <td  ng-show="myColumnsShowDetail[3]" class="text-center"  style="white-space:normal">
+                                            <span data-uk-tooltip="{cls:'long-text'}"  title="{{cutString(bl)}}">{{ cutString(bl) }}</span>
+                                        </td>
+                                        <td ng-show="myColumnsShowDetail[4]"  ng-if="$first" rowspan="{{blList.man_tmp.suplier.length}}">{{item.created|date: 'dd-MM-yyyy  h:mma'}}</td>
+                                        <td ng-show="myColumnsShowDetail[5]"  ng-if="$first" rowspan="{{blList.man_tmp.suplier.length}}">
+                                            <get-attr-by-key-hyperlink url="CbxCreatedBy.url" key="CbxCreatedBy.key" value="item.createdBy" attr="CbxCreatedBy.attr" prefix="CbxCreatedBy.prefix" suffix="CbxCreatedBy.suffix"></get-attr-by-key-hyperlink>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat-end ng-if="false"></tr>
+                                    </tbody>
+                                </table>
+                                <div id="bottom_anchor"></div>
+                            </div>
+                        </div>
+                        <div class="ts_pager">
+                            <ul class="uk-pagination ts_pager">
+                                <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                                    <input ng-change="selectPageHandle()" id="selectize_page" type="text"
+                                           config="{ create:false, maxItems: 1, placeholder: 'Select...' }"  options="selectize_page_options"
+                                           ng-model="selectize_page" name="selectize_page" selectize>
+                                </li>
+                                <li><a href="javascript:void(0)" class="firstPage"><i class="uk-icon-angle-double-left"></i></a></li>
+                                <li><a href="javascript:void(0)" class="prevPage"><i class="uk-icon-angle-left"></i></a></li>
+                                <li><span class="pageDisplay">1-20/50</span></li>
+                                <li><a href="javascript:void(0)" class="nextPage"><i class="uk-icon-angle-right"></i></a></li>
+                                <li><a href="javascript:void(0)" class="lastPage"><i class="uk-icon-angle-double-right"></i></a></li>
+                                <li data-uk-tooltip title="{{pageSize}}">
+                                    <input ng-change="selectPageNumHandle()" id="selectize_pageNum" type="text"
+                                           config="{ create:false, maxItems: 1, placeholder: 'Select...' }"  options="selectize_pageNum_options"
+                                           ng-model="selectize_pageNum" name="selectize_pageNum" selectize>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--<div ng-include="'app/masterdata/manufacturer/subDetailManufacturer.html'" ng-show="showSubTab == 1"></div>-->
+            </div>
+        </div>
+    </div>
+
+</div>

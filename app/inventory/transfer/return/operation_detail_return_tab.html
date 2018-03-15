@@ -1,0 +1,48 @@
+<div class="uk-overflow-container">
+    <table class="uk-table uk-table-align-vertical uk-table-nowrap tablesorter tablesorter-altair" id="table_detail_return"
+           style="max-height: 500px">
+        <thead>
+        <tr>
+            <th data-name="Select" data-priority="12" style="width: 20px !important;"><input type="checkbox" class="ts_checkbox_all_op_detail"></th>
+            <th data-priority="critical" style="width: 10%">VNPT P/N</th>
+            <th data-priority="1" style="width: 20%">Description</th>
+            <th data-priority="2" style="width: 15%">VNPT ManPN</th>
+            <th data-priority="3" style="width: 10%">Man P/N</th>
+            <th data-priority="8">Package</th>
+            <th data-priority="9">Serial/Lot</th>
+            <th data-priority="10">Reserved</th>
+            <th data-priority="11">Done</th>
+            <th data-priority="11" style="width: 100px">Return</th>
+            <!--<th class="filter-false remove sorter-false uk-text-center" data-priority="1">Actions</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in list_op_detail_return" on-last-repeat>
+            <td><input type="checkbox" class="ts_checkbox" data-md-icheck icheck ng-model="item.isSelected" ng-click="selectReturnDetail()"></td>
+            <td>
+                <a ui-sref="products-detail({productId: item.productId})" ng-click="$event.stopPropagation();">
+                    {{item.productName}}
+                </a>
+            </td>
+            <td>
+               {{item.productDescription}}
+            </td>
+            <!--<td>{{item.manCode}}</td>-->
+            <td>
+               {{item.internalReference}}
+            </td>
+            <td>{{item.manPn}}</td>
+            <td>{{item.destPackageNumber}}</td>
+            <td>{{item.traceNumber}}</td>
+            <td>{{item.reserved}}</td>
+            <td ng-hide="item.invalid">{{item.doneQuantity}}</td>
+            <td ng-show="item.invalid"><span class="uk-notify-message-warning">{{item.doneQuantity}}</span></td>
+            <td ng-hide="item.isSelected">{{item.returnQuantity}}</td>
+            <td ng-show="item.isSelected">
+                <input ng-change="checkReturnQuantity($index)"  ng-model="item.returnQuantity" id="step" type="number" min=0 name="step" data-parsley-trigger="change"  class="md-input ng-isolate-scope md-input-processed" md-input="">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div ng-show="showNodataTabDetail" style="margin-top: 50px; margin-bottom: 30px" class="heading_a uk-text-center" data-translate="inventory.messages.tableNoData"></div>
+</div>

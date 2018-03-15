@@ -1,0 +1,45 @@
+{
+  "error": {
+    "userAndPermission":{
+      "emailexists":"Email này đã được sử dụng. Vui lòng chọn email khác.",
+      "roleHasNoPrivilege":"Vui lòng chọn ít nhất một quyền để tạo vai trò.",
+      "userHasRole":"Người dùng này đã được gán vai trò. Không thể xóa.",
+      "roleHasPrivilege":"Vai trò này đã được gán quyền. Không thể xóa.",
+      "roleExist": "Tên vai trò này đã được sử dụng. Vui lòng chọn tên khác"
+    },
+    "permission":{
+      "canNotDeleteSystemObject":"Không thể xóa bản ghi của hệ thống."
+    },
+    "common":{
+      "deleteError": "Không thể xóa các bản ghi có id: ",
+      "maxLengthRule":"Độ dài tối đa cho trường này là 255.",
+      "referenceError":"Không thể xóa đối tượng này. Nó đã được tham chiếu bởi một đối tượng khác."
+    },
+    "warehouse":{
+      "nameExist":"Tên kho đã tồn tại.",
+      "codeExist":"Mã kho đã tồn tại.",
+      "referenced": "Không thể xóa kho này. Nó đã được tham chiếu bới route."
+    },
+    "uom":{
+      "nameExist":"Tên UOM đã tồn tại."
+    },
+    "operation-type":{
+      "nameExist":"Tên loại hoạt động đã tồn tại.",
+      "codeExist":"Mã loại hoạt động đã tồn tại."
+    },
+    "sequence": {
+      "nameExist": "Tên sequence đã tồn tại.",
+      "codeExist": "Mã sequence động đã tồn tại.",
+      "referenced": "Không thể xóa sequence này. Nó đã được tham chiếu bởi một loại hoạt động."
+    },
+    "uomCategory":{
+      "nameExist":"Tên danh mục UOM đã tồn tại."
+    },
+    "locaion": {
+      "delete": "Không thể xóa Location này!"
+    },
+    "transfer": {
+      "canNotDeleteDoneTransfer":"Can not delete done transfer."
+    }
+  }
+}
