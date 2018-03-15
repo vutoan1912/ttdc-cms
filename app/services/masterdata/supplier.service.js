@@ -9,7 +9,6 @@
 
     function Supplier ($http) {
         var service = {
-            current : current,
             getAll: getAll,
             getPage: getPage,
             getOneModel: getOneModel,
@@ -21,12 +20,6 @@
         };
 
         return service;
-
-        function current() {
-            return $http.get('/api/users/current').then(function(response) {
-                return response.data;
-            });
-        }
 
         function getAll() {
             return $http.get('/api/companies').then(function(response) {

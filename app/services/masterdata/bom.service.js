@@ -10,7 +10,6 @@
     function BomService ($http,$scope,TableCommon) {
         var service = {
             init: init,
-            current : current,
             getAll: getAll,
             getPage: getPage,
             getOneMv: getOneMv,
@@ -43,12 +42,6 @@
                 OldPN: "bom.field.OldPN",
                 Note: "bom.field.Note"
             }
-        }
-
-        function current() {
-            return $http.get('/api/users/current').then(function(response) {
-                return response.data;
-            });
         }
 
         function getAll() {

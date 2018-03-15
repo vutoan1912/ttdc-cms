@@ -25,7 +25,7 @@
                     }]
                 }
             })
-            .state('home',{
+            /*.state('home',{
                 parent: 'masterdata',
                 url: '/',
                 templateUrl: 'app/masterdata/product/product.html',
@@ -49,7 +49,7 @@
                         ]);
                     }]
                 }
-            })
+            })*/
             .state('products',{
                 parent: 'masterdata',
                 url: '/products',

@@ -64,14 +64,15 @@
             AuthServerProvider.login(credentials)
                 .then(loginThen)
                 .catch(function (err) {
+                    console.log(err)
                     this.logout();
                     deferred.reject(err);
                     return cb(err);
                 }.bind(this));
 
             function loginThen (data) {
+                //console.log(data)
                 Principal.identity(true).then(function(account) {
-
                     deferred.resolve(data);
                 });
                 return cb();

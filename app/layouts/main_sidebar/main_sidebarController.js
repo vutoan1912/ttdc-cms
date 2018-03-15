@@ -103,7 +103,7 @@ angular
                     }
                 ],
                 'inventory': [
-                    {
+                    /*{
                         id: 0,
                         title: 'masterdata.common.Masterdata',
                         icon: '&#xE84F;',
@@ -136,24 +136,61 @@ angular
                                 link:'lots'
                             }
                         ]
-                    },
+                    },*/
                     {
-                        id: 2,
-                        title: 'masterdata.common.operations',
+                        id: 0,
+                        title: 'Customer care',
                         icon: '&#xE8D6;',
                         submenu: [
                             {
-                                title: 'masterdata.common.transfers',
-                                link: 'transfers'
+                                title: 'Lịch sử tương tác',
+                                link: 'cskh'
+                            },
+                            {
+                                title: 'Tra cứu trúng thưởng',
+                                link: 'prize'
+                            }
+                            ,
+                            {
+                                title: 'Tra cứu đăng ký / hủy',
+                                link: ''
+                            },
+                            {
+                                title: 'Tra cứu MO/MT',
+                                link: ''
+                            },
+                            {
+                                title: 'Tra cứu trừ cước',
+                                link: ''
+                            },
+                            {
+                                title: 'Tra cứu thông tin thuê bao',
+                                link: ''
                             }
 
                         ]
                     },
                     {
                         id: 1,
-                        title: 'masterdata.common.configuration',
-                        icon: '&#xE8B8;',
+                        title: 'Reporting',
+                        icon: '&#xE85D;',
                         submenu: [
+                            {
+                                title: 'Báo cáo doanh thu',
+                                link: ''
+                            },
+                            {
+                                title: 'Thống kê sản lượng',
+                                link: ''
+                            }
+
+                        ]
+                    },
+                    {
+                        id: 2,
+                        title: 'masterdata.common.configuration',
+                        icon: '&#xE8B8;'
+                        /*submenu: [
                             {
                                 title: 'masterdata.common.wm',
                                 submenu:[
@@ -184,23 +221,7 @@ angular
                                 link: 'uoms'
                             }
 
-                        ]
-                    },
-                    {
-                        id: 2,
-                        title: 'masterdata.common.reporting',
-                        icon: '&#xE85D;',
-                        submenu: [
-                            {
-                                title: 'inventory.reporting.inventory-report.title',
-                                link: 'inventory-report'
-                            },
-                            {
-                                title: 'masterdata.common.productmove',
-                                link: 'product-move'
-                            }
-
-                        ]
+                        ]*/
                     }
                 ]
             };

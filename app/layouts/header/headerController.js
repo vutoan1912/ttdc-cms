@@ -10,7 +10,7 @@ angular
         function ($timeout,$scope,$window,$state,Auth,$rootScope) {
             $scope.moduleTitle = {
                 "admin": "Administration",
-                "inventory":"Inventory"
+                "inventory":"Main Board"
             }
             $scope.module = $scope.moduleTitle[$rootScope.toState.data.sideBarMenu]
             $rootScope.$on('$stateChangeSuccess', function () {

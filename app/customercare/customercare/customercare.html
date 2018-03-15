@@ -1,0 +1,165 @@
+<!-- main sidebar -->
+<style>
+    body { height: 1000px; }
+    thead{
+        background-color:white;
+    }
+</style>
+<div ui-view>
+<div id="page_content">
+    <div id="page_heading" data-uk-sticky="{ top: 48, media: 960 }">
+        <div class="heading_actions action-padding-top">
+
+        </div>
+
+        <a class="uk-text-large">Home</a>
+        <span> / </span><a class="uk-text-large">Customer care</a>
+        <span class="uk-text-large"> / Lịch sử tương tác</span>
+        </br>
+
+        <!--<div class="btn-custom-action-group">-->
+            <!--<a ui-sref="javascript:void(0)" class="md-btn md-btn-primary md-btn-small" style="cursor:  no-drop;"><span class="uk-text-bold">{{button.create| translate}}</span></a>-->
+            <!--<button id="deleteBtn" class="md-btn md-btn-small hideElement" style="cursor:  no-drop;"><span class="uk-text-bold">{{button.delete| translate}}</span></button>-->
+        <!--</div>-->
+    </div>
+
+    <div id="page_content_inner">
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="uk-overflow-container uk-margin-bottom" id="table-container">
+                    <div class="uk-width-1-1">
+                        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1'}">
+                            <li ng-click="clickTab(1)"><a href="#">Chơi</a></li>
+                            <li ng-click="clickTab(2)"><a href="#">Lật bài</a></li>
+                            <li ng-click="clickTab(3)"><a href="#">Lấy hướng dẫn</a></li>
+                            <li ng-click="clickTab(4)"><a href="#">Đổi kim cương</a></li>
+                            <li ng-click="clickTab(5)"><a href="#">Đổi câu hỏi</a></li>
+                        </ul>
+                        <ul id="tabs_1" class="uk-switcher uk-margin">
+                            <li ng-click="clickTab(1)">
+                                <div ng-include src="'app/customercare/customercare/answer.html'" ng-controller="AnswerController"></div>
+                            </li>
+                            <li ng-click="clickTab(2)">
+                                <div ng-include src="'app/customercare/customercare/flip.html'" ng-controller="FlipController"></div>
+                            </li>
+                            <li ng-click="clickTab(3)">
+                                <div ng-include src="'app/customercare/customercare/suggest.html'" ng-controller="SuggestController"></div>
+                            </li>
+                            <li ng-click="clickTab(4)">
+                                <div ng-include src="'app/customercare/customercare/convert.html'" ng-controller="ConvertController"></div>
+                            </li>
+                            <li ng-click="clickTab(5)">
+                                <div ng-include src="'app/customercare/customercare/change.html'" ng-controller="ChangeController"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ts_pager" id="table_rd_bom_pager" ng-show="checkShow == 1">
+                    <ul class="uk-pagination ts_pager">
+                        <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                            <input ng-change="selectPageHandle('table_rd_bom')" id="rd_selectize_page" type="text"
+                                   config="TABLES['table_rd_bom'].selectize_page_config" options="TABLES['table_rd_bom'].selectize_page_options"
+                                   ng-model="TABLES['table_rd_bom'].selectize_page" name="TABLES['table_rd_bom'].selectize_page" selectize>
+                        </li>
+                        <li><a href="javascript:void(0)" class="firstPage" ng-click="handleFirstPage('table_rd_bom')"><i class="uk-icon-angle-double-left"></i></a></li>
+                        <li><a href="javascript:void(0)" class="prevPage" ng-click="handlePreviousPage('table_rd_bom')"><i class="uk-icon-angle-left"></i></a></li>
+                        <li><span class="pageDisplay">1-20/50</span></li>
+                        <li><a href="javascript:void(0)" class="nextPage" ng-click="handleNextPage('table_rd_bom')"><i class="uk-icon-angle-right"></i></a></li>
+                        <li><a href="javascript:void(0)" class="lastPage"ng-click="handleLastPage('table_rd_bom')"><i class="uk-icon-angle-double-right"></i></a></li>
+                        <li data-uk-tooltip title="{{pageSize}}">
+                            <input ng-change="selectPageNumHandle('table_rd_bom')" id="rd_selectize_pageNum" type="text"
+                                   config="TABLES['table_rd_bom'].selectize_pageNum_config" options="TABLES['table_rd_bom'].selectize_pageNum_options"
+                                   ng-model="TABLES['table_rd_bom'].selectize_pageNum" name="TABLES['table_rd_bom'].selectize_pageNum" selectize>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ts_pager" id="table_man_bom_pager" ng-show="checkShow == 2">
+                    <ul class="uk-pagination ts_pager">
+                        <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                            <input ng-change="selectPageHandle('table_man_bom')" id="man_selectize_page" type="text"
+                                   config="TABLES['table_man_bom'].selectize_page_config" options="TABLES['table_man_bom'].selectize_page_options"
+                                   ng-model="TABLES['table_man_bom'].selectize_page" name="TABLES['table_man_bom'].selectize_page" selectize>
+                        </li>
+                        <li><a href="javascript:void(0)" class="firstPage" ng-click="handleFirstPage('table_man_bom')"><i class="uk-icon-angle-double-left"></i></a></li>
+                        <li><a href="javascript:void(0)" class="prevPage" ng-click="handlePreviousPage('table_man_bom')"><i class="uk-icon-angle-left"></i></a></li>
+                        <li><span class="pageDisplay">1-20/50</span></li>
+                        <li><a href="javascript:void(0)" class="nextPage" ng-click="handleNextPage('table_man_bom')"><i class="uk-icon-angle-right"></i></a></li>
+                        <li><a href="javascript:void(0)" class="lastPage"ng-click="handleLastPage('table_man_bom')"><i class="uk-icon-angle-double-right"></i></a></li>
+                        <li data-uk-tooltip title="{{pageSize}}">
+                            <input ng-change="selectPageNumHandle('table_man_bom')" id="man_selectize_pageNum" type="text"
+                                   config="TABLES['table_man_bom'].selectize_pageNum_config" options="TABLES['table_man_bom'].selectize_pageNum_options"
+                                   ng-model="TABLES['table_man_bom'].selectize_pageNum" name="TABLES['table_man_bom'].selectize_pageNum" selectize>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ts_pager" id="table_suggest_pager" ng-show="checkShow == 3">
+                    <ul class="uk-pagination ts_pager">
+                        <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                            <input ng-change="selectPageHandle('table_suggest')" id="suggest_selectize_page" type="text"
+                                   config="TABLES['table_suggest'].selectize_page_config" options="TABLES['table_suggest'].selectize_page_options"
+                                   ng-model="TABLES['table_suggest'].selectize_page" name="TABLES['table_suggest'].selectize_page" selectize>
+                        </li>
+                        <li><a href="javascript:void(0)" class="firstPage" ng-click="handleFirstPage('table_suggest')"><i class="uk-icon-angle-double-left"></i></a></li>
+                        <li><a href="javascript:void(0)" class="prevPage" ng-click="handlePreviousPage('table_suggest')"><i class="uk-icon-angle-left"></i></a></li>
+                        <li><span class="pageDisplay">1-20/50</span></li>
+                        <li><a href="javascript:void(0)" class="nextPage" ng-click="handleNextPage('table_suggest')"><i class="uk-icon-angle-right"></i></a></li>
+                        <li><a href="javascript:void(0)" class="lastPage"ng-click="handleLastPage('table_suggest')"><i class="uk-icon-angle-double-right"></i></a></li>
+                        <li data-uk-tooltip title="{{pageSize}}">
+                            <input ng-change="selectPageNumHandle('table_suggest')" id="suggest_selectize_pageNum" type="text"
+                                   config="TABLES['table_suggest'].selectize_pageNum_config" options="TABLES['table_suggest'].selectize_pageNum_options"
+                                   ng-model="TABLES['table_suggest'].selectize_pageNum" name="TABLES['table_suggest'].selectize_pageNum" selectize>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ts_pager" id="table_convert_pager" ng-show="checkShow == 4">
+                    <ul class="uk-pagination ts_pager">
+                        <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                            <input ng-change="selectPageHandle('table_convert')" id="convert_selectize_page" type="text"
+                                   config="TABLES['table_convert'].selectize_page_config" options="TABLES['table_convert'].selectize_page_options"
+                                   ng-model="TABLES['table_convert'].selectize_page" name="TABLES['table_convert'].selectize_page" selectize>
+                        </li>
+                        <li><a href="javascript:void(0)" class="firstPage" ng-click="handleFirstPage('table_convert')"><i class="uk-icon-angle-double-left"></i></a></li>
+                        <li><a href="javascript:void(0)" class="prevPage" ng-click="handlePreviousPage('table_convert')"><i class="uk-icon-angle-left"></i></a></li>
+                        <li><span class="pageDisplay">1-20/50</span></li>
+                        <li><a href="javascript:void(0)" class="nextPage" ng-click="handleNextPage('table_convert')"><i class="uk-icon-angle-right"></i></a></li>
+                        <li><a href="javascript:void(0)" class="lastPage"ng-click="handleLastPage('table_convert')"><i class="uk-icon-angle-double-right"></i></a></li>
+                        <li data-uk-tooltip title="{{pageSize}}">
+                            <input ng-change="selectPageNumHandle('table_convert')" id="convert_selectize_pageNum" type="text"
+                                   config="TABLES['table_convert'].selectize_pageNum_config" options="TABLES['table_convert'].selectize_pageNum_options"
+                                   ng-model="TABLES['table_convert'].selectize_pageNum" name="TABLES['table_convert'].selectize_pageNum" selectize>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ts_pager" id="table_change_pager" ng-show="checkShow == 5">
+                    <ul class="uk-pagination ts_pager">
+                        <li ng-click="selectPageClickHandle()" data-uk-tooltip title="{{selectPage}}">
+                            <input ng-change="selectPageHandle('table_change')" id="change_selectize_page" type="text"
+                                   config="TABLES['table_change'].selectize_page_config" options="TABLES['table_change'].selectize_page_options"
+                                   ng-model="TABLES['table_change'].selectize_page" name="TABLES['table_change'].selectize_page" selectize>
+                        </li>
+                        <li><a href="javascript:void(0)" class="firstPage" ng-click="handleFirstPage('table_change')"><i class="uk-icon-angle-double-left"></i></a></li>
+                        <li><a href="javascript:void(0)" class="prevPage" ng-click="handlePreviousPage('table_change')"><i class="uk-icon-angle-left"></i></a></li>
+                        <li><span class="pageDisplay">1-20/50</span></li>
+                        <li><a href="javascript:void(0)" class="nextPage" ng-click="handleNextPage('table_change')"><i class="uk-icon-angle-right"></i></a></li>
+                        <li><a href="javascript:void(0)" class="lastPage"ng-click="handleLastPage('table_change')"><i class="uk-icon-angle-double-right"></i></a></li>
+                        <li data-uk-tooltip title="{{pageSize}}">
+                            <input ng-change="selectPageNumHandle('table_change')" id="change_selectize_pageNum" type="text"
+                                   config="TABLES['table_change'].selectize_pageNum_config" options="TABLES['table_change'].selectize_pageNum_options"
+                                   ng-model="TABLES['table_change'].selectize_pageNum" name="TABLES['table_change'].selectize_pageNum" selectize>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>

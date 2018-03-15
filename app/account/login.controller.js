@@ -28,7 +28,7 @@
             }).then(function () {
                 vm.authenticationError = false;
 
-                $state.go('products');
+                $state.go('cskh');
 
                 // previousState was set in the authExpiredInterceptor before being redirected to login modal.
                 // since login is successful, go to stored previousState and clear previousState

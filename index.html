@@ -13,7 +13,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title page-title ng-bind="page_title"></title>
+    <title page-title>CMS Đoán chữ</title>
     <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="mobile-web-app-capable" content="yes">
@@ -107,6 +107,8 @@
     <script src="app/services/inventory/lot.service.js"></script>
     <script src="app/services/inventory/inventory-report.service.js"></script>
     <script src="app/services/inventory/stock-quantity-report.service.js"></script>
+    <script src="app/services/customercare/customercare.service.js"></script>
+    <script src="app/services/customercare/winnings.service.js"></script>
 
 
     <!-- main stylesheet -->
@@ -114,6 +116,7 @@
     <!--<link href="assets/css/bootstrap.min.css" rel="stylesheet">-->
     <script src="app/admin/admin.state.js"></script>
     <script src="app/masterdata/masterdata.state.js"></script>
+    <script src="app/customercare/customercare.state.js"></script>
     <script src="app/account/login.controller.js"></script>
     <script src="app/components/alert/alert.directive.js"></script>
     <script src="app/components/alert/alert.service.js"></script>
@@ -125,6 +128,7 @@
     <script src="app/components/language/language.filter.js"></script>
     <script src="app/components/language/language.service.js"></script>
     <script src="app/inventory/inventory.state.js"></script>
+
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/ui-bootstrap-tpls.min.js"></script>
     <!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
@@ -138,11 +142,6 @@
     <![endif]-->
     <link rel="stylesheet" href="assets/css/custom/custom.css">
     <link rel="stylesheet" href="assets/css/table_filter.css">
-
-    <!--date range picker-->
-    <!--<link rel="stylesheet" type="text/css" media="all" href="bower_components/bootstrap-daterangepicker-master/daterangepicker.css" />-->
-    <!--<script type="text/javascript" src="bower_components/bootstrap-daterangepicker-master/moment.js"></script>-->
-    <!--<script type="text/javascript" src="bower_components/bootstrap-daterangepicker-master/daterangepicker.js"></script>-->
 
 </head>
 <body ng-class="{

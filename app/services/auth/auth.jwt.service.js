@@ -5,9 +5,9 @@
         .module('erpApp')
         .factory('AuthServerProvider', AuthServerProvider);
 
-    AuthServerProvider.$inject = ['$http', '$localStorage', '$sessionStorage', '$q'];
+    AuthServerProvider.$inject = ['$http', '$localStorage', '$sessionStorage', '$q', 'API_URL'];
 
-    function AuthServerProvider ($http, $localStorage, $sessionStorage, $q) {
+    function AuthServerProvider ($http, $localStorage, $sessionStorage, $q, API_URL) {
         var service = {
             getToken: getToken,
             login: login,
@@ -29,15 +29,13 @@
                 'password': credentials.password,
                 'rememberMe': credentials.rememberMe
             };
-            return $http.post('/api/auth/token',data).then(authenticateSuccess);
+            return $http.post(API_URL + '/api/auth/token',data).then(authenticateSuccess);
 
             function authenticateSuccess (response) {
-                var bearerToken = response.headers('Authorization');
-                if (angular.isDefined(bearerToken) && bearerToken.slice(0, 7) === 'Bearer ') {
-                    var jwt = bearerToken.slice(7, bearerToken.length);
-                    service.storeAuthenticationToken(jwt, credentials.rememberMe);
-                    return jwt;
-                }
+                console.log(response.data.id_token)
+                var jwt = response.data.id_token;
+                service.storeAuthenticationToken(jwt, credentials.rememberMe);
+                return jwt;
             }
         }
 

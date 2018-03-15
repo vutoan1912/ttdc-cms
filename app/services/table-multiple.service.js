@@ -269,13 +269,16 @@
                     $scope.checkSelectAllBtn(false, table_id);
                     $scope.showDeleteBtn(false);
                     var model = $scope.TABLES[table_id].model;
-                    $scope[model] = data.data;
+                    $scope[model] = data.data.data;
                     if($scope.TABLES[table_id].handleAfterReload != null) {
-                        $scope.TABLES[table_id].handleAfterReload(data.data, $scope.TABLES[table_id].handleAfterReloadParams);
+                        $scope.TABLES[table_id].handleAfterReload(data.data.data, $scope.TABLES[table_id].handleAfterReloadParams);
                     }
 
                     if(!angular.isDefined($scope.TABLES[table_id].noPagination) || $scope.TABLES[table_id].noPagination == false){
-                        $scope.TABLES[table_id].param_total_result = data.headers()["x-total-count"];
+
+                        //$scope.TABLES[table_id].param_total_result = data.headers()["x-total-count"];
+                        $scope.TABLES[table_id].param_total_result = data.data.total;
+
                         if($scope.TABLES[table_id].param_total_result == 0){
                             if (!angular.element('#noResult'+$scope.TABLES[table_id].idTable).length) {
                                 $scope.showNoResult = $translate.instant('common-ui-element.messages.noResult');
@@ -323,13 +326,13 @@
 
             $scope.customReloadPage = function (table_id, callback) {
                 $scope.TABLES[table_id].loadFunction($scope.TABLES[table_id].customParams).then(function (data) {
-                    if (data.data.length == 0) {return}
+                    if (data.data.data.length == 0) {return}
                     $scope.TABLES[table_id].param_check_list = [];
                     $scope.checkSelectAllBtn(false, table_id);
                     $scope.showDeleteBtn(false);
                     var model = $scope.TABLES[table_id].model;
-                    $scope[model] = data.data;
-                    $scope.TABLES[table_id].param_total_result = data.headers()["x-total-count"];
+                    $scope[model] = data.data.data;
+                    $scope.TABLES[table_id].param_total_result = data.data.total;
                     if($scope.TABLES[table_id].param_total_result == 0){
                         if (!angular.element('#noResult'+$scope.TABLES[table_id].idTable).length) {
                             $scope.showNoResult = $translate.instant('common-ui-element.messages.noResult');

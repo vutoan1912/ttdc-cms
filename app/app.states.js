@@ -6,7 +6,7 @@ erpApp
         function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
             $locationProvider.hashPrefix('');
-            $urlRouterProvider.when('/products','/')
+            $urlRouterProvider.when('/cskh','/')
                 .otherwise("/");
             $stateProvider
             // -- ERROR PAGES --
