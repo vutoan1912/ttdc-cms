@@ -26,7 +26,7 @@
 
             function authThen () {
                 var isAuthenticated = Principal.isAuthenticated();
-                console.log(isAuthenticated);
+                //console.log(isAuthenticated);
                 // an authenticated user can't access to login and register pages
                 if (isAuthenticated && ($rootScope.toState.name === 'login')) {
                     $state.go('users');

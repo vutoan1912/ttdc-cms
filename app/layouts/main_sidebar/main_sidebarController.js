@@ -153,19 +153,19 @@ angular
                             ,
                             {
                                 title: 'Tra cứu đăng ký / hủy',
-                                link: ''
+                                link: 'register'
                             },
                             {
                                 title: 'Tra cứu MO/MT',
-                                link: ''
+                                link: 'momt'
                             },
                             {
                                 title: 'Tra cứu trừ cước',
-                                link: ''
+                                link: 'charge'
                             },
                             {
                                 title: 'Tra cứu thông tin thuê bao',
-                                link: ''
+                                link: 'sub'
                             }
 
                         ]
@@ -176,7 +176,31 @@ angular
                         icon: '&#xE85D;',
                         submenu: [
                             {
-                                title: 'Báo cáo doanh thu',
+                                title: 'Doanh thu ngày',
+                                link: ''
+                            },
+                            {
+                                title: 'Doanh thu tuần',
+                                link: ''
+                            },
+                            {
+                                title: 'Doanh thu tháng',
+                                link: ''
+                            },
+                            {
+                                title: 'Doanh thu năm',
+                                link: ''
+                            },
+                            {
+                                title: 'Doanh thu quý',
+                                link: ''
+                            },
+                            {
+                                title: 'Doanh thu gia hạn',
+                                link: ''
+                            },
+                            {
+                                title: 'Doanh thu đăng ký',
                                 link: ''
                             },
                             {

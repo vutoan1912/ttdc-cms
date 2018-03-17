@@ -100,6 +100,101 @@
                     }]
                 }
             })
-
+            .state('register',{
+                parent: 'customercare',
+                url: "/register",
+                templateUrl: 'app/customercare/register/register.html',
+                controller: 'RegisterController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Tra cứu đăng ký / hủy',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/customercare/register/register.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('momt',{
+                parent: 'customercare',
+                url: "/momt",
+                templateUrl: 'app/customercare/momt/momt.html',
+                controller: 'MOMTController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Tra cứu MO/MT',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/customercare/momt/momt.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('charge',{
+                parent: 'customercare',
+                url: "/charge",
+                templateUrl: 'app/customercare/charge/charge.html',
+                controller: 'ChargeController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Tra cứu trừ cước',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/customercare/charge/charge.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('sub',{
+                parent: 'customercare',
+                url: "/sub",
+                templateUrl: 'app/customercare/sub/sub.html',
+                controller: 'SubController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Tra cứu thông tin thuê bao',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/customercare/sub/sub.controller.js'
+                        ]);
+                    }]
+                }
+            })
     }
 })();

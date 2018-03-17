@@ -29,7 +29,7 @@
             // });
 
             var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
-            console.log(token);
+            //console.log(token);
 
             var req = {
                 method: 'GET',
@@ -41,7 +41,7 @@
             }
 
             return $http(req).then(function(response){
-                console.log(response);
+                //console.log(response);
                 return response.data;
             }, function(error){
                 //console.log(error)
