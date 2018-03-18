@@ -177,19 +177,19 @@ angular
                         submenu: [
                             {
                                 title: 'Doanh thu ngày',
-                                link: ''
+                                link: 'revenue-day'
                             },
                             {
                                 title: 'Doanh thu tuần',
-                                link: ''
+                                link: 'revenue-week'
                             },
                             {
                                 title: 'Doanh thu tháng',
-                                link: ''
+                                link: 'revenue-month'
                             },
                             {
                                 title: 'Doanh thu năm',
-                                link: ''
+                                link: 'revenue-year'
                             },
                             {
                                 title: 'Doanh thu quý',
@@ -207,7 +207,6 @@ angular
                                 title: 'Thống kê sản lượng',
                                 link: ''
                             }
-
                         ]
                     },
                     {

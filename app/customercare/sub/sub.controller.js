@@ -19,7 +19,7 @@ angular
 
         $scope.list_op_item = [];
 
-        $scope.myColumnsRd =  ["Số điện thoại", "Gói dịch vụ", "Kênh", "Thời gian đăng ký", "Thời gian hủy"];
+        $scope.myColumnsRd =  ["Số điện thoại", "Gói dịch vụ", "Kênh", "Thời gian đăng ký", "Thời gian sử dụng đến ngày"];
         var fieldsRd =        ["msisdn", "cmd_code", "channel", "reg_time", "end_time"];
         var fieldsTypeRd =    ["Text",   "Text",     "Text",    "DateTime", "DateTime"];
         $scope.fieldsValue =  [null,      null,       null,      null,        null];
