@@ -193,19 +193,27 @@ angular
                             },
                             {
                                 title: 'Doanh thu quý',
-                                link: ''
+                                link: 'revenue-quarter'
                             },
                             {
                                 title: 'Doanh thu gia hạn',
-                                link: ''
+                                link: 'revenue-renewal'
                             },
                             {
                                 title: 'Doanh thu đăng ký',
-                                link: ''
+                                link: 'revenue-register'
                             },
                             {
-                                title: 'Thống kê sản lượng',
-                                link: ''
+                                title: 'Sản lượng theo ngày',
+                                link: 'output-day'
+                            },
+                            {
+                                title: 'Sản lượng theo tháng',
+                                link: 'output-month'
+                            },
+                            {
+                                title: 'Sản lượng theo thuê bao',
+                                link: 'output-sub'
                             }
                         ]
                     },

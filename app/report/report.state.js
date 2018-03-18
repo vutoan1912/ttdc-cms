@@ -121,5 +121,149 @@
                     }]
                 }
             })
+            .state('revenue-quarter',{
+                parent: 'report',
+                url: "/revenue-quarter",
+                templateUrl: 'app/report/revenuequarter/revenuequarter.html',
+                controller: 'RevenueQuarterController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu quý',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenuequarter/revenuequarter.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('revenue-renewal',{
+                parent: 'report',
+                url: "/revenue-renewal",
+                templateUrl: 'app/report/revenuerenewal/revenuerenewal.html',
+                controller: 'RevenueRenewalController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu gia hạn',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenuerenewal/revenuerenewal.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('revenue-register',{
+                parent: 'report',
+                url: "/revenue-register",
+                templateUrl: 'app/report/revenueregister/revenueregister.html',
+                controller: 'RevenueRegisterController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu đăng ký',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenueregister/revenueregister.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('output-day',{
+                parent: 'report',
+                url: "/output-day",
+                templateUrl: 'app/report/outputday/outputday.html',
+                controller: 'OutputDayController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê sản lượng theo ngày',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/outputday/outputday.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('output-month',{
+                parent: 'report',
+                url: "/output-month",
+                templateUrl: 'app/report/outputmonth/outputmonth.html',
+                controller: 'OutputMonthController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê sản lượng theo tháng',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/outputmonth/outputmonth.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('output-sub',{
+                parent: 'report',
+                url: "/output-sub",
+                templateUrl: 'app/report/outputsub/outputsub.html',
+                controller: 'OutputSubController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê sản lượng theo thuê bao',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/outputsub/outputsub.controller.js'
+                        ]);
+                    }]
+                }
+            })
     }
 })();

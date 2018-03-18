@@ -15,7 +15,10 @@
             getRevenueYear: getRevenueYear,
             getRevenueQuarter: getRevenueQuarter,
             getRevenueRegister: getRevenueRegister,
-            getRevenueRenewal: getRevenueRenewal
+            getRevenueRenewal: getRevenueRenewal,
+            getOutputDay:getOutputDay,
+            getOutputMonth:getOutputMonth,
+            getOutputSub:getOutputSub
         };
 
         return service;
@@ -65,5 +68,16 @@
         function getRevenueRenewal(params) {
             return 1;
         }
+
+        function getOutputDay(params) {
+            return 1;
+        }
+        function getOutputMonth(params) {
+            return 1;
+        }
+        function getOutputSub(params) {
+            return 1;
+        }
+
     }
 })();
