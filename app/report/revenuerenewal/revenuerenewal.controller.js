@@ -90,9 +90,7 @@ angular
 
             return $http(req).then(function(response){
                 console.log(response)
-                $scope.fieldsValue[0] = response.data[fieldsRd[0]];
-                $scope.fieldsValue[1] = response.data[fieldsRd[1]];
-                $scope.fieldsValue[2] = response.data[fieldsRd[2]];
+                $scope.list_op_item = response.data;
                 //return response;
             }, function(error){
                 console.log(error)

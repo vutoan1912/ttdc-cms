@@ -19,9 +19,9 @@ angular
 
         $scope.list_op_item = [];
 
-        $scope.myColumnsRd =  ["Số điện thoại", "Gói dịch vụ", "Kênh", "Thời gian đăng ký", "Thời gian sử dụng đến ngày"];
-        var fieldsRd =        ["msisdn", "cmd_code", "channel", "reg_time", "end_time"];
-        var fieldsTypeRd =    ["Text",   "Text",     "Text",    "DateTime", "DateTime"];
+        $scope.myColumnsRd =  ["Số điện thoại", "Gói dịch vụ", "Kênh", "Thời gian đăng ký", "Thời gian sử dụng đến ngày","Trạng thái"];
+        var fieldsRd =        ["msisdn", "cmd_code", "channel", "reg_time", "end_time","status"];
+        var fieldsTypeRd =    ["Text",   "Text",     "Text",    "DateTime", "DateTime","Text"];
         $scope.fieldsValue =  [null,      null,       null,      null,        null];
 
         $scope.myColumnsShowRd = [];
@@ -49,6 +49,7 @@ angular
                 $scope.fieldsValue[2] = response.data[fieldsRd[2]];
                 $scope.fieldsValue[3] = response.data[fieldsRd[3]];
                 $scope.fieldsValue[4] = response.data[fieldsRd[4]];
+                $scope.fieldsValue[5] = response.data[fieldsRd[5]];
                 //return response;
             }, function(error){
                 console.log(error)
