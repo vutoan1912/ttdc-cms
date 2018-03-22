@@ -3,8 +3,8 @@
     angular.module('erpApp')
         .controller('UserHomeController',UserHomeController);
 
-    UserHomeController.$inject = ['$rootScope','$scope','$state','User', 'Role', 'AlertService','$translate','variables', 'TableMultiple', 'TranslateCommonUI','ErrorHandle', '$window'];
-    function UserHomeController($rootScope,$scope, $state, User, Role, AlertService,$translate, variables, TableMultiple, TranslateCommonUI, ErrorHandle, $window) {
+    UserHomeController.$inject = ['$rootScope','$scope','$state','User', 'Role', 'AlertService','$translate','variables', 'TableMultipleOrigin', 'TranslateCommonUI','ErrorHandle', '$window'];
+    function UserHomeController($rootScope,$scope, $state, User, Role, AlertService,$translate, variables, TableMultipleOrigin, TranslateCommonUI, ErrorHandle, $window) {
         var vm = this;
 
         TranslateCommonUI.init($scope);
@@ -63,9 +63,9 @@
             selectize_pageNum_id: "user_selectize_pageNum"
         }
 
-        TableMultiple.initTableIds($scope, newTableIds);
-        TableMultiple.sortDefault(newTableIds.idTable);
-        TableMultiple.reloadPage(newTableIds.idTable);
+        TableMultipleOrigin.initTableIds($scope, newTableIds);
+        TableMultipleOrigin.sortDefault(newTableIds.idTable);
+        TableMultipleOrigin.reloadPage(newTableIds.idTable);
 
         $scope.columnsName = {
             Email: "admin.user.column.Email",
@@ -98,7 +98,7 @@
         // Handle Delete Rows
         $scope.handleDeleteRows = function () {
             UIkit.modal.confirm($translate.instant("common-ui-element.actionConfirm.Delete"), function () {
-                var ids = TableMultiple.getSelectedRowIDs('table_user');
+                var ids = TableMultipleOrigin.getSelectedRowIDs('table_user');
                 User.deleteMany(ids)
                     .then(function(data){
                         if (data.length > 0) {
@@ -107,7 +107,7 @@
                             AlertService.error(erMsg)
                         } else {
                             AlertService.success('success.msg.delete');
-                            TableMultiple.reloadPage(newTableIds.idTable);
+                            TableMultipleOrigin.reloadPage(newTableIds.idTable);
                         }
                     })
                     .catch(function(data){
@@ -125,7 +125,7 @@
             if ($scope.TABLES[newTableIds.idTable].param_check_list.length > 0){
                 User.activate($scope.TABLES[newTableIds.idTable].param_check_list).then(function () {
                     AlertService.success('success.msg.active')
-                    TableMultiple.reloadPage(newTableIds.idTable);
+                    TableMultipleOrigin.reloadPage(newTableIds.idTable);
                 }).catch(function(data){
                     ErrorHandle.handleError(data);
                 })
@@ -137,7 +137,7 @@
             if ($scope.TABLES[newTableIds.idTable].param_check_list.length > 0){
                 User.deactivate($scope.TABLES[newTableIds.idTable].param_check_list).then(function () {
                     AlertService.success('success.msg.inactive')
-                    TableMultiple.reloadPage(newTableIds.idTable);
+                    TableMultipleOrigin.reloadPage(newTableIds.idTable);
                 }).catch(function(data){
                     ErrorHandle.handleError(data);
                 })

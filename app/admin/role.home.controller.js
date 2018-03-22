@@ -3,9 +3,9 @@
     angular.module('erpApp')
         .controller('RoleHomeController', RoleHomeController);
 
-    RoleHomeController.$inject = ['$rootScope', '$scope', '$state', 'Role', 'Privilege', 'AlertService', '$translate', 'variables', '$timeout', 'TableMultiple', 'TranslateCommonUI', 'ErrorHandle','$window'];
+    RoleHomeController.$inject = ['$rootScope', '$scope', '$state', 'Role', 'Privilege', 'AlertService', '$translate', 'variables', '$timeout', 'TableMultipleOrigin', 'TranslateCommonUI', 'ErrorHandle','$window'];
 
-    function RoleHomeController($rootScope, $scope, $state, Role, Privilege, AlertService, $translate, variables, $timeout, TableMultiple, TranslateCommonUI, ErrorHandle, $window) {
+    function RoleHomeController($rootScope, $scope, $state, Role, Privilege, AlertService, $translate, variables, $timeout, TableMultipleOrigin, TranslateCommonUI, ErrorHandle, $window) {
         var vm = this;
 
         TranslateCommonUI.init($scope);
@@ -102,9 +102,9 @@
             selectize_pageNum_id: "role_selectize_pageNum"
         }
 
-        TableMultiple.initTableIds($scope, newTableIds);
-        TableMultiple.sortDefault(newTableIds.idTable);
-        TableMultiple.reloadPage(newTableIds.idTable);
+        TableMultipleOrigin.initTableIds($scope, newTableIds);
+        TableMultipleOrigin.sortDefault(newTableIds.idTable);
+        TableMultipleOrigin.reloadPage(newTableIds.idTable);
 
         $scope.DatetimeRange1 = {
             dateStart: null,
@@ -1012,7 +1012,7 @@
         // Handle Delete Rows
         $scope.handleDeleteRows = function () {
             UIkit.modal.confirm($translate.instant("common-ui-element.actionConfirm.Delete"), function () {
-                var ids = TableMultiple.getSelectedRowIDs('table_role');
+                var ids = TableMultipleOrigin.getSelectedRowIDs('table_role');
                 Role.deleteMany(ids)
                     .then(function(data){
                         if (data.length > 0) {
@@ -1021,7 +1021,7 @@
                             AlertService.error(erMsg)
                         } else {
                             AlertService.success('success.msg.delete');
-                            TableMultiple.reloadPage(newTableIds.idTable);
+                            TableMultipleOrigin.reloadPage(newTableIds.idTable);
                         }
                     })
                     .catch(function(data){
