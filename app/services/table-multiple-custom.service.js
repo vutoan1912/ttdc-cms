@@ -137,15 +137,22 @@
                             query += $scope.TABLES[table_id].param_fields[i] + '>=' + $scope.TABLES[table_id].param_filter_list[i].from + ';' + $scope.TABLES[table_id].param_fields[i] + '<=' + $scope.TABLES[table_id].param_filter_list[i].to + ';';
                         }
                     }
+                    if($scope.TABLES[table_id].param_fields_type[i] =="TextHidden") {
+                        if ($scope.TABLES[table_id].param_filter_list[i] != null && $scope.TABLES[table_id].param_filter_list[i].length != "".length) {
+                            query += $scope.TABLES[table_id].param_fields[i] + '=' + $scope.TABLES[table_id].param_filter_list[i];
+                        }else{
+                            query += $scope.TABLES[table_id].param_fields[i] + "=";
+                        }
+                    }
                 }
                 query += $scope.TABLES[table_id].customParams + $scope.TABLES[table_id].tree_query;
                 if (query.slice(-1) == ';')
                     query = query.substr(0, query.length - 1);
 
-                var params = "page=" + $scope.TABLES[table_id].param_current_page +
+                var params = "&page=" + $scope.TABLES[table_id].param_current_page +
                     "&num=" + $scope.TABLES[table_id].param_page_size;
-                    //+ "&sort=" + $scope.TABLES[table_id].param_sort_field +
-                    //"," + $scope.TABLES[table_id].param_sort_type;
+                    // "&sort=" + $scope.TABLES[table_id].param_sort_field +
+                    // "," + $scope.TABLES[table_id].param_sort_type;
                 // console.log(query+params)
                 if(angular.isDefined($scope.TABLES[table_id].noPagination) && $scope.TABLES[table_id].noPagination == true){
                     return query
@@ -211,7 +218,11 @@
                     $scope.checkSelectAllBtn(false, table_id);
                     $scope.showDeleteBtn(false);
                     var model = $scope.TABLES[table_id].model;
+
                     $scope[model] = data.data.data;
+
+                    //console.log(data.data)
+
                     if($scope.TABLES[table_id].handleAfterReload != null) {
                         $scope.TABLES[table_id].handleAfterReload(data.data.data, $scope.TABLES[table_id].handleAfterReloadParams);
                     }
@@ -226,7 +237,6 @@
                                 $scope.showNoResult = $translate.instant('common-ui-element.messages.noResult');
                                 //$( "#"+$scope.TABLES[table_id].idTable ).after( $( "<div id=\"noResult\" style=\"background: white!important;color: black;\" class=\"uk-alert uk-text-center uk-alert-info\" data-uk-alert><span>"+$scope.showNoResult +"</span></div>") );
                                 $( "#"+$scope.TABLES[table_id].idTable ).after( $( "<div id=\"noResult"+$scope.TABLES[table_id].idTable +"\" style=\"background: white!important;color: black;\" class=\"uk-alert uk-text-center uk-alert-info\" data-uk-alert><span>"+$scope.showNoResult +"</span></div>") );
-
                             }
                         }else{
                             if (angular.element('#noResult'+$scope.TABLES[table_id].idTable).length) {

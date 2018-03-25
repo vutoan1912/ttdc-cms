@@ -220,7 +220,13 @@ angular
                     {
                         id: 2,
                         title: 'masterdata.common.configuration',
-                        icon: '&#xE8B8;'
+                        icon: '&#xE8B8;',
+                        submenu: [
+                            {
+                                title: 'Cấu hình tin nhắn dịch vụ',
+                                link: 'momt-config'
+                            }
+                        ]
                         /*submenu: [
                             {
                                 title: 'masterdata.common.wm',
