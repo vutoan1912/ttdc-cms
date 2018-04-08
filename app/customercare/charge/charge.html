@@ -129,7 +129,7 @@
                                 {{item.action_time | date: 'yyyy-MM-dd HH:mm:ss'}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[4]">
-                                {{item.responseCode}}
+                                {{getResponseCode(item.responseCode)}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[5]">
                                 {{item.action}}

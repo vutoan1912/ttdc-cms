@@ -6,8 +6,10 @@
         .controller('PrizeController',PrizeController)
         .controller('TopupController',TopupController);
 
-    WinningsController.$inject = ['$rootScope','$scope','$state','WinningsService','AlertService','$translate','variables','$http','$stateParams','$window','TableMultiple','Product','apiData','TranslateCommonUI','masterdataService'];
-    function WinningsController($rootScope,$scope, $state, WinningsService, AlertService,$translate, variables,$http,$stateParams,$window,TableMultiple, Product, apiData, TranslateCommonUI, masterdataService) {
+    WinningsController.$inject = ['$rootScope','$scope','$state','WinningsService','AlertService','$translate','variables',
+        '$http','$stateParams','$window','TableMultiple','TranslateCommonUI','$localStorage','$sessionStorage','API_URL'];
+    function WinningsController($rootScope,$scope, $state, WinningsService, AlertService,$translate, variables,
+                                $http,$stateParams,$window,TableMultiple,TranslateCommonUI,$localStorage,$sessionStorage,API_URL) {
 
         //Code
         var fieldsRd = ["msisdn","code" , "created_at"];
@@ -112,8 +114,8 @@
         TableMultiple.reloadPage(newTableIdsMan.idTable);
 
         //Topup
-        var fieldsSuggest = ["msisdn", "content","diamonds" , "created_at"];
-        var fieldsTypeSuggest = ["Text","Text","Number","DateTime"];
+        var fieldsSuggest = ["msisdn", "content","diamonds" , "created_at","status"];
+        var fieldsTypeSuggest = ["Text","Text","Number","DateTime",""];
         var loadFunctionSuggest = WinningsService.getTopup;
 
         var newTableIdsSuggest = {
@@ -177,7 +179,7 @@
             $scope.myColumnsShowMan.push(true);
         }
 
-        $scope.myColumnsSuggest = ["msisdn", "content","diamonds" , "created_at"];
+        $scope.myColumnsSuggest = ["msisdn", "content","diamonds" , "created_at","status"];
         $scope.myColumnsShowSuggest=[];
         for (var i=0; i<$scope.myColumnsSuggest.length;i++){
             $scope.myColumnsShowSuggest.push(true);
@@ -194,6 +196,44 @@
             }else if(num==3){
                 $scope.checkShow = 3;
             }
+        }
+        
+        $scope.export=function () {
+            //alert('export')
+
+            var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
+            //console.log(token);
+
+            var req = {
+                method: 'POST',
+                url: API_URL + '/api/report/topup?query=prizeId=in=(3,4,5,6)',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }
+
+            return $http(req).then(function(response){
+                //console.log(response);
+
+                var req = {
+                    method: 'GET',
+                    url: API_URL + '/api/report/getTopup',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                }
+
+                return $http(req).then(function(response){
+
+                }, function(error){
+                    //console.log(error)
+                    return error;
+                });
+
+            }, function(error){
+                //console.log(error)
+                return error;
+            });
         }
     }
 

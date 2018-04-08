@@ -1,12 +1,12 @@
 angular
     .module('erpApp')
-    .controller('OutputSubController', OutputSubController);
+    .controller('RevenueDayCPController', RevenueDayCPController);
 
-    OutputSubController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$compile',
+    RevenueDayCPController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$compile',
         '$stateParams', '$interval', 'TableMultipleCustom', '$translate', 'TranslateCommonUI', 'ErrorHandle', 'AlertService',
         '$window', 'Principal', 'utils', 'apiData', '$http', 'User', '$q', '$filter','ReportService',
         '$localStorage','$sessionStorage','API_URL'];
-    function OutputSubController(
+    function RevenueDayCPController(
         $scope, $rootScope, $state, $timeout, $compile, $stateParams, $interval, TableMultipleCustom,
         $translate, TranslateCommonUI, ErrorHandle, AlertService, $window, Principal, utils,
         apiData, $http, User, $q,$filter,ReportService,$localStorage,$sessionStorage,API_URL) {
@@ -19,10 +19,10 @@ angular
 
         $scope.list_op_item = [];
 
-        $scope.myColumnsRd = ["Thời gian", "Đăng ký mới", "Đăng ký lại", "Tổng đăng ký", "Hệ thống hủy","Tự hủy","Tổng hủy", "gia hạn","Đăng ký thành công","Đăng ký thất bại","Đăng ký wap","Đăng ký SMS","Đăng ký CMS","Tỷ lệ trừ cước","Tổng thuê bao sub"];
-        var fieldsRd =     ["ngay",     "dk_moi", "dk_lai", "tong_dk", "ht_huy", "tu_huy","tong_huy","gia_han","dk_success","dk_fail","dk_wap","dk_sms","dk_cms","tyle_charge","sub_active"];
-        var fieldsTypeRd = ["DateTime", "Number", "Number", "Number",  "Number", "Number","Number",  "Number" ,"Number",    "Number", "Number","Number","Number","Number","Number"];
-        var loadFunctionRd = ReportService.getOutputSub;
+        $scope.myColumnsRd = ["Gói dịch vụ", "Thời gian", "Doanh thu", "Lũy kế", "Lũy kế cùng kỳ","CP CODE"];
+        var fieldsRd =     ["cmd_code", "ngay",     "dt",     "luyke",  "luyke_cungky", "cp_code"];
+        var fieldsTypeRd = ["Text",     "DateTime", "Number", "Number", "Number",       "TextFilter"];
+        var loadFunctionRd = ReportService.getRevenueDayCP;
 
         var newTableIdsRd = {
             idTable: "table_op_tab",
@@ -87,7 +87,7 @@ angular
 
             var req = {
                 method: 'GET',
-                url: API_URL + '/api/sms/getSanLuongTB?' + query,
+                url: API_URL + '/api/sms/getDoanhthuNgayByCpCode?' + query,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -109,7 +109,7 @@ angular
             for (var i = 0; i < $scope.TABLES[table_id].param_filter_list.length; i++) {
                 if ($scope.TABLES[table_id].param_filter_list[i] != null && $scope.TABLES[table_id].param_filter_list[i].length != "".length) {
                     if ($scope.TABLES[table_id].param_fields_type[i] =="Text") {
-                        query += $scope.TABLES[table_id].param_fields[i] + '=' + $scope.TABLES[table_id].param_filter_list[i] + '&';
+                        query += $scope.TABLES[table_id].param_fields[i] + '=' + $scope.TABLES[table_id].param_filter_list[i];
                     }else if($scope.TABLES[table_id].param_fields_type[i] =="DateTime") {
                         query += $scope.TABLES[table_id].param_filter_list[i];
                     } else if($scope.TABLES[table_id].param_fields_type[i] =="Number"){
@@ -128,6 +128,13 @@ angular
                         query += $scope.TABLES[table_id].param_fields[i] + '>=' + $scope.TABLES[table_id].param_filter_list[i].from + ';' + $scope.TABLES[table_id].param_fields[i] + '<=' + $scope.TABLES[table_id].param_filter_list[i].to + ';';
                     }
                 }
+                if($scope.TABLES[table_id].param_fields_type[i] =="TextFilter") {
+                    if ($scope.TABLES[table_id].param_filter_list[i] != null && $scope.TABLES[table_id].param_filter_list[i].length != "".length) {
+                        query += '&' + convertFieldFilter($scope.TABLES[table_id].param_fields[i]) + '=' + $scope.TABLES[table_id].param_filter_list[i];
+                    }else{
+                        query += '&' + convertFieldFilter($scope.TABLES[table_id].param_fields[i]);
+                    }
+                }
             }
             query += $scope.TABLES[table_id].customParams + $scope.TABLES[table_id].tree_query;
             if (query.slice(-1) == ';')
@@ -140,15 +147,41 @@ angular
         }
 
         $scope.DateTimeRange = {
-            startDateTime: null,
-            endDateTime: null,
-            kstartDateTime: null,
-            kendDateTime: null
+            startDateTime: dateNow() + ' 12:00 AM',
+            endDateTime: dateNow() + ' 12:00 AM',
+            kstartDateTime: kdateNow() + 'T17:00:00.000Z',
+            kendDateTime: kdateNow() + 'T17:00:00.000Z'
         };
 
         // $scope.$watchGroup(['DateTimeRange.kstartDateTime', 'DateTimeRange.kendDateTime'], function(newValues, oldValues, scope) {
         //
         // });
+
+        function kdateNow() {
+            var today = new Date();
+            var dd = today.getDate()-1;
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd = '0'+dd
+            }
+            if(mm<10) {
+                mm = '0'+mm
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            return today;
+        }
+
+        function dateNow() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            return today;
+        }
 
         $scope.chooseDatetime = function () {
             /*console.log($scope.DateTimeRange.startDateTime);
@@ -160,25 +193,38 @@ angular
             if($scope.DateTimeRange.kstartDateTime != null && $scope.DateTimeRange.kendDateTime != null){
                 var startResult = genDateTime($scope.DateTimeRange.kstartDateTime);
                 var endResult = genDateTime($scope.DateTimeRange.kendDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate='+startResult+'&';
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate='+endResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate='+startResult+'&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate='+endResult;
             }else if($scope.DateTimeRange.kstartDateTime != null){
                 var startResult = genDateTime($scope.DateTimeRange.kstartDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate='+startResult;
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate='+startResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate&';
             }else if($scope.DateTimeRange.kendDateTime != null){
                 var endResult = genDateTime($scope.DateTimeRange.kendDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate&';
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate='+endResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate='+endResult;
             }else{
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate&endDate';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate&endDate';
             }
             $scope.getData();
         };
 
         function genDateTime(datetime) {
+            //var result = $filter('date')(datetime, 'yyyy-MM-dd HH:mm:ss');
             var result = $filter('date')(datetime, 'yyyy-MM-dd');
             return result;
+        }
+
+        function convertFieldFilter(field)
+        {
+            var index = field.indexOf("_");
+            //console.log(index)
+            //console.log(field)
+            var string_replace = field[index+1].toUpperCase();
+            //console.log(string_replace)
+            field = field.replace(field[index] + field[index+1], string_replace);
+            if(field.indexOf("_") >= 0) convertFieldFilter(field);
+            return field;
         }
 
     }

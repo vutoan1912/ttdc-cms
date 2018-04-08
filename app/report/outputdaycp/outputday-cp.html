@@ -38,10 +38,16 @@
                             </div>
                         </div>
                         <div class="uk-width-medium-1-2 uk-margin-top">
-
-                            <div style="padding-top: 28px;">
-                                <button class="md-btn md-btn-primary" type="submit" ng-click="chooseDatetime()" wz-next>Thống kê</button>
+                            <div class="parsley-row">
+                                <label class="label-bold">CP CODE</label>
+                                <input ng-model="TABLES['table_op_tab'].param_filter_list[10]"
+                                       type="text"
+                                       placeholder="Nhập CP code..."
+                                       data-parsley-trigger="change" required=""
+                                       class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                <span class="md-input-bar "></span>
                             </div>
+
                         </div>
                     </div>
                     <div class="uk-grid" data-uk-grid-margin style="margin-top: 4px;">
@@ -59,7 +65,9 @@
                             </div>
                         </div>
                         <div class="uk-width-medium-1-2 uk-margin-top">
-
+                            <div style="padding-top: 28px;">
+                                <button class="md-btn md-btn-primary" type="submit" ng-click="chooseDatetime()" wz-next>Thống kê</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,6 +126,10 @@
                                     data-priority="10" ng-show="myColumnsShowRd[9]">{{myColumnsRd[9]}}
                                     <!--<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>-->
                                 </th>
+                                <th class="pointerMouse boldHeader "
+                                    data-priority="11" ng-show="myColumnsShowRd[10]">{{myColumnsRd[10]}}
+                                    <!--<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>-->
+                                </th>
                             </tr>
 
                         </thead>
@@ -154,6 +166,9 @@
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[9]">
                                 {{item.sub_active}}
+                            </td>
+                            <td class="uk-text-left" ng-show="myColumnsShowRd[10]">
+                                {{item.cp_code}}
                             </td>
                         </tr>
                         </tbody>

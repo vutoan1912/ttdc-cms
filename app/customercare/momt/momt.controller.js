@@ -18,9 +18,9 @@ angular
 
         $scope.list_op_item = [];
 
-        $scope.myColumnsRd = ["Số điện thoại", "Gói dịch vụ", "MO/MT", "Thời gian", "Kênh", "Nội dung"];
-        var fieldsRd =     ["msisdn", "cmd_code", "type", "action_time", "channel", "content"];
-        var fieldsTypeRd = ["Text",   "Text",     "Text",  "DateTime",   "Text",    "Text"];
+        $scope.myColumnsRd = ["Số điện thoại", "Gói dịch vụ", "MO/MT", "Thời gian", "Kênh", "Nội dung","Back URL"];
+        var fieldsRd =     ["msisdn", "cmd_code", "type", "action_time", "channel", "content","back_url"];
+        var fieldsTypeRd = ["Text",   "Text",     "Text",  "DateTime",   "Text",    "Text","Text"];
         var loadFunctionRd = SubService.getMOMT;
 
         var newTableIdsRd = {

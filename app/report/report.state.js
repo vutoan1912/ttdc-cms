@@ -265,5 +265,53 @@
                     }]
                 }
             })
+            .state('revenue-day-cp',{
+                parent: 'report',
+                url: "/revenue-day-cp",
+                templateUrl: 'app/report/revenuedaycp/revenueday-cp.html',
+                controller: 'RevenueDayCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu ngày',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenuedaycp/revenueday-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('output-day-cp',{
+                parent: 'report',
+                url: "/output-day-cp",
+                templateUrl: 'app/report/outputdaycp/outputday-cp.html',
+                controller: 'OutputDayCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê sản lượng theo ngày',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/outputdaycp/outputday-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
     }
 })();

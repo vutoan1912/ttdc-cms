@@ -16,7 +16,7 @@
             <span class=" route-header">
                 <a disabled="" ui-sref="#">Home</a>
             <span> / <a ui-sref="#" >Report</a></span>
-            <span> / <a ui-sref="#"> Sản lượng theo ngày</a></span>
+            <span> / <a ui-sref="#"> Doanh thu ngày</a></span>
             </span>
             </br>
         </div>
@@ -38,9 +38,14 @@
                             </div>
                         </div>
                         <div class="uk-width-medium-1-2 uk-margin-top">
-
-                            <div style="padding-top: 28px;">
-                                <button class="md-btn md-btn-primary" type="submit" ng-click="chooseDatetime()" wz-next>Thống kê</button>
+                            <div class="parsley-row">
+                                <label class="label-bold">CP CODE</label>
+                                <input ng-model="TABLES['table_op_tab'].param_filter_list[5]"
+                                       type="text"
+                                       placeholder="Nhập CP code..."
+                                       data-parsley-trigger="change" required=""
+                                       class="md-input ng-isolate-scope md-input-processed" md-input="">
+                                <span class="md-input-bar "></span>
                             </div>
                         </div>
                     </div>
@@ -59,7 +64,9 @@
                             </div>
                         </div>
                         <div class="uk-width-medium-1-2 uk-margin-top">
-
+                            <div style="padding-top: 28px;">
+                                <button class="md-btn md-btn-primary" type="submit" ng-click="chooseDatetime()" wz-next>Thống kê</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,22 +109,6 @@
                                     data-priority="6" ng-show="myColumnsShowRd[5]">{{myColumnsRd[5]}}
                                     <!--<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>-->
                                 </th>
-                                <th class="pointerMouse boldHeader "
-                                    data-priority="7" ng-show="myColumnsShowRd[6]">{{myColumnsRd[6]}}
-                                    <!--<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>-->
-                                </th>
-                                <th class="pointerMouse boldHeader "
-                                    data-priority="8" ng-show="myColumnsShowRd[7]">{{myColumnsRd[7]}}
-                                    <!--<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>-->
-                                </th>
-                                <th class="pointerMouse boldHeader "
-                                    data-priority="9" ng-show="myColumnsShowRd[8]">{{myColumnsRd[8]}}
-                                    <!--<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>-->
-                                </th>
-                                <th class="pointerMouse boldHeader "
-                                    data-priority="10" ng-show="myColumnsShowRd[9]">{{myColumnsRd[9]}}
-                                    <!--<i class="material-icons md-20 rightCell">{{TABLES['table_op_tab'].param_sort_list[5]}}</i>-->
-                                </th>
                             </tr>
 
                         </thead>
@@ -126,34 +117,22 @@
                         <tr ng-repeat="item in list_op_item" on-last-repeat class="hoverRow">
                             <td></td>
                             <td ng-show="myColumnsShowRd[0]">
-                                {{item.ngay | date: 'yyyy-MM-dd'}}
+                                {{item.cmd_code}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[1]">
-                                {{item.dk_moi}}
+                                {{item.ngay | date: 'yyyy-MM-dd HH:mm:ss'}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[2]">
-                                {{item.dk_lai}}
+                                {{item.dt}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[3]">
-                                {{item.tong_dk}}
+                                {{item.luyke}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[4]">
-                                {{item.ht_huy}}
+                                {{item.luyke_cungky}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[5]">
-                                {{item.tu_huy}}
-                            </td>
-                            <td class="uk-text-left" ng-show="myColumnsShowRd[6]">
-                                {{item.tong_huy}}
-                            </td>
-                            <td class="uk-text-left" ng-show="myColumnsShowRd[7]">
-                                {{item.gia_han}}
-                            </td>
-                            <td class="uk-text-left" ng-show="myColumnsShowRd[8]">
-                                {{item.tyle_charge}}
-                            </td>
-                            <td class="uk-text-left" ng-show="myColumnsShowRd[9]">
-                                {{item.sub_active}}
+                                {{item.cp_code}}
                             </td>
                         </tr>
                         </tbody>

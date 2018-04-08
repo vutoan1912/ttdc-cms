@@ -190,6 +190,34 @@ angular
             var result = $filter('date')(datetime, 'yyyy-MM-dd HH:mm:ss');
             return result;
         }
+        
+        $scope.getResponseCode = function (code) {
+            switch(code) {
+                case 0:
+                    return "Success";
+                    break;
+                case 1:
+                    return "Fail";
+                    break;
+                case 2:
+                    return "Not enough money";
+                    break;
+                case 3:
+                    return "System busy";
+                    break;
+                case 4:
+                    return "Unknown";
+                    break;
+                case 5:
+                    return "Max success inday";
+                    break;
+                case 6:
+                    return "Max total request inday";
+                    break;
+                default:
+                    return "Unknown";
+            }
+        }
 
     }
 

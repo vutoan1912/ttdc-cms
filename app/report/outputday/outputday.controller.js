@@ -19,9 +19,9 @@ angular
 
         $scope.list_op_item = [];
 
-        $scope.myColumnsRd = ["Thời gian", "Đăng ký mới", "Đăng ký lại", "Tổng đăng ký", "Hệ thống hủy","Tự hủy","Tổng hủy", "gia hạn","Tỷ lệ trừ cước"];
-        var fieldsRd =     ["ngay",     "dk_moi", "dk_lai", "tong_dk", "ht_huy", "tu_huy","tong_huy","gia_han","tyle_charge"];
-        var fieldsTypeRd = ["DateTime", "Number", "Number", "Number",  "Number", "Number","Number",  "Number" ,"Number"];
+        $scope.myColumnsRd = ["Thời gian", "Đăng ký mới", "Đăng ký lại", "Tổng đăng ký", "Hệ thống hủy","Tự hủy","Tổng hủy", "gia hạn","Tỷ lệ trừ cước","Tổng thuê bao sub"];
+        var fieldsRd =     ["ngay",     "dk_moi", "dk_lai", "tong_dk", "ht_huy", "tu_huy","tong_huy","gia_han","tyle_charge","sub_active"];
+        var fieldsTypeRd = ["DateTime", "Number", "Number", "Number",  "Number", "Number","Number",  "Number" ,"Number","Number"];
         var loadFunctionRd = ReportService.getOutputDay;
 
         var newTableIdsRd = {

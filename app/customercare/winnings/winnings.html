@@ -17,10 +17,12 @@
         <span class="uk-text-large"> / Tra cứu trúng thưởng</span>
         </br>
 
-        <!--<div class="btn-custom-action-group">-->
-            <!--<a ui-sref="javascript:void(0)" class="md-btn md-btn-primary md-btn-small" style="cursor:  no-drop;"><span class="uk-text-bold">{{button.create| translate}}</span></a>-->
+        <div class="btn-custom-action-group" style="text-align: right;width: 100%;">
+            <a class="md-btn md-btn-primary md-btn-small" ng-show="checkShow == 3" ng-click="export()">
+                <span class="uk-text-bold">Export</span>
+            </a>
             <!--<button id="deleteBtn" class="md-btn md-btn-small hideElement" style="cursor:  no-drop;"><span class="uk-text-bold">{{button.delete| translate}}</span></button>-->
-        <!--</div>-->
+        </div>
     </div>
 
     <div id="page_content_inner">

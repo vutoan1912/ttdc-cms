@@ -219,6 +219,53 @@ angular
                     },
                     {
                         id: 2,
+                        title: 'Reporting CP',
+                        icon: '&#xE85D;',
+                        submenu: [
+                            {
+                                title: 'Doanh thu ngày',
+                                link: 'revenue-day-cp'
+                            },
+                            // {
+                            //     title: 'Doanh thu tuần',
+                            //     link: 'revenue-week-cp'
+                            // },
+                            // {
+                            //     title: 'Doanh thu tháng',
+                            //     link: 'revenue-month-cp'
+                            // },
+                            // {
+                            //     title: 'Doanh thu năm',
+                            //     link: 'revenue-year-cp'
+                            // },
+                            // {
+                            //     title: 'Doanh thu quý',
+                            //     link: 'revenue-quarter-cp'
+                            // },
+                            // {
+                            //     title: 'Doanh thu gia hạn',
+                            //     link: 'revenue-renewal-cp'
+                            // },
+                            // {
+                            //     title: 'Doanh thu đăng ký',
+                            //     link: 'revenue-register-cp'
+                            // },
+                            {
+                                title: 'Sản lượng theo ngày',
+                                link: 'output-day-cp'
+                            }
+                            // {
+                            //     title: 'Sản lượng theo tháng',
+                            //     link: 'output-month-cp'
+                            // },
+                            // {
+                            //     title: 'Sản lượng theo thuê bao',
+                            //     link: 'output-sub-cp'
+                            // }
+                        ]
+                    },
+                    {
+                        id: 3,
                         title: 'masterdata.common.configuration',
                         icon: '&#xE8B8;',
                         submenu: [

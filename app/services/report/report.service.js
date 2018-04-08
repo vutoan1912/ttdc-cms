@@ -18,7 +18,9 @@
             getRevenueRenewal: getRevenueRenewal,
             getOutputDay:getOutputDay,
             getOutputMonth:getOutputMonth,
-            getOutputSub:getOutputSub
+            getOutputSub:getOutputSub,
+            getRevenueDayCP:getRevenueDayCP,
+            getOutputDayCP:getOutputDayCP
         };
 
         return service;
@@ -79,5 +81,11 @@
             return 1;
         }
 
+        function getRevenueDayCP(params) {
+            return 1;
+        }
+        function getOutputDayCP(params) {
+            return 1;
+        }
     }
 })();

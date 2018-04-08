@@ -10,7 +10,8 @@
         </th>
         <th class="pointerMouse boldHeader" ng-click="handleSort($event, 4, 'table_suggest')" data-priority="4" ng-show="myColumnsSuggest[3]">Thời gian
         </th>
-
+        <th class="pointerMouse boldHeader" ng-click="handleSort($event, 5, 'table_suggest')" data-priority="4" ng-show="myColumnsSuggest[4]">Trạng thái
+        </th>
     </tr>
     <tr>
         <td>
@@ -34,6 +35,9 @@
                                 scope-controller="DatetimeRange.Scope">
             </date-picker-filter>
         </td>
+        <td ng-show="myColumnsSuggest[4]">
+            <!--<input class="filter-table-cell" ng-model="TABLES['table_suggest'].param_filter_list[2]" ng-change="handleFilter('table_suggest')" type="search" placeholder="" data-column="2" style="height: 38px;">-->
+        </td>
 
     </tr>
     </thead>
@@ -53,6 +57,9 @@
         </td>
         <td class="uk-text-left" ng-show="myColumnsSuggest[3]">
             {{item.created_at | date: 'yyyy-MM-dd HH:mm:ss'}}
+        </td>
+        <td class="uk-text-left" ng-show="myColumnsSuggest[4]">
+            <button class="md-btn md-btn-success" style="height: 60%;" type="button" data-uk-button>Success</button>
         </td>
 
     </tr>
