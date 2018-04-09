@@ -226,10 +226,10 @@ angular
                                 title: 'Doanh thu ngày',
                                 link: 'revenue-day-cp'
                             },
-                            // {
-                            //     title: 'Doanh thu tuần',
-                            //     link: 'revenue-week-cp'
-                            // },
+                            {
+                                title: 'Doanh thu tuần',
+                                link: 'revenue-week-cp'
+                            },
                             // {
                             //     title: 'Doanh thu tháng',
                             //     link: 'revenue-month-cp'
@@ -242,14 +242,14 @@ angular
                             //     title: 'Doanh thu quý',
                             //     link: 'revenue-quarter-cp'
                             // },
-                            // {
-                            //     title: 'Doanh thu gia hạn',
-                            //     link: 'revenue-renewal-cp'
-                            // },
-                            // {
-                            //     title: 'Doanh thu đăng ký',
-                            //     link: 'revenue-register-cp'
-                            // },
+                            {
+                                title: 'Doanh thu gia hạn',
+                                link: 'revenue-renewal-cp'
+                            },
+                            {
+                                title: 'Doanh thu đăng ký',
+                                link: 'revenue-register-cp'
+                            },
                             {
                                 title: 'Sản lượng theo ngày',
                                 link: 'output-day-cp'

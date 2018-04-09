@@ -313,5 +313,77 @@
                     }]
                 }
             })
+            .state('revenue-register-cp',{
+                parent: 'report',
+                url: "/revenue-register-cp",
+                templateUrl: 'app/report/revenueregistercp/revenueregister-cp.html',
+                controller: 'RevenueRegisterCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu đăng ký',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenueregistercp/revenueregister-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('revenue-renewal-cp',{
+                parent: 'report',
+                url: "/revenue-renewal-cp",
+                templateUrl: 'app/report/revenuerenewalcp/revenuerenewal-cp.html',
+                controller: 'RevenueRenewalCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu gia hạn',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenuerenewalcp/revenuerenewal-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('revenue-week-cp',{
+                parent: 'report',
+                url: "/revenue-week-cp",
+                templateUrl: 'app/report/revenueweekcp/revenueweek-cp.html',
+                controller: 'RevenueWeekCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu tuần',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenueweekcp/revenueweek-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
     }
 })();
