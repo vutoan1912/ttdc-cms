@@ -385,5 +385,77 @@
                     }]
                 }
             })
+            .state('revenue-quarter-cp',{
+                parent: 'report',
+                url: "/revenue-quarter-cp",
+                templateUrl: 'app/report/revenuequartercp/revenuequarter-cp.html',
+                controller: 'RevenueQuarterCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu quý',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenuequartercp/revenuequarter-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('revenue-year-cp',{
+                parent: 'report',
+                url: "/revenue-year-cp",
+                templateUrl: 'app/report/revenueyearcp/revenueyear-cp.html',
+                controller: 'RevenueYearCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu năm',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenueyearcp/revenueyear-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('revenue-month-cp',{
+                parent: 'report',
+                url: "/revenue-month-cp",
+                templateUrl: 'app/report/revenuemonthcp/revenuemonth-cp.html',
+                controller: 'RevenueMonthCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu tháng',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenuemonthcp/revenuemonth-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
     }
 })();

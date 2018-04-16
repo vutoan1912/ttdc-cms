@@ -196,5 +196,30 @@
                     }]
                 }
             })
+            .state('logs',{
+                parent: 'customercare',
+                url: '/logs',
+                templateUrl: 'app/customercare/logs/logs.html',
+                controller: 'LogsController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Tra cứu chăm sóc khách hàng',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_tree',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/customercare/logs/logs.controller.js'
+                        ]);
+                    }]
+                }
+            })
     }
 })();

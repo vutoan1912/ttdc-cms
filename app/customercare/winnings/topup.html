@@ -59,7 +59,8 @@
             {{item.created_at | date: 'yyyy-MM-dd HH:mm:ss'}}
         </td>
         <td class="uk-text-left" ng-show="myColumnsSuggest[4]">
-            <button class="md-btn md-btn-success" style="height: 60%;" type="button" data-uk-button>Success</button>
+            <!--<button class="md-btn md-btn-success" style="height: 60%;" type="button" data-uk-button>Success</button>-->
+            {{topupStatus(item.isReceiver)}}
         </td>
 
     </tr>

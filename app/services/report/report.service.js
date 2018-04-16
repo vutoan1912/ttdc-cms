@@ -23,7 +23,10 @@
             getOutputDayCP:getOutputDayCP,
             getRevenueRegisterCP: getRevenueRegisterCP,
             getRevenueRenewalCP:getRevenueRenewalCP,
-            getRevenueWeekCP: getRevenueWeekCP
+            getRevenueWeekCP: getRevenueWeekCP,
+            getRevenueQuarterCP: getRevenueQuarterCP,
+            getRevenueYearCP: getRevenueYearCP,
+            getRevenueMonthCP: getRevenueMonthCP
         };
 
         return service;
@@ -97,6 +100,15 @@
             return 1;
         }
         function getRevenueWeekCP(params) {
+            return 1;
+        }
+        function getRevenueQuarterCP(params) {
+            return 1;
+        }
+        function getRevenueYearCP(params) {
+            return 1;
+        }
+        function getRevenueMonthCP(params) {
             return 1;
         }
     }

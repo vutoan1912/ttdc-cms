@@ -166,6 +166,10 @@ angular
                             {
                                 title: 'Tra cứu thông tin thuê bao',
                                 link: 'sub'
+                            },
+                            {
+                                title: 'Tra cứu log tập trung',
+                                link: 'logs'
                             }
 
                         ]
@@ -230,18 +234,18 @@ angular
                                 title: 'Doanh thu tuần',
                                 link: 'revenue-week-cp'
                             },
-                            // {
-                            //     title: 'Doanh thu tháng',
-                            //     link: 'revenue-month-cp'
-                            // },
-                            // {
-                            //     title: 'Doanh thu năm',
-                            //     link: 'revenue-year-cp'
-                            // },
-                            // {
-                            //     title: 'Doanh thu quý',
-                            //     link: 'revenue-quarter-cp'
-                            // },
+                            {
+                                title: 'Doanh thu tháng',
+                                link: 'revenue-month-cp'
+                            },
+                            {
+                                title: 'Doanh thu năm',
+                                link: 'revenue-year-cp'
+                            },
+                            {
+                                title: 'Doanh thu quý',
+                                link: 'revenue-quarter-cp'
+                            },
                             {
                                 title: 'Doanh thu gia hạn',
                                 link: 'revenue-renewal-cp'

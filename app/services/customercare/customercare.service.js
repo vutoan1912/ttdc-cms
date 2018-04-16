@@ -14,7 +14,8 @@
             getFlip: getFlip,
             getSuggest: getSuggest,
             getConvert: getConvert,
-            getChange: getChange
+            getChange: getChange,
+            getlogs: getlogs
         };
 
         return service;
@@ -45,6 +46,14 @@
 
         function getChange(params) {
             return $http.get(API_URL + '/api/change-question/searchCMS?' + params).then(function(response) {
+                return response;
+            });
+        }
+
+        function getlogs(params) {
+            var link = API_URL + '/api/logs/search?' + params;
+            // var link = "http://mbox.mobifone.vn/dccmsapi/api/logs/search?" + params;
+            return $http.get(link).then(function(response) {
                 return response;
             });
         }

@@ -114,8 +114,8 @@
         TableMultiple.reloadPage(newTableIdsMan.idTable);
 
         //Topup
-        var fieldsSuggest = ["msisdn", "content","diamonds" , "created_at","status"];
-        var fieldsTypeSuggest = ["Text","Text","Number","DateTime",""];
+        var fieldsSuggest = ["msisdn", "content","diamonds" , "created_at","isReceiver"];
+        var fieldsTypeSuggest = ["Text","Text","Number","DateTime","Text"];
         var loadFunctionSuggest = WinningsService.getTopup;
 
         var newTableIdsSuggest = {
@@ -179,7 +179,7 @@
             $scope.myColumnsShowMan.push(true);
         }
 
-        $scope.myColumnsSuggest = ["msisdn", "content","diamonds" , "created_at","status"];
+        $scope.myColumnsSuggest = ["msisdn", "content","diamonds" , "created_at","isReceiver"];
         $scope.myColumnsShowSuggest=[];
         for (var i=0; i<$scope.myColumnsSuggest.length;i++){
             $scope.myColumnsShowSuggest.push(true);
@@ -272,8 +272,19 @@
             Column: 3, // ** number column filter on table
             Scope: $scope
         }
-
-
+        
+        $scope.topupStatus = function (isReceiver) {
+            switch(isReceiver) {
+                case 0:
+                    return "Đang xử lý";
+                    break;
+                case 1:
+                    return "Thành công";
+                    break;
+                default:
+                    return isReceiver;
+            }
+        }
     }
 
 })();
