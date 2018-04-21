@@ -193,6 +193,30 @@
                     }]
                 }
             })
+            .state('revenue-buy-question',{
+                parent: 'report',
+                url: "/revenue-buy-question",
+                templateUrl: 'app/report/revenuebuyquestion/revenuebuyquestion.html',
+                controller: 'RevenueBuyQuestionController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu mua thêm câu hỏi',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenuebuyquestion/revenuebuyquestion.controller.js'
+                        ]);
+                    }]
+                }
+            })
             .state('output-day',{
                 parent: 'report',
                 url: "/output-day",
@@ -453,6 +477,30 @@
                             'lazy_parsleyjs',
                             'lazy_KendoUI',
                             'app/report/revenuemonthcp/revenuemonth-cp.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('revenue-buy-question-cp',{
+                parent: 'report',
+                url: "/revenue-buy-question-cp",
+                templateUrl: 'app/report/revenuebuyquestioncp/revenuebuyquestion-cp.html',
+                controller: 'RevenueBuyQuestionCPController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê doanh thu mua thêm câu hỏi',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/revenuebuyquestioncp/revenuebuyquestion-cp.controller.js'
                         ]);
                     }]
                 }

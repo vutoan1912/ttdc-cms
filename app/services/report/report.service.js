@@ -15,6 +15,7 @@
             getRevenueYear: getRevenueYear,
             getRevenueQuarter: getRevenueQuarter,
             getRevenueRegister: getRevenueRegister,
+            getRevenueBuyQuestion: getRevenueBuyQuestion,
             getRevenueRenewal: getRevenueRenewal,
             getOutputDay:getOutputDay,
             getOutputMonth:getOutputMonth,
@@ -26,7 +27,8 @@
             getRevenueWeekCP: getRevenueWeekCP,
             getRevenueQuarterCP: getRevenueQuarterCP,
             getRevenueYearCP: getRevenueYearCP,
-            getRevenueMonthCP: getRevenueMonthCP
+            getRevenueMonthCP: getRevenueMonthCP,
+            getRevenueBuyQuestionCp: getRevenueBuyQuestionCP
         };
 
         return service;
@@ -109,6 +111,12 @@
             return 1;
         }
         function getRevenueMonthCP(params) {
+            return 1;
+        }
+        function getRevenueBuyQuestion(params) {
+            return 1;
+        }
+        function getRevenueBuyQuestionCP(params) {
             return 1;
         }
     }

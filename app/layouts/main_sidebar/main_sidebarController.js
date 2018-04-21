@@ -208,6 +208,10 @@ angular
                                 link: 'revenue-register'
                             },
                             {
+                                title: 'Doanh thu mua thêm',
+                                link: 'revenue-buy-question'
+                            },
+                            {
                                 title: 'Sản lượng theo ngày',
                                 link: 'output-day'
                             },
@@ -253,6 +257,10 @@ angular
                             {
                                 title: 'Doanh thu đăng ký',
                                 link: 'revenue-register-cp'
+                            },
+                            {
+                                title: 'Doanh thu mua thêm',
+                                link: 'revenue-buy-question-cp'
                             },
                             {
                                 title: 'Sản lượng theo ngày',
