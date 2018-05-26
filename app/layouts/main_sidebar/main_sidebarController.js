@@ -284,6 +284,10 @@ angular
                             {
                                 title: 'Cấu hình tin nhắn dịch vụ',
                                 link: 'momt-config'
+                            },
+                            {
+                                title: 'Tra cứu Blacklist',
+                                link: 'blacklist'
                             }
                         ]
                         /*submenu: [

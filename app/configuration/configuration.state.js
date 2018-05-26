@@ -50,5 +50,30 @@
                     }]
                 }
             })
+            .state('blacklist',{
+                parent: 'configuration',
+                url: '/blacklist',
+                templateUrl: 'app/configuration/blacklist/blacklist.html',
+                controller: 'BlacklistController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Tra cứu Blacklist',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_tree',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/configuration/blacklist/blacklist.controller.js'
+                        ]);
+                    }]
+                }
+            })
     }
 })();

@@ -275,6 +275,8 @@
                     }
 
                     if(!angular.isDefined($scope.TABLES[table_id].noPagination) || $scope.TABLES[table_id].noPagination == false){
+
+                        console.log(data.headers())
                         $scope.TABLES[table_id].param_total_result = data.headers()["x-total-count"];
 
                         if($scope.TABLES[table_id].param_total_result == 0){
@@ -330,6 +332,8 @@
                     $scope.showDeleteBtn(false);
                     var model = $scope.TABLES[table_id].model;
                     $scope[model] = data.data;
+
+                    data.headers()["x-total-count"]
                     $scope.TABLES[table_id].param_total_result = data.headers()["x-total-count"];
 
                     if($scope.TABLES[table_id].param_total_result == 0){

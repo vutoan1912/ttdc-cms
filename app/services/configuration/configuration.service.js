@@ -11,7 +11,10 @@
         var service = {
             init: init,
             getMT: getMT,
-            updateMT: updateMT
+            getBlacklist: getBlacklist,
+            updateMT: updateMT,
+            addBlacklist:addBlacklist,
+            deleteBlacklist:deleteBlacklist
         };
 
         return service;
@@ -45,6 +48,72 @@
             var req = {
                 method: 'POST',
                 url: API_URL + '/api/sms/updateOnOff?code='+code+'&description='+description,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }
+
+            return $http(req).then(function(response){
+                //console.log(response);
+                return response;
+            }, function(error){
+                //console.log(error)
+                //return error;
+                return 0;
+            });
+        }
+
+        function getBlacklist(params) {
+            var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
+            //console.log(token);
+
+            var req = {
+                method: 'GET',
+                url: API_URL + '/api/sms/getListBlacklist?' + params,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: {}
+            }
+
+            return $http(req).then(function(response){
+                //console.log(response);
+                return response;
+            }, function(error){
+                //console.log(error)
+                return error;
+            });
+        }
+
+        function addBlacklist(msisdn) {
+            var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
+            //console.log(token);
+
+            var req = {
+                method: 'POST',
+                url: API_URL + '/api/sms/insertBlacklist?msisdn=' + msisdn,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }
+
+            return $http(req).then(function(response){
+                //console.log(response);
+                return response;
+            }, function(error){
+                //console.log(error)
+                //return error;
+                return 0;
+            });
+        }
+
+        function deleteBlacklist(msisdn) {
+            var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
+            //console.log(token);
+
+            var req = {
+                method: 'POST',
+                url: API_URL + '/api/sms/deleteBlacklist?msisdn='+msisdn,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
