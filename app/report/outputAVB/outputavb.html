@@ -16,7 +16,7 @@
             <span class=" route-header">
                 <a disabled="" ui-sref="#">Home</a>
             <span> / <a ui-sref="#" >Report</a></span>
-            <span> / <a ui-sref="#"> Doanh thu ngày</a></span>
+            <span> / <a ui-sref="#"> Sản lượng AVB</a></span>
             </span>
             </br>
         </div>
@@ -106,24 +106,20 @@
                         <tr ng-repeat="item in list_op_item" on-last-repeat class="hoverRow">
                             <td></td>
                             <td ng-show="myColumnsShowRd[0]">
-                                {{item.cmd_code}}
+                                {{item.ngay | date: 'yyyy-MM-dd'}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[1]">
-                                {{item.ngay | date: 'yyyy-MM-dd HH:mm:ss'}}
+                                {{item.total_sms}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[2]">
-                                {{item.dt}}
+                                {{item.total_confirm}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[3]">
-                                {{item.luyke}}
+                                {{item.total_success}}
                             </td>
                             <td class="uk-text-left" ng-show="myColumnsShowRd[4]">
-                                {{item.luyke_cungky}}
+                                {{item.cmd_code}}
                             </td>
-                        </tr>
-                        <tr ng-show="list_op_item.length > 0">
-                            <td colspan="3" style="text-align: center;"><b>Tổng doanh thu</b></td>
-                            <td colspan="2">{{total}}</td>
                         </tr>
                         </tbody>
                     </table>

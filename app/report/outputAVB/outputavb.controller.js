@@ -1,12 +1,12 @@
 angular
     .module('erpApp')
-    .controller('RevenueDayController', RevenueDayController);
+    .controller('OutputAVBController', OutputAVBController);
 
-    RevenueDayController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$compile',
+    OutputAVBController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$compile',
         '$stateParams', '$interval', 'TableMultipleCustom', '$translate', 'TranslateCommonUI', 'ErrorHandle', 'AlertService',
         '$window', 'Principal', 'utils', 'apiData', '$http', 'User', '$q', '$filter','ReportService',
         '$localStorage','$sessionStorage','API_URL'];
-    function RevenueDayController(
+    function OutputAVBController(
         $scope, $rootScope, $state, $timeout, $compile, $stateParams, $interval, TableMultipleCustom,
         $translate, TranslateCommonUI, ErrorHandle, AlertService, $window, Principal, utils,
         apiData, $http, User, $q,$filter,ReportService,$localStorage,$sessionStorage,API_URL) {
@@ -19,10 +19,10 @@ angular
 
         $scope.list_op_item = [];
 
-        $scope.myColumnsRd = ["Gói dịch vụ", "Thời gian", "Doanh thu", "Lũy kế", "Lũy kế cùng kỳ"];
-        var fieldsRd =     ["cmd_code", "ngay",     "dt",     "luyke",  "luyke_cungky"];
-        var fieldsTypeRd = ["Text",     "DateTime", "Number", "Number", "Number"];
-        var loadFunctionRd = ReportService.getRevenueDay;
+        $scope.myColumnsRd = ["Thời gian", "Tổng SMS",  "Xác nhận đăng ký", "Đăng ký thành công",   "CODE"];
+        var fieldsRd =       ["ngay",      "total_sms", "total_confirm",    "total_success",  "cmd_code"];
+        var fieldsTypeRd =   ["DateTime",  "Number",    "Number",           "Number",         "Text"];
+        var loadFunctionRd = ReportService.getOutputAVB;
 
         var newTableIdsRd = {
             idTable: "table_op_tab",
@@ -75,7 +75,6 @@ angular
             $scope.myColumnsShowRd.push(true);
         }
 
-        $scope.total = 0;
         $scope.list_op_item = [];
         $scope.getData = function () {
 
@@ -88,7 +87,7 @@ angular
 
             var req = {
                 method: 'GET',
-                url: API_URL + '/api/sms/getDoanhthuNgay?' + query,
+                url: API_URL + '/api/sms/getReportAVB?' + query,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -97,13 +96,8 @@ angular
 
             return $http(req).then(function(response){
                 console.log(response)
-                $scope.total = 0;
                 $scope.list_op_item = response.data;
                 //return response;
-
-                angular.forEach($scope.list_op_item, function(item){
-                    $scope.total += Math.floor(item.dt.replace(/[.,*+?^${}()|[\]\\]/g, ""));
-                });
             }, function(error){
                 console.log(error)
                 //return error;
@@ -157,33 +151,28 @@ angular
         // });
 
         $scope.chooseDatetime = function () {
-            /*console.log($scope.DateTimeRange.startDateTime);
-            console.log($scope.DateTimeRange.endDateTime);
-            console.log($scope.DateTimeRange.kstartDateTime);
-            console.log($scope.DateTimeRange.kendDateTime);*/
 
-            //startDate=2018-02-28 20:03:10&endDate&=2018-02-28 20:03:10
             if($scope.DateTimeRange.kstartDateTime != null && $scope.DateTimeRange.kendDateTime != null){
                 var startResult = genDateTime($scope.DateTimeRange.kstartDateTime);
                 var endResult = genDateTime($scope.DateTimeRange.kendDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate='+startResult+'&';
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate='+endResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate='+startResult+'&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate='+endResult;
             }else if($scope.DateTimeRange.kstartDateTime != null){
                 var startResult = genDateTime($scope.DateTimeRange.kstartDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate='+startResult;
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate='+startResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate&';
             }else if($scope.DateTimeRange.kendDateTime != null){
                 var endResult = genDateTime($scope.DateTimeRange.kendDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate&';
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate='+endResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate='+endResult;
             }else{
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate&endDate';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate&endDate';
             }
             $scope.getData();
         };
 
         function genDateTime(datetime) {
-            var result = $filter('date')(datetime, 'yyyy-MM-dd HH:mm:ss');
+            var result = $filter('date')(datetime, 'yyyy-MM-dd');
             return result;
         }
 

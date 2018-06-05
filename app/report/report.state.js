@@ -505,5 +505,77 @@
                     }]
                 }
             })
+            .state('output-avb',{
+                parent: 'report',
+                url: "/output-avb",
+                templateUrl: 'app/report/outputAVB/outputavb.html',
+                controller: 'OutputAVBController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê sản lượng AVB',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/outputAVB/outputavb.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('output-code',{
+                parent: 'report',
+                url: "/output-code",
+                templateUrl: 'app/report/outputcode/outputcode.html',
+                controller: 'OutputCodeController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thống kê sản lượng theo cú pháp',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/outputcode/outputcode.controller.js'
+                        ]);
+                    }]
+                }
+            })
+            .state('control-information',{
+                parent: 'report',
+                url: "/control-information",
+                templateUrl: 'app/report/control-information/control-information.html',
+                controller: 'ControlInformationController',
+                controllerAs: 'vm',
+                data: {
+                    pageTitle: 'Thông tin đối soát',
+                    authorities: ['ROLE_ADMIN'], //TODO change role,
+                    sideBarMenu: 'inventory'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_ionRangeSlider',
+                            'lazy_tablesorter',
+                            'lazy_iCheck',
+                            'lazy_parsleyjs',
+                            'lazy_KendoUI',
+                            'app/report/control-information/control-information.controller.js'
+                        ]);
+                    }]
+                }
+            })
     }
 })();

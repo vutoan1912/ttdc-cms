@@ -222,6 +222,18 @@ angular
                             {
                                 title: 'Sản lượng theo thuê bao',
                                 link: 'output-sub'
+                            },
+                            {
+                                title: 'Sản lượng AVB',
+                                link: 'output-avb'
+                            },
+                            {
+                                title: 'Sản lượng theo cú pháp',
+                                link: 'output-code'
+                            },
+                            {
+                                title: 'Thông tin đối soát',
+                                link: 'control-information'
                             }
                         ]
                     },

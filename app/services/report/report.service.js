@@ -28,7 +28,10 @@
             getRevenueQuarterCP: getRevenueQuarterCP,
             getRevenueYearCP: getRevenueYearCP,
             getRevenueMonthCP: getRevenueMonthCP,
-            getRevenueBuyQuestionCp: getRevenueBuyQuestionCP
+            getRevenueBuyQuestionCp: getRevenueBuyQuestionCP,
+            getOutputAVB: getOutputAVB,
+            getOutputCode: getOutputCode,
+            getControlInformation:getControlInformation
         };
 
         return service;
@@ -117,6 +120,16 @@
             return 1;
         }
         function getRevenueBuyQuestionCP(params) {
+            return 1;
+        }
+
+        function getOutputAVB(params) {
+            return 1;
+        }
+        function getOutputCode(params) {
+            return 1;
+        }
+        function getControlInformation(params) {
             return 1;
         }
     }

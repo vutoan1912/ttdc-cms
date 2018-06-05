@@ -143,7 +143,7 @@ angular
             if(angular.isDefined($scope.TABLES[table_id].noPagination) && $scope.TABLES[table_id].noPagination == true){
                 return query
             }
-            console.log(query)
+            //console.log(query)
             return query;
         }
 

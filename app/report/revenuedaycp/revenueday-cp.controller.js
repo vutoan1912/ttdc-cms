@@ -75,6 +75,7 @@ angular
             $scope.myColumnsShowRd.push(true);
         }
 
+        $scope.total = 0;
         $scope.list_op_item = [];
         $scope.getData = function () {
 
@@ -96,8 +97,13 @@ angular
 
             return $http(req).then(function(response){
                 console.log(response)
+                $scope.total = 0;
                 $scope.list_op_item = response.data;
                 //return response;
+                angular.forEach($scope.list_op_item, function(item){
+                    $scope.total += Math.floor(item.dt.replace(/[.,*+?^${}()|[\]\\]/g, ""));
+                });
+
             }, function(error){
                 console.log(error)
                 //return error;

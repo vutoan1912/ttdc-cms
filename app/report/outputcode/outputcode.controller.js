@@ -1,12 +1,12 @@
 angular
     .module('erpApp')
-    .controller('RevenueDayController', RevenueDayController);
+    .controller('OutputCodeController', OutputCodeController);
 
-    RevenueDayController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$compile',
+    OutputCodeController.$inject = ['$scope', '$rootScope', '$state', '$timeout', '$compile',
         '$stateParams', '$interval', 'TableMultipleCustom', '$translate', 'TranslateCommonUI', 'ErrorHandle', 'AlertService',
         '$window', 'Principal', 'utils', 'apiData', '$http', 'User', '$q', '$filter','ReportService',
         '$localStorage','$sessionStorage','API_URL'];
-    function RevenueDayController(
+    function OutputCodeController(
         $scope, $rootScope, $state, $timeout, $compile, $stateParams, $interval, TableMultipleCustom,
         $translate, TranslateCommonUI, ErrorHandle, AlertService, $window, Principal, utils,
         apiData, $http, User, $q,$filter,ReportService,$localStorage,$sessionStorage,API_URL) {
@@ -19,10 +19,10 @@ angular
 
         $scope.list_op_item = [];
 
-        $scope.myColumnsRd = ["Gói dịch vụ", "Thời gian", "Doanh thu", "Lũy kế", "Lũy kế cùng kỳ"];
-        var fieldsRd =     ["cmd_code", "ngay",     "dt",     "luyke",  "luyke_cungky"];
-        var fieldsTypeRd = ["Text",     "DateTime", "Number", "Number", "Number"];
-        var loadFunctionRd = ReportService.getRevenueDay;
+        $scope.myColumnsRd = ["Thời gian", "Tổng SMS",  "Xác nhận đăng ký", "Đăng ký thành công",    "CODE"];
+        var fieldsRd =       ["ngay",      "total_sms", "total_confirm",    "total_success",  "cmd_code"];
+        var fieldsTypeRd =   ["DateTime",  "Number",    "Number",           "Number",         "TextFilter"];
+        var loadFunctionRd = ReportService.getOutputCode;
 
         var newTableIdsRd = {
             idTable: "table_op_tab",
@@ -75,7 +75,6 @@ angular
             $scope.myColumnsShowRd.push(true);
         }
 
-        $scope.total = 0;
         $scope.list_op_item = [];
         $scope.getData = function () {
 
@@ -88,7 +87,7 @@ angular
 
             var req = {
                 method: 'GET',
-                url: API_URL + '/api/sms/getDoanhthuNgay?' + query,
+                url: API_URL + '/api/sms/getReportByCmdCode?' + query,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -97,13 +96,8 @@ angular
 
             return $http(req).then(function(response){
                 console.log(response)
-                $scope.total = 0;
                 $scope.list_op_item = response.data;
                 //return response;
-
-                angular.forEach($scope.list_op_item, function(item){
-                    $scope.total += Math.floor(item.dt.replace(/[.,*+?^${}()|[\]\\]/g, ""));
-                });
             }, function(error){
                 console.log(error)
                 //return error;
@@ -134,6 +128,13 @@ angular
                         query += $scope.TABLES[table_id].param_fields[i] + '>=' + $scope.TABLES[table_id].param_filter_list[i].from + ';' + $scope.TABLES[table_id].param_fields[i] + '<=' + $scope.TABLES[table_id].param_filter_list[i].to + ';';
                     }
                 }
+                if($scope.TABLES[table_id].param_fields_type[i] =="TextFilter") {
+                    if ($scope.TABLES[table_id].param_filter_list[i] != null && $scope.TABLES[table_id].param_filter_list[i].length != "".length) {
+                        query += '&' + convertFieldFilter($scope.TABLES[table_id].param_fields[i]) + '=' + $scope.TABLES[table_id].param_filter_list[i];
+                    }else{
+                        query += '&' + convertFieldFilter($scope.TABLES[table_id].param_fields[i]);
+                    }
+                }
             }
             query += $scope.TABLES[table_id].customParams + $scope.TABLES[table_id].tree_query;
             if (query.slice(-1) == ';')
@@ -146,45 +147,77 @@ angular
         }
 
         $scope.DateTimeRange = {
-            startDateTime: null,
-            endDateTime: null,
-            kstartDateTime: null,
-            kendDateTime: null
+            startDateTime: dateNow() + ' 12:00 AM',
+            endDateTime: dateNow() + ' 12:00 AM',
+            kstartDateTime: kdateNow() + 'T17:00:00.000Z',
+            kendDateTime: kdateNow() + 'T17:00:00.000Z'
         };
 
         // $scope.$watchGroup(['DateTimeRange.kstartDateTime', 'DateTimeRange.kendDateTime'], function(newValues, oldValues, scope) {
         //
         // });
 
-        $scope.chooseDatetime = function () {
-            /*console.log($scope.DateTimeRange.startDateTime);
-            console.log($scope.DateTimeRange.endDateTime);
-            console.log($scope.DateTimeRange.kstartDateTime);
-            console.log($scope.DateTimeRange.kendDateTime);*/
+        function kdateNow() {
+            var today = new Date();
+            var dd = today.getDate()-1;
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
 
-            //startDate=2018-02-28 20:03:10&endDate&=2018-02-28 20:03:10
+            if(dd<10) {
+                dd = '0'+dd
+            }
+            if(mm<10) {
+                mm = '0'+mm
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            return today;
+        }
+
+        function dateNow() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            return today;
+        }
+
+        $scope.chooseDatetime = function () {
+
             if($scope.DateTimeRange.kstartDateTime != null && $scope.DateTimeRange.kendDateTime != null){
                 var startResult = genDateTime($scope.DateTimeRange.kstartDateTime);
                 var endResult = genDateTime($scope.DateTimeRange.kendDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate='+startResult+'&';
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate='+endResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate='+startResult+'&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate='+endResult;
             }else if($scope.DateTimeRange.kstartDateTime != null){
                 var startResult = genDateTime($scope.DateTimeRange.kstartDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate='+startResult;
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate='+startResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate&';
             }else if($scope.DateTimeRange.kendDateTime != null){
                 var endResult = genDateTime($scope.DateTimeRange.kendDateTime);
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate&';
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] += 'endDate='+endResult;
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate&';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] += 'endDate='+endResult;
             }else{
-                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[1] = 'startDate&endDate';
+                $scope.TABLES[newTableIdsRd.idTable].param_filter_list[0] = 'startDate&endDate';
             }
             $scope.getData();
         };
 
         function genDateTime(datetime) {
-            var result = $filter('date')(datetime, 'yyyy-MM-dd HH:mm:ss');
+            var result = $filter('date')(datetime, 'yyyy-MM-dd');
             return result;
+        }
+        function convertFieldFilter(field)
+        {
+            var index = field.indexOf("_");
+            //console.log(index)
+            //console.log(field)
+            var string_replace = field[index+1].toUpperCase();
+            //console.log(string_replace)
+            field = field.replace(field[index] + field[index+1], string_replace);
+            if(field.indexOf("_") >= 0) convertFieldFilter(field);
+            return field;
         }
 
     }

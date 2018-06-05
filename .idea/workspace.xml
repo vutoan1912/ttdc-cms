@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d16ce18b-54d6-41c8-95c1-0de7e3d2369b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/report/control-information/control-information.controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/report/control-information/control-information.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/report/outputAVB/outputavb.controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/report/outputAVB/outputavb.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/report/outputcode/outputcode.controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/report/outputcode/outputcode.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/configuration/blacklist/blacklist.html" afterPath="$PROJECT_DIR$/app/configuration/blacklist/blacklist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/layouts/main_sidebar/main_sidebarController.js" afterPath="$PROJECT_DIR$/app/layouts/main_sidebar/main_sidebarController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/report/report.state.js" afterPath="$PROJECT_DIR$/app/report/report.state.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/report/revenueday/revenueday.controller.js" afterPath="$PROJECT_DIR$/app/report/revenueday/revenueday.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/report/revenueday/revenueday.html" afterPath="$PROJECT_DIR$/app/report/revenueday/revenueday.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.controller.js" afterPath="$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.html" afterPath="$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/report/revenueyearcp/revenueyear-cp.controller.js" afterPath="$PROJECT_DIR$/app/report/revenueyearcp/revenueyear-cp.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/report/report.service.js" afterPath="$PROJECT_DIR$/app/services/report/report.service.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,89 +27,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.constants.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/app.constants.js">
+      <file leaf-file-name="main_sidebarController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/layouts/main_sidebar/main_sidebarController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="26" />
+            <state relative-caret-position="323">
+              <caret line="241" column="46" lean-forward="true" selection-start-line="241" selection-start-column="46" selection-end-line="241" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="configuration.state.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/configuration/configuration.state.js">
+      <file leaf-file-name="revenueday.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/report/revenueday/revenueday.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="56" column="48" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="48" />
+            <state relative-caret-position="475">
+              <caret line="125" column="58" lean-forward="true" selection-start-line="125" selection-start-column="58" selection-end-line="125" selection-end-column="58" />
               <folding>
-                <element signature="e#238#1177#0" expanded="false" />
-                <element signature="e#382#1163#0" expanded="false" />
-                <element signature="e#428#1145#0" expanded="false" />
-                <element signature="e#517#1144#0" expanded="false" />
-                <element signature="e#1212#2232#0" expanded="false" />
-                <element signature="e#1467#1660#0" expanded="false" />
-                <element signature="e#1687#2218#0" expanded="false" />
-                <element signature="e#1715#2200#0" expanded="false" />
-                <element signature="e#1753#2199#0" expanded="false" />
-                <element signature="e#1803#2175#0" expanded="false" />
+                <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blacklist.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/configuration/blacklist/blacklist.controller.js">
+      <file leaf-file-name="revenueday-cp.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+            <state relative-caret-position="424">
+              <caret line="138" column="98" lean-forward="true" selection-start-line="138" selection-start-column="44" selection-end-line="138" selection-end-column="98" />
+              <folding>
+                <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="revenueday-cp.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="102" column="68" lean-forward="false" selection-start-line="102" selection-start-column="68" selection-end-line="102" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blacklist.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/configuration/blacklist/blacklist.html">
+      <file leaf-file-name="revenueday.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/report/revenueday/revenueday.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configuration.service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/services/configuration/configuration.service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-              <folding>
-                <element signature="e#889#963#0" expanded="false" />
-                <element signature="e#1058#1147#0" expanded="false" />
-                <element signature="e#1164#1246#0" expanded="false" />
-                <element signature="e#1305#1986#0" expanded="false" />
-                <element signature="e#1462#1703#0" expanded="false" />
-                <element signature="e#1615#1689#0" expanded="false" />
-                <element signature="e#1758#1847#0" expanded="false" />
-                <element signature="e#1864#1974#0" expanded="false" />
-                <element signature="e#1882#1902#0" expanded="false" />
-                <element signature="e#2720#3383#0" expanded="false" />
-                <element signature="e#2877#3100#0" expanded="false" />
-                <element signature="e#3012#3086#0" expanded="false" />
-                <element signature="e#3155#3244#0" expanded="false" />
-                <element signature="e#3261#3371#0" expanded="false" />
-                <element signature="e#3279#3299#0" expanded="false" />
-                <element signature="e#3426#4087#0" expanded="false" />
-                <element signature="e#3583#3804#0" expanded="false" />
-                <element signature="e#3716#3790#0" expanded="false" />
-                <element signature="e#3859#3948#0" expanded="false" />
-                <element signature="e#3965#4075#0" expanded="false" />
-                <element signature="e#3983#4003#0" expanded="false" />
-                <element signature="e#4172#5027#0" expanded="false" />
-                <element signature="e#4235#5017#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="410">
+              <caret line="101" column="34" lean-forward="true" selection-start-line="101" selection-start-column="34" selection-end-line="101" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,16 +85,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getThongKeNgay</find>
-      <find>OutputDayController</find>
-      <find>table_op_tab</find>
-      <find>getDoanhThuDK</find>
-      <find>getDoanhThuGH</find>
-      <find>RevenueRenewalController</find>
-      <find>getDoanhthuTuan</find>
-      <find>revenueweek</find>
-      <find>RevenueWeekController</find>
-      <find>getDoanhThuQuy</find>
       <find>RevenueQuarterController</find>
       <find>RevenueYearController</find>
       <find>RevenueMonthController</find>
@@ -135,12 +105,18 @@
       <find>&amp;page</find>
       <find>$window</find>
       <find>API_URL</find>
+      <find>RevenueDayController</find>
+      <find>OutputDayController</find>
+      <find>getOutputDay</find>
+      <find>param_filter_list</find>
+      <find>table_op_tab</find>
+      <find>OutputAVBController</find>
+      <find>$scope.getCommonQuery</find>
+      <find>OutputCodeController</find>
+      <find>total</find>
+      <find>$scope.total</find>
     </findStrings>
     <replaceStrings>
-      <replace>RevenueDayController</replace>
-      <replace>ReportService</replace>
-      <replace>RevenueWeekController</replace>
-      <replace>RevenueMonthController</replace>
       <replace>RevenueYearController</replace>
       <replace>RevenueQuarterController</replace>
       <replace>RevenueRenewalController</replace>
@@ -167,6 +143,10 @@
       <replace>RevenueBuyQuestionCPController</replace>
       <replace>BlacklistController</replace>
       <replace>ConfigurationService</replace>
+      <replace>RevenueAVBController</replace>
+      <replace>OutputAVBController</replace>
+      <replace>OutputCodeController</replace>
+      <replace>ControlInformationController</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\Work\ThienTaiDoanChu\FrontEndCMS\app\services</dir>
@@ -185,21 +165,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/configuration/momt/momt.html" />
-        <option value="$PROJECT_DIR$/app/configuration/momt/momt.controller.js" />
-        <option value="$PROJECT_DIR$/app/report/outputday/outputday.html" />
-        <option value="$PROJECT_DIR$/app/report/outputday/outputday.controller.js" />
-        <option value="$PROJECT_DIR$/app/report/outputmonth/outputmonth.controller.js" />
-        <option value="$PROJECT_DIR$/app/report/outputmonth/outputmonth.html" />
-        <option value="$PROJECT_DIR$/app/report/outputsub/outputsub.controller.js" />
-        <option value="$PROJECT_DIR$/app/report/outputsub/outputsub.html" />
-        <option value="$PROJECT_DIR$/app/customercare/winnings/winnings.html" />
         <option value="$PROJECT_DIR$/app/customercare/momt/momt.controller.js" />
         <option value="$PROJECT_DIR$/app/customercare/momt/momt.html" />
         <option value="$PROJECT_DIR$/app/customercare/charge/charge.controller.js" />
         <option value="$PROJECT_DIR$/app/customercare/charge/charge.html" />
-        <option value="$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.controller.js" />
-        <option value="$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.html" />
         <option value="$PROJECT_DIR$/app/report/outputdaycp/outputday-cp.controller.js" />
         <option value="$PROJECT_DIR$/app/report/revenueregistercp/revenueregister.controller.js" />
         <option value="$PROJECT_DIR$/app/report/outputdaycp/outputday-cp.html" />
@@ -221,21 +190,32 @@
         <option value="$PROJECT_DIR$/app/customercare/logs/logs.html" />
         <option value="$PROJECT_DIR$/app/customercare/logs/logs.controller.js" />
         <option value="$PROJECT_DIR$/app/services/customercare/customercare.service.js" />
-        <option value="$PROJECT_DIR$/app/report/report.state.js" />
-        <option value="$PROJECT_DIR$/app/services/report/report.service.js" />
         <option value="$PROJECT_DIR$/app/report/revenuebuyquestion/revenuebuyquestion.controller.js" />
         <option value="$PROJECT_DIR$/app/report/revenuebuyquestion/revenuebuyquestion.html" />
         <option value="$PROJECT_DIR$/app/report/revenuebuyquestioncp/revenuebuyquestion-cp.controller.js" />
         <option value="$PROJECT_DIR$/app/report/revenuebuyquestioncp/revenuebuyquestion-cp.html" />
         <option value="$PROJECT_DIR$/app/services/table-multiple-origin.service.js" />
         <option value="$PROJECT_DIR$/app/services/auth/user.service.js" />
-        <option value="$PROJECT_DIR$/app/report/revenueday/revenueday.controller.js" />
         <option value="$PROJECT_DIR$/app/app.constants.js" />
-        <option value="$PROJECT_DIR$/app/layouts/main_sidebar/main_sidebarController.js" />
         <option value="$PROJECT_DIR$/app/configuration/configuration.state.js" />
         <option value="$PROJECT_DIR$/app/services/configuration/configuration.service.js" />
         <option value="$PROJECT_DIR$/app/configuration/blacklist/blacklist.controller.js" />
         <option value="$PROJECT_DIR$/app/configuration/blacklist/blacklist.html" />
+        <option value="$PROJECT_DIR$/app/report/revenueAVB/revenueavb.controller.js" />
+        <option value="$PROJECT_DIR$/app/report/outputAVB/outputavb.html" />
+        <option value="$PROJECT_DIR$/app/report/revenueyearcp/revenueyear-cp.controller.js" />
+        <option value="$PROJECT_DIR$/app/report/outputcode/outputcode.html" />
+        <option value="$PROJECT_DIR$/app/layouts/main_sidebar/main_sidebarController.js" />
+        <option value="$PROJECT_DIR$/app/report/report.state.js" />
+        <option value="$PROJECT_DIR$/app/services/report/report.service.js" />
+        <option value="$PROJECT_DIR$/app/report/outputAVB/outputavb.controller.js" />
+        <option value="$PROJECT_DIR$/app/report/outputcode/outputcode.controller.js" />
+        <option value="$PROJECT_DIR$/app/report/control-information/control-information.controller.js" />
+        <option value="$PROJECT_DIR$/app/report/control-information/control-information.html" />
+        <option value="$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.html" />
+        <option value="$PROJECT_DIR$/app/report/revenueday/revenueday.html" />
+        <option value="$PROJECT_DIR$/app/report/revenueday/revenueday.controller.js" />
+        <option value="$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.controller.js" />
       </list>
     </option>
   </component>
@@ -246,7 +226,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -267,9 +247,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -281,26 +261,6 @@
               <item name="FrontEndCMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="FrontEndCMS" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FrontEndCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FrontEndCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="configuration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FrontEndCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FrontEndCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="configuration" type="462c0819:PsiDirectoryNode" />
-              <item name="blacklist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FrontEndCMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FrontEndCMS" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="configuration" type="462c0819:PsiDirectoryNode" />
-              <item name="momt" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FrontEndCMS" type="b2602c69:ProjectViewProjectNode" />
@@ -320,6 +280,20 @@
               <item name="FrontEndCMS" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="report" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontEndCMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCMS" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
+              <item name="revenueday" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FrontEndCMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEndCMS" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
+              <item name="revenuedaycp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FrontEndCMS" type="b2602c69:ProjectViewProjectNode" />
@@ -345,7 +319,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -359,8 +333,8 @@
       <recent name="D:\Work\ThienTaiDoanChu\FrontEndCMS\app\configuration" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Work\ThienTaiDoanChu\FrontEndCMS\app\customercare" />
       <recent name="D:\Work\ThienTaiDoanChu\FrontEndCMS\app\report" />
+      <recent name="D:\Work\ThienTaiDoanChu\FrontEndCMS\app\customercare" />
       <recent name="D:\Work\ThienTaiDoanChu\FrontEndCMS\app\services\configuration" />
       <recent name="D:\Work\ThienTaiDoanChu\FrontEndCMS\app\configuration" />
       <recent name="D:\Work\ThienTaiDoanChu\FrontEndCMS\app\report\revenueday" />
@@ -504,15 +478,21 @@
       <workItem from="1526263373121" duration="1523000" />
       <workItem from="1527317887091" duration="5177000" />
       <workItem from="1527479433454" duration="640000" />
-      <workItem from="1527497435859" duration="153000" />
+      <workItem from="1527497435859" duration="2712000" />
+      <workItem from="1527558541992" duration="6009000" />
+      <workItem from="1527595203170" duration="135000" />
+      <workItem from="1527596945912" duration="122000" />
+      <workItem from="1527645869866" duration="6011000" />
+      <workItem from="1527693351189" duration="607000" />
+      <workItem from="1528182265575" duration="2776000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133866000" />
+    <option name="totallyTimeSpent" value="152085000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -522,19 +502,19 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2881997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28971255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -556,76 +536,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3026">
-          <caret line="190" column="0" lean-forward="true" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="48" column="34" lean-forward="true" selection-start-line="40" selection-start-column="28" selection-end-line="48" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenueregister/revenueregister.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="83" column="41" lean-forward="false" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/outputdaycp/outputday-cp.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="214" column="9" lean-forward="true" selection-start-line="214" selection-start-column="9" selection-end-line="214" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/outputdaycp/outputday-cp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenuerenewal/revenuerenewal.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="83" column="41" lean-forward="false" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenueregistercp/revenueregister-cp.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="224" column="9" lean-forward="true" selection-start-line="214" selection-start-column="8" selection-end-line="224" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenueregistercp/revenueregister-cp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="48" column="34" lean-forward="true" selection-start-line="40" selection-start-column="28" selection-end-line="48" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenuerenewalcp/revenuerenewal-cp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenuequarter/revenuequarter.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="85" column="41" lean-forward="false" selection-start-line="85" selection-start-column="41" selection-end-line="85" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/customercare/winnings/topup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -689,20 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenueyearcp/revenueyear-cp.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="209" column="9" lean-forward="true" selection-start-line="199" selection-start-column="8" selection-end-line="209" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenueyearcp/revenueyear-cp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="48" column="34" lean-forward="true" selection-start-line="40" selection-start-column="28" selection-end-line="48" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/report/revenuemonthcp/revenuemonth-cp.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
@@ -760,20 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/report.state.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="487" column="59" lean-forward="false" selection-start-line="487" selection-start-column="29" selection-end-line="487" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/report/report.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="60" lean-forward="false" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/report/revenuebuyquestioncp/revenuebuyquestion-cp.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1411">
@@ -816,46 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenueday/revenueday.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="105" column="11" lean-forward="false" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/report/revenueday/revenueday.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="114" column="41" lean-forward="false" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/configuration/configuration.state.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="56" column="48" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="48" />
-          <folding>
-            <element signature="e#238#1177#0" expanded="false" />
-            <element signature="e#382#1163#0" expanded="false" />
-            <element signature="e#428#1145#0" expanded="false" />
-            <element signature="e#517#1144#0" expanded="false" />
-            <element signature="e#1212#2232#0" expanded="false" />
-            <element signature="e#1467#1660#0" expanded="false" />
-            <element signature="e#1687#2218#0" expanded="false" />
-            <element signature="e#1715#2200#0" expanded="false" />
-            <element signature="e#1753#2199#0" expanded="false" />
-            <element signature="e#1803#2175#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/layouts/main_sidebar/main_sidebarController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="289" column="48" lean-forward="false" selection-start-line="289" selection-start-column="48" selection-end-line="289" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/configuration/momt/momt.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -867,14 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-969">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,53 +733,311 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/configuration/blacklist/blacklist.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/services/configuration/configuration.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-          <folding>
-            <element signature="e#889#963#0" expanded="false" />
-            <element signature="e#1058#1147#0" expanded="false" />
-            <element signature="e#1164#1246#0" expanded="false" />
-            <element signature="e#1305#1986#0" expanded="false" />
-            <element signature="e#1462#1703#0" expanded="false" />
-            <element signature="e#1615#1689#0" expanded="false" />
-            <element signature="e#1758#1847#0" expanded="false" />
-            <element signature="e#1864#1974#0" expanded="false" />
-            <element signature="e#1882#1902#0" expanded="false" />
-            <element signature="e#2720#3383#0" expanded="false" />
-            <element signature="e#2877#3100#0" expanded="false" />
-            <element signature="e#3012#3086#0" expanded="false" />
-            <element signature="e#3155#3244#0" expanded="false" />
-            <element signature="e#3261#3371#0" expanded="false" />
-            <element signature="e#3279#3299#0" expanded="false" />
-            <element signature="e#3426#4087#0" expanded="false" />
-            <element signature="e#3583#3804#0" expanded="false" />
-            <element signature="e#3716#3790#0" expanded="false" />
-            <element signature="e#3859#3948#0" expanded="false" />
-            <element signature="e#3965#4075#0" expanded="false" />
-            <element signature="e#3983#4003#0" expanded="false" />
-            <element signature="e#4172#5027#0" expanded="false" />
-            <element signature="e#4235#5017#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/configuration/blacklist/blacklist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state relative-caret-position="325">
+          <caret line="87" column="51" lean-forward="false" selection-start-line="87" selection-start-column="51" selection-end-line="87" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/configuration/blacklist/blacklist.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/configuration/configuration.state.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="56" column="48" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/revenueAVB/revenueavb.controller.js" />
+    <entry file="file://$PROJECT_DIR$/app/report/revenueAVB/revenueavb.html" />
+    <entry file="file://$PROJECT_DIR$/app/report/outputAVB/outputavb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="120" column="49" lean-forward="true" selection-start-line="120" selection-start-column="49" selection-end-line="120" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/revenueyearcp/revenueyear-cp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="47" column="67" lean-forward="true" selection-start-line="41" selection-start-column="32" selection-end-line="47" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/revenueyearcp/revenueyear-cp.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-114">
+          <caret line="149" column="8" lean-forward="false" selection-start-line="149" selection-start-column="8" selection-end-line="184" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/outputcode/outputcode.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="869">
+          <caret line="117" column="48" lean-forward="false" selection-start-line="117" selection-start-column="48" selection-end-line="117" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/outputAVB/outputavb.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="95" lean-forward="false" selection-start-line="21" selection-start-column="95" selection-end-line="21" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/outputcode/outputcode.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="95" lean-forward="false" selection-start-line="21" selection-start-column="95" selection-end-line="21" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/report/report.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="131" column="38" lean-forward="false" selection-start-line="131" selection-start-column="17" selection-end-line="131" selection-end-column="38" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#1486#2323#0" expanded="false" />
+            <element signature="e#1643#1880#0" expanded="false" />
+            <element signature="e#1766#1840#0" expanded="false" />
+            <element signature="e#1936#2212#0" expanded="false" />
+            <element signature="e#2038#2165#0" expanded="false" />
+            <element signature="e#2229#2311#0" expanded="false" />
+            <element signature="e#2365#2398#0" expanded="false" />
+            <element signature="e#2441#2474#0" expanded="false" />
+            <element signature="e#2515#2548#0" expanded="false" />
+            <element signature="e#2592#2625#0" expanded="false" />
+            <element signature="e#2670#2703#0" expanded="false" />
+            <element signature="e#2747#2780#0" expanded="false" />
+            <element signature="e#2826#2859#0" expanded="false" />
+            <element signature="e#2899#2932#0" expanded="false" />
+            <element signature="e#2973#3006#0" expanded="false" />
+            <element signature="e#3045#3078#0" expanded="false" />
+            <element signature="e#3121#3154#0" expanded="false" />
+            <element signature="e#3195#3228#0" expanded="false" />
+            <element signature="e#3275#3308#0" expanded="false" />
+            <element signature="e#3351#3384#0" expanded="false" />
+            <element signature="e#3430#3463#0" expanded="false" />
+            <element signature="e#3506#3539#0" expanded="false" />
+            <element signature="e#3583#3616#0" expanded="false" />
+            <element signature="e#3664#3697#0" expanded="false" />
+            <element signature="e#3747#3780#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/control-information/control-information.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/control-information/control-information.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="65" column="10" lean-forward="true" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/report.state.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="556" column="33" lean-forward="false" selection-start-line="556" selection-start-column="33" selection-end-line="556" selection-end-column="33" />
+          <folding>
+            <element signature="e#231#1170#0" expanded="false" />
+            <element signature="e#375#1156#0" expanded="false" />
+            <element signature="e#421#1138#0" expanded="false" />
+            <element signature="e#510#1137#0" expanded="false" />
+            <element signature="e#1205#2185#0" expanded="false" />
+            <element signature="e#1458#1649#0" expanded="false" />
+            <element signature="e#1676#2171#0" expanded="false" />
+            <element signature="e#1704#2153#0" expanded="false" />
+            <element signature="e#1742#2152#0" expanded="false" />
+            <element signature="e#1792#2128#0" expanded="false" />
+            <element signature="e#2221#3207#0" expanded="false" />
+            <element signature="e#2478#2669#0" expanded="false" />
+            <element signature="e#2696#3193#0" expanded="false" />
+            <element signature="e#2724#3175#0" expanded="false" />
+            <element signature="e#2762#3174#0" expanded="false" />
+            <element signature="e#2812#3150#0" expanded="false" />
+            <element signature="e#3244#4237#0" expanded="false" />
+            <element signature="e#3505#3697#0" expanded="false" />
+            <element signature="e#3724#4223#0" expanded="false" />
+            <element signature="e#3752#4205#0" expanded="false" />
+            <element signature="e#3790#4204#0" expanded="false" />
+            <element signature="e#3840#4180#0" expanded="false" />
+            <element signature="e#4273#5258#0" expanded="false" />
+            <element signature="e#4530#4720#0" expanded="false" />
+            <element signature="e#4747#5244#0" expanded="false" />
+            <element signature="e#4775#5226#0" expanded="false" />
+            <element signature="e#4813#5225#0" expanded="false" />
+            <element signature="e#4863#5201#0" expanded="false" />
+            <element signature="e#5297#6300#0" expanded="false" />
+            <element signature="e#5566#5756#0" expanded="false" />
+            <element signature="e#5783#6286#0" expanded="false" />
+            <element signature="e#5811#6268#0" expanded="false" />
+            <element signature="e#5849#6267#0" expanded="false" />
+            <element signature="e#5899#6243#0" expanded="false" />
+            <element signature="e#6339#7346#0" expanded="false" />
+            <element signature="e#6608#6802#0" expanded="false" />
+            <element signature="e#6829#7332#0" expanded="false" />
+            <element signature="e#6857#7314#0" expanded="false" />
+            <element signature="e#6895#7313#0" expanded="false" />
+            <element signature="e#6945#7289#0" expanded="false" />
+            <element signature="e#7386#8399#0" expanded="false" />
+            <element signature="e#7659#7853#0" expanded="false" />
+            <element signature="e#7880#8385#0" expanded="false" />
+            <element signature="e#7908#8367#0" expanded="false" />
+            <element signature="e#7946#8366#0" expanded="false" />
+            <element signature="e#7996#8342#0" expanded="false" />
+            <element signature="e#8443#9484#0" expanded="false" />
+            <element signature="e#8729#8932#0" expanded="false" />
+            <element signature="e#8959#9470#0" expanded="false" />
+            <element signature="e#8987#9452#0" expanded="false" />
+            <element signature="e#9025#9451#0" expanded="false" />
+            <element signature="e#9075#9427#0" expanded="false" />
+            <element signature="e#9518#10497#0" expanded="false" />
+            <element signature="e#9767#9963#0" expanded="false" />
+            <element signature="e#9990#10483#0" expanded="false" />
+            <element signature="e#10018#10465#0" expanded="false" />
+            <element signature="e#10056#10464#0" expanded="false" />
+            <element signature="e#10106#10440#0" expanded="false" />
+            <element signature="e#10533#11525#0" expanded="false" />
+            <element signature="e#10790#10987#0" expanded="false" />
+            <element signature="e#11014#11511#0" expanded="false" />
+            <element signature="e#11042#11493#0" expanded="false" />
+            <element signature="e#11080#11492#0" expanded="false" />
+            <element signature="e#11130#11468#0" expanded="false" />
+            <element signature="e#11559#12542#0" expanded="false" />
+            <element signature="e#11808#12008#0" expanded="false" />
+            <element signature="e#12035#12528#0" expanded="false" />
+            <element signature="e#12063#12510#0" expanded="false" />
+            <element signature="e#12101#12509#0" expanded="false" />
+            <element signature="e#12151#12485#0" expanded="false" />
+            <element signature="e#12580#13575#0" expanded="false" />
+            <element signature="e#12843#13034#0" expanded="false" />
+            <element signature="e#13061#13561#0" expanded="false" />
+            <element signature="e#13089#13543#0" expanded="false" />
+            <element signature="e#13127#13542#0" expanded="false" />
+            <element signature="e#13177#13518#0" expanded="false" />
+            <element signature="e#13612#14606#0" expanded="false" />
+            <element signature="e#13871#14067#0" expanded="false" />
+            <element signature="e#14094#14592#0" expanded="false" />
+            <element signature="e#14122#14574#0" expanded="false" />
+            <element signature="e#14160#14573#0" expanded="false" />
+            <element signature="e#14210#14549#0" expanded="false" />
+            <element signature="e#14649#15677#0" expanded="false" />
+            <element signature="e#14932#15126#0" expanded="false" />
+            <element signature="e#15153#15663#0" expanded="false" />
+            <element signature="e#15181#15645#0" expanded="false" />
+            <element signature="e#15219#15644#0" expanded="false" />
+            <element signature="e#15269#15620#0" expanded="false" />
+            <element signature="e#15719#16741#0" expanded="false" />
+            <element signature="e#15998#16192#0" expanded="false" />
+            <element signature="e#16219#16727#0" expanded="false" />
+            <element signature="e#16247#16709#0" expanded="false" />
+            <element signature="e#16285#16708#0" expanded="false" />
+            <element signature="e#16335#16684#0" expanded="false" />
+            <element signature="e#16780#17781#0" expanded="false" />
+            <element signature="e#17047#17238#0" expanded="false" />
+            <element signature="e#17265#17767#0" expanded="false" />
+            <element signature="e#17293#17749#0" expanded="false" />
+            <element signature="e#17331#17748#0" expanded="false" />
+            <element signature="e#17381#17724#0" expanded="false" />
+            <element signature="e#17823#18841#0" expanded="false" />
+            <element signature="e#18102#18292#0" expanded="false" />
+            <element signature="e#18319#18827#0" expanded="false" />
+            <element signature="e#18347#18809#0" expanded="false" />
+            <element signature="e#18385#18808#0" expanded="false" />
+            <element signature="e#18435#18784#0" expanded="false" />
+            <element signature="e#18880#19880#0" expanded="false" />
+            <element signature="e#19147#19337#0" expanded="false" />
+            <element signature="e#19364#19866#0" expanded="false" />
+            <element signature="e#19392#19848#0" expanded="false" />
+            <element signature="e#19430#19847#0" expanded="false" />
+            <element signature="e#19480#19823#0" expanded="false" />
+            <element signature="e#19920#20928#0" expanded="false" />
+            <element signature="e#20191#20383#0" expanded="false" />
+            <element signature="e#20410#20914#0" expanded="false" />
+            <element signature="e#20438#20896#0" expanded="false" />
+            <element signature="e#20476#20895#0" expanded="false" />
+            <element signature="e#20526#20871#0" expanded="false" />
+            <element signature="e#20975#22031#0" expanded="false" />
+            <element signature="e#21271#21474#0" expanded="false" />
+            <element signature="e#21501#22017#0" expanded="false" />
+            <element signature="e#21529#21999#0" expanded="false" />
+            <element signature="e#21567#21998#0" expanded="false" />
+            <element signature="e#21617#21974#0" expanded="false" />
+            <element signature="e#22065#23038#0" expanded="false" />
+            <element signature="e#23073#24061#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/layouts/main_sidebar/main_sidebarController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="241" column="46" lean-forward="true" selection-start-line="241" selection-start-column="46" selection-end-line="241" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="138" column="98" lean-forward="true" selection-start-line="138" selection-start-column="44" selection-end-line="138" selection-end-column="98" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/revenueday/revenueday.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="125" column="58" lean-forward="true" selection-start-line="125" selection-start-column="58" selection-end-line="125" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/revenueday/revenueday.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="101" column="34" lean-forward="true" selection-start-line="101" selection-start-column="34" selection-end-line="101" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/report/revenuedaycp/revenueday-cp.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="102" column="68" lean-forward="false" selection-start-line="102" selection-start-column="68" selection-end-line="102" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
